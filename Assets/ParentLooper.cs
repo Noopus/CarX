@@ -51,8 +51,7 @@ public class ParentLooper : MonoBehaviour {
 
 
 //	if(loop.turn==false)
-	print ("this is : "+loop.counted);
-
+	
 		
 		
 	}
