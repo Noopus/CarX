@@ -77,6 +77,20 @@ public class car : MonoBehaviour {
 
 	float lastrot;
 
+
+	float accx;
+	
+
+
+	float rotateDegrees = 0f;
+
+
+	float smoother=1;
+
+
+	float delay=0;
+
+
 	void Update () {
 
 
@@ -84,27 +98,52 @@ public class car : MonoBehaviour {
 
 		iPx = Input.acceleration.x;
 		
+
+
+		if(Mathf.Abs(iPx)<1f)
+		accx=Mathf.Abs(iPx);
+
 		
 		
-		
-		
-		if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
+		if (Input.GetKey (KeyCode.K)||iPx<-0.1f)
 	//	if(Input.GetKey(KeyCode.K))
 		{
 			goleft = true;
 			goright = false;
-			
+
+			if(delay<1)
+				delay+=0.001f;
+
+			if(delay<0)
+			delay+=0.005f;
+
+
+
+			smoother+=0.001f;
+	
 		} else
-				if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
+				if (Input.GetKey (KeyCode.L)||iPx>0.1f) 
 	//		if(Input.GetKey(KeyCode.L))
 		{
 			goleft = false;
 			goright = true;
-			
+
+
+			if(delay>0)
+				delay-=0.005f;
+
+
+			if(delay>-1)
+				delay-=0.001f;
+
+			smoother+=0.001f;
 		} else {
 			goleft=false;
 			goright=false;
-			
+
+			smoother=0;
+
+			delay=0;
 		}
 		
 
@@ -116,33 +155,7 @@ public class car : MonoBehaviour {
 
 
 
-
-
-
-
-
-		
-		//	this.transform.localRotation = Quaternion.Euler (curangles);
-		
-	//		this.transform.rotation=Quaternion.Euler(RotatePointAroundPivot(Vector3.up,transform.position,curangles));
-
-
-
-
-		
-
-
-	//		this.transform.rotation=Quaternion.Euler(RotatePointAroundPivot(this.transform.position,piv1.transform.position,curangles));
-
-	//		transform.Rotate(curangles, Space.World);
-
-
-
-
-
-
-
-			if(piv1.transform.position.z<-9.8f)
+			if(piv1.transform.position.z<-12.8f)
 				transform.Translate(Vector3.forward*0.05f);
       
 
@@ -150,7 +163,7 @@ public class car : MonoBehaviour {
 
 
 
-			float rotateDegrees = 0f;
+			rotateDegrees = 0f;
 		
 			float srotateDegrees = 0f;
 
@@ -159,7 +172,9 @@ public class car : MonoBehaviour {
 			{
 	
 
-				rotateDegrees -= 2*rotateSpeed * Time.deltaTime;
+			
+
+				rotateDegrees -= rotateSpeed* Time.deltaTime+accx;
 				
 				lastrot=rotateDegrees;
 				
@@ -173,7 +188,9 @@ public class car : MonoBehaviour {
 
 			{
 
-				rotateDegrees += 2*rotateSpeed * Time.deltaTime;
+			
+
+				rotateDegrees += rotateSpeed * Time.deltaTime+accx;
 				
 				lastrot=rotateDegrees;
 
@@ -223,14 +240,14 @@ public class car : MonoBehaviour {
 			//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 			if(goleft||goright)
 			{	
-				newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10, 10);
+				newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -8, 8);
 			    rotateDegrees = newAngle - angleBetween;
 				this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 
 			}
 			else
 			{
-				newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -10, 10);
+				newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -8, 8);
 			    srotateDegrees = newAngle/2 - angleBetween;
 				this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/10);
 
@@ -259,29 +276,37 @@ public class car : MonoBehaviour {
 		}		else {
 
 
-			float accx;
-
-			accx=Mathf.Abs(iPx);
-
+		
 		//	if (Input.GetKey ("left"))
 			if(goleft)
 			{	
 			
-				this.transform.Translate (Vector3.left*(accx-0.05f));
+//				if(delay>0.01f)
+		this.transform.Translate (Vector3.left*((accx-0.1f)));
+	
+	//			this.transform.Translate (Vector3.left*(0.2f));
+
 			}
 			else
 //				if (Input.GetKey ("right"))
 				if(goright)
 			{
 			
-				this.transform.Translate (Vector3.left*-(accx-0.05f));
+//				if(delay<-0.01f)
+				this.transform.Translate (Vector3.left*-((accx-0.1f)));
+		
+		//		this.transform.Translate (Vector3.left*-(0.2f));
+			
 			}
 		
 
+
+		
 				}
 
 
-	
+		print ("this is : "+smoother);
+
 
 
 	

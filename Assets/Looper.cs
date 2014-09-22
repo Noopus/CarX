@@ -279,7 +279,6 @@ public class Looper : MonoBehaviour {
 				
 			}
 
-			print (counted);
 
 
 			if(counted>90)
