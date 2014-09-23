@@ -43,6 +43,7 @@ public class Looper : MonoBehaviour {
 	GameObject[] inst;
 
 
+	int speed;
 
 
 	void Start () {
