@@ -102,11 +102,11 @@ public class car : MonoBehaviour {
 		
 		if(Mathf.Abs(iPx)<1f)
 			accx=Mathf.Abs(iPx);
-
-
-		if (accx > 0.1f) {
-			accx=0.1f;
-				}
+		
+		
+		if (accx > 0.15f) {
+			accx=0.15f;
+		}
 		
 		
 		if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
@@ -221,14 +221,14 @@ public class car : MonoBehaviour {
 			{    
 				newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -8, 8);
 				rotateDegrees = newAngle - angleBetween;
-				this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
+				this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees*(1+accx/10));
 				
 			}
 			else
 			{
 				newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -8, 8);
 				srotateDegrees = newAngle/2 - angleBetween;
-				this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/7);
+				this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/10);
 				
 			}
 			
@@ -275,13 +275,13 @@ public class car : MonoBehaviour {
 				speed+=0.0002f+(accx-0.05f)/50;
 				
 				
-
+				
 				if(speed<0.05f)
 					speed+=0.01f;
 				
-				if(speed>0.15f)
-					speed=0.15f;
-
+				if(speed>0.5f)
+					speed=0.5f;
+				
 				
 				
 				
@@ -299,14 +299,14 @@ public class car : MonoBehaviour {
 				
 				speed-=0.0002f+(accx-0.05f)/50;
 				
-
+				
 				
 				if(speed>-0.05f)
 					speed-=0.01f;
 				
-				if(speed<-0.15f)
-					speed=-0.15f;
-
+				if(speed<-0.5f)
+					speed=-0.5f;
+				
 				
 				
 			}
@@ -324,7 +324,7 @@ public class car : MonoBehaviour {
 					if(speed<-0.002f)
 						speed+=0.002f;
 				
-		/*		if(speed>-0.004f&&speed<0.004f)
+				/*		if(speed>-0.004f&&speed<0.004f)
 					speed=0;
 		*/		
 				

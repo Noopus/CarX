@@ -21,7 +21,7 @@ public class Looper : MonoBehaviour {
 	// Use this for initialization
 
 
-	float limit;
+	float limit,roadspeed=0.4f;
 
 
 //	GameObject barlne,srtlne;
@@ -64,7 +64,7 @@ public class Looper : MonoBehaviour {
 		pos=new Vector3(0,0,size.z);
 
 
-		resetpos=new Vector3(0,this.transform.position.y,2*size.z-0.4f);
+		resetpos=new Vector3(0,this.transform.position.y,2*size.z-roadspeed);
 
 
 		backpos=new Vector3(0,0,-size.z);
@@ -76,18 +76,18 @@ public class Looper : MonoBehaviour {
 
 
 
-//		barlne = Instantiate(barline, new Vector3(0,0,-size.z+0.4f), transform.rotation) as GameObject;
+//		barlne = Instantiate(barline, new Vector3(0,0,-size.z+roadspeed), transform.rotation) as GameObject;
 
-//		srtlne = Instantiate(barline, new Vector3(0,this.transform.position.y,2*size.z-0.4f), transform.rotation) as GameObject;
+//		srtlne = Instantiate(barline, new Vector3(0,this.transform.position.y,2*size.z-roadspeed), transform.rotation) as GameObject;
 
 
-//		barlne = Instantiate(barline, new Vector3(0,0,-size.z+0.4f), transform.rotation) as GameObject;
+//		barlne = Instantiate(barline, new Vector3(0,0,-size.z+roadspeed), transform.rotation) as GameObject;
 		
-//		srtlne = Instantiate(barline, new Vector3(0,this.transform.position.y,2*size.z-0.4f), transform.rotation) as GameObject;
+//		srtlne = Instantiate(barline, new Vector3(0,this.transform.position.y,2*size.z-roadspeed), transform.rotation) as GameObject;
 
-		endbar.transform.position = new Vector3 (0, 0, -size.z + 0.4f);
+		endbar.transform.position = new Vector3 (0, 0, -size.z + roadspeed);
 
-		startbar.transform.position = new Vector3 (0, this.transform.position.y, 2 * size.z - 0.4f);
+		startbar.transform.position = new Vector3 (0, this.transform.position.y, 2*size.z - roadspeed);
 
 
 
@@ -127,8 +127,6 @@ public class Looper : MonoBehaviour {
 						if(i==4)
 							inst[i] = Instantiate (seclone, pos, transform.rotation) as GameObject;
 
-
-
 				}
 				else if(i==2||i==5)
 				{
@@ -139,8 +137,7 @@ public class Looper : MonoBehaviour {
 							if(i==5)
 								inst[i] = Instantiate (seclone, backpos, transform.rotation) as GameObject;
 
-
-				}
+		}
 
 				inst[i].transform.parent=this.transform.parent;
 
@@ -218,9 +215,9 @@ public class Looper : MonoBehaviour {
 
 	//	print ("this is resetpos : "+counted);
 
-	//	if (transform.position.z > -size.z+0.4f) 
+	//	if (transform.position.z > -size.z+roadspeed) 
 
-	//	resetpos=new Vector3(0,this.transform.position.y,transform.position.z+2*size.z-0.4f);
+	//	resetpos=new Vector3(0,this.transform.position.y,transform.position.z+2*size.z-roadspeed);
 
 
 		if (turn)
@@ -243,10 +240,16 @@ public class Looper : MonoBehaviour {
 				
 
 				
-				
+			
+
+
 				if (inst[i].transform.position.z > endbar.transform.position.z) 
 				{	
-					inst[i].transform.Translate (Vector3.forward * -0.4f);
+
+					inst[i].transform.Translate (Vector3.forward * -roadspeed);
+				
+
+
 				}
 				else
 				{
@@ -254,13 +257,17 @@ public class Looper : MonoBehaviour {
 					inst[i].transform.position=startbar.transform.position;
 					
 					counted+=1;
-					
+
+
+
+				
 
 					if(counted<10||counted>30)
 					{
 					if(i==3||i==4||i==5)
 						inst[i].SetActive(true);
 					else
+
 						inst[i].SetActive(false);
 					}
 					else if(counted>10&&counted<30)
@@ -297,7 +304,10 @@ public class Looper : MonoBehaviour {
 
 
 
-
+			if(Input.GetKey("p"))
+				roadspeed=2;
+			else
+				roadspeed=0.4f;
 		
 
 		}
