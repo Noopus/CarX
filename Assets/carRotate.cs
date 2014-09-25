@@ -124,8 +124,7 @@ public class carRotate : MonoBehaviour {
 		
 		
 		
-		print ("xspeed : "+xspeep);
-		
+
 		
 		rotateDegrees = 0f;
 		
