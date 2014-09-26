@@ -13,13 +13,14 @@ public class Obstacle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		ob1=Instantiate (ob1, new Vector3(0,1,50), transform.rotation) as GameObject;
+		ob1=Instantiate (ob1, new Vector3(0,1,150), transform.rotation) as GameObject;
 
 
 		spawnpos = ob1.transform.position;
 
 
 	
+
 	}
 
 
@@ -41,14 +42,14 @@ public class Obstacle : MonoBehaviour {
 
 
 
-			spawnpos.x=Random.Range(-4,4);
+	//		spawnpos.x=Random.Range(-4,4);
 
 			ob1.transform.position=spawnpos;
 
 
 		}
 		else
-			ob1.transform.Translate (Vector3.forward*-0.5f);
+			ob1.transform.Translate (Vector3.forward*-0.6f);
 
 
 

@@ -119,7 +119,7 @@ public class carRotate : MonoBehaviour {
 
 
 		
-		if(piv1.transform.position.z<-9.8f)
+		if(piv1.transform.position.z<-12.8f)
 			transform.Translate(Vector3.forward*0.05f);
 		
 		
@@ -133,7 +133,9 @@ public class carRotate : MonoBehaviour {
 		//        if (Input.GetKey(KeyCode.LeftArrow))
 		if(left)
 		{
-			rotateDegrees += rotateSpeed* Time.deltaTime;
+	//		rotateDegrees += rotateSpeed* Time.deltaTime;
+
+			rotateDegrees += rotateSpeed*0.01f;
 
 			rotateDegrees+=Mathf.Abs(xspeep)*5;
 		}
@@ -141,8 +143,12 @@ public class carRotate : MonoBehaviour {
 			//    if (Input.GetKey(KeyCode.RightArrow))
 			if(right)
 		{
-			rotateDegrees -= rotateSpeed * Time.deltaTime;
+	//		rotateDegrees -= rotateSpeed * Time.deltaTime;
 	
+
+			rotateDegrees -= rotateSpeed*0.01f;
+
+
 			rotateDegrees-=Mathf.Abs(xspeep)*5;
 
 		}

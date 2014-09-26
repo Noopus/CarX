@@ -54,6 +54,7 @@
      <Compile Include="Assets\carMove.cs" />
      <Compile Include="Assets\carRotate.cs" />
      <Compile Include="Assets\wheel.cs" />
+     <None Include="Assets\curved.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
