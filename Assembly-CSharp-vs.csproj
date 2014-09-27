@@ -50,6 +50,7 @@
      <Compile Include="Assets\NewLooper.cs" />
      <Compile Include="Assets\Obstacle.cs" />
      <Compile Include="Assets\ParentLooper.cs" />
+     <Compile Include="Assets\TruckMove.cs" />
      <Compile Include="Assets\car.cs" />
      <Compile Include="Assets\carMove.cs" />
      <Compile Include="Assets\carRotate.cs" />
