@@ -87,9 +87,9 @@ public class carRotate : MonoBehaviour {
 	
 
 		if (count == 1) {
-			transform.Translate (-Vector3.up*0.02f);
+			transform.Translate (-Vector3.up*0.01f);
 		} else if (count == 5) {
-			transform.Translate (Vector3.up*0.02f);
+			transform.Translate (Vector3.up*0.01f);
 			
 		}
 
@@ -157,9 +157,9 @@ public class carRotate : MonoBehaviour {
 		{
 	//		rotateDegrees += rotateSpeed* Time.deltaTime;
 
-			rotateDegrees += rotateSpeed*0.05f;
+			rotateDegrees += rotateSpeed*0.025f;
 
-			rotateDegrees+=Mathf.Abs(xspeep)*5;
+			rotateDegrees+=Mathf.Abs(xspeep)*2.5f;
 		}
 		else 
 			//    if (Input.GetKey(KeyCode.RightArrow))
@@ -168,10 +168,10 @@ public class carRotate : MonoBehaviour {
 	//		rotateDegrees -= rotateSpeed * Time.deltaTime;
 	
 
-			rotateDegrees -= rotateSpeed*0.05f;
+			rotateDegrees -= rotateSpeed*0.025f;
 
 
-			rotateDegrees-=Mathf.Abs(xspeep)*5;
+			rotateDegrees-=Mathf.Abs(xspeep)*2.5f;
 
 		}
 		else

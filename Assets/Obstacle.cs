@@ -27,7 +27,7 @@ public class Obstacle : MonoBehaviour {
 
 
 
-		ob1=Instantiate (ob1, new Vector3(0,1,150), transform.rotation) as GameObject;
+		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,150), transform.rotation) as GameObject;
 
 
 
@@ -83,7 +83,7 @@ public class Obstacle : MonoBehaviour {
 
 //		if (ob1.transform.position.z < -size.z) 
 
-			if (ob1.transform.position.z < player.transform.position.z-2*size.z) 
+			if (ob1.transform.position.z < player.transform.position.z-4*size.z) 
 		{
 
 			//ob1.transform.position.Set(player.transform.position.x,player.transform.position.y,player.transform.position.z+50);

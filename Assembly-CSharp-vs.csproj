@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CarMove1.cs" />
      <Compile Include="Assets\Looper.cs" />
      <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
      <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />

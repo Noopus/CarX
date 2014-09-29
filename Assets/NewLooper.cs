@@ -274,10 +274,10 @@ public class NewLooper : MonoBehaviour {
 			
 			
 			
-			if(gobs[i].transform.position.z>45&&gobs[i].transform.position.y>-0.001f)
-				gobs[i].transform.Translate(Vector3.up*-0.0005f);
+			if(gobs[i].transform.position.z>65&&gobs[i].transform.position.y>-0.0005f)
+				gobs[i].transform.Translate(Vector3.up*-0.00001f);
 			else
-				if(gobs[i].transform.position.z<5&&gobs[i].transform.position.y<0.1f)
+				if(gobs[i].transform.position.z<2&&gobs[i].transform.position.y<0.1f)
 					gobs[i].transform.Translate(Vector3.up*0.01f);
 			
 			
