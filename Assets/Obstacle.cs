@@ -100,7 +100,7 @@ public class Obstacle : MonoBehaviour {
 
 		}
 		else
-			ob1.transform.Translate (Vector3.forward*-0.5f);
+			ob1.transform.Translate (Vector3.forward*-0.6f);
 
 
 

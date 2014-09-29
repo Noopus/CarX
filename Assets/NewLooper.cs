@@ -26,7 +26,7 @@ public class NewLooper : MonoBehaviour {
 		
 		gobs = new GameObject[6];
 		
-		speed = 0.6f;
+		speed = 1f;
 
 
 //		sizeofarray = 4;
@@ -352,7 +352,7 @@ public class NewLooper : MonoBehaviour {
 		
 		
 		if (Input.GetKey ("p"))
-			speed = 1.2f;
+			speed += 0.02f;
 		
 	}
 }

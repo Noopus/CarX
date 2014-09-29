@@ -71,9 +71,31 @@ public class carRotate : MonoBehaviour {
 	float rotateDegrees = 0f;
 
 
+
+    float count=0;
+
 	// Update is called once per frame
 	void Update () {
-		
+
+
+		if (count > 5) {
+			count = 0;
+		} else 
+		{
+			count++;		
+		}
+	
+
+		if (count == 1) {
+			transform.Translate (-Vector3.up*0.02f);
+		} else if (count == 5) {
+			transform.Translate (Vector3.up*0.02f);
+			
+		}
+
+
+
+
 		
 		iPx = Input.acceleration.x;
 		
@@ -119,10 +141,10 @@ public class carRotate : MonoBehaviour {
 
 
 		
-		if(piv1.transform.position.z<-12.8f)
-			transform.Translate(Vector3.forward*0.05f);
+		if(piv1.transform.position.z>-14.8f)
+			transform.Translate(Vector3.forward*-0.05f);
 		
-		
+
 		
 
 		
@@ -135,7 +157,7 @@ public class carRotate : MonoBehaviour {
 		{
 	//		rotateDegrees += rotateSpeed* Time.deltaTime;
 
-			rotateDegrees += rotateSpeed*0.01f;
+			rotateDegrees += rotateSpeed*0.05f;
 
 			rotateDegrees+=Mathf.Abs(xspeep)*5;
 		}
@@ -146,7 +168,7 @@ public class carRotate : MonoBehaviour {
 	//		rotateDegrees -= rotateSpeed * Time.deltaTime;
 	
 
-			rotateDegrees -= rotateSpeed*0.01f;
+			rotateDegrees -= rotateSpeed*0.05f;
 
 
 			rotateDegrees-=Mathf.Abs(xspeep)*5;
@@ -193,14 +215,14 @@ public class carRotate : MonoBehaviour {
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
 		{    
-			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10, 10);
+			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -20, 20);
 			rotateDegrees = newAngle - angleBetween;
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 			
 		}
 		else
 		{
-			newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -10, 10);
+			newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -20, 20);
 			srotateDegrees = newAngle/2 - angleBetween;
 			this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/10);
 			
