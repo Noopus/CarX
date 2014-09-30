@@ -22,7 +22,7 @@ public class Obstacle : MonoBehaviour {
 	Renderer rende;
 	
 	
-	Vector3[] childpos;
+	Vector3[] childpos,ob1pos,ob2pos;
 
 
 
@@ -41,6 +41,11 @@ public class Obstacle : MonoBehaviour {
 		childpos = new Vector3[10];
 
 
+		ob1pos = new Vector3[6];
+
+		ob2pos = new Vector3[6];
+
+		
 		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,150), transform.rotation) as GameObject;
 		
 
@@ -78,7 +83,9 @@ public class Obstacle : MonoBehaviour {
 			
 	//		firstpos.transform.GetChild(j).transform.position=ob1.transform.GetChild(j).transform.position;
 
-			childpos[j]=curob.transform.GetChild(j).transform.position;
+//			childpos[j]=curob.transform.GetChild(j).transform.position;
+
+			ob1pos[j]=ob1.transform.GetChild(j).transform.position;
 
 		}
 		
@@ -90,12 +97,12 @@ public class Obstacle : MonoBehaviour {
 			
 			//		firstpos.transform.GetChild(j).transform.position=ob1.transform.GetChild(j).transform.position;
 			
-			childpos[j]=curob.transform.GetChild(j).transform.position;
+			ob2pos[j]=ob2.transform.GetChild(j).transform.position;
 			
 		}
 		
 
-		
+		childpos = ob1pos;
 		
 		
 		
@@ -148,6 +155,27 @@ public class Obstacle : MonoBehaviour {
 			curob.transform.position = spawnpos;
 
 
+			if(curob==ob1)
+			{
+				curob=ob2;
+
+
+				childpos=ob2pos;
+
+
+			}
+			else
+			{
+				curob=ob1;
+			
+				childpos=ob1pos;
+
+			}
+
+
+			shuffleArray(childpos);
+
+
 			for(int j=0;j<curob.transform.childCount;j++)
 
 				curob.transform.GetChild(j).transform.position=new Vector3(childpos[j].x,childpos[j].y,childpos[j].z);
@@ -160,7 +188,7 @@ public class Obstacle : MonoBehaviour {
 			curob.transform.Translate (Vector3.forward * -0.6f);
 
 			for(int j=0;j<curob.transform.childCount;j++)
-			curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.2f+j));
+			curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.01f+j/2));
 
 			
 		}
@@ -217,7 +245,23 @@ public class Obstacle : MonoBehaviour {
 		
 	}
 	
-	
+	void shuffleArray(Vector3[] ar)
+	{
+
+
+		for (int i = ar.Length - 1; i > 0; i--)
+		{
+		
+//			int index = rnd.nextInt(i + 1);
+
+			int index=Random.Range(1,i);
+
+			// Simple swap
+			Vector3 a = ar[index];
+			ar[index] = ar[i];
+			ar[i] = a;
+		}
+	}
 	
 	
 }

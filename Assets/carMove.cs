@@ -4,7 +4,7 @@ using System.Collections;
 public class carMove : MonoBehaviour {
 	
 	float xspeep = 0f;
-	float power = 0.0125f;
+	float power = 0.0110f;
 	float friction = 0.95f;
 	bool right = false;
 	bool left = false;
@@ -17,11 +17,11 @@ public class carMove : MonoBehaviour {
 		
 		
 		if(right){
-			xspeep += (power)+accx/35;
+			xspeep += (power)+accx/45;
 		//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+accx/35;
+			xspeep -= (power)+accx/45;
 		//	fuel -= power;
 		}
 		
