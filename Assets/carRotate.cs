@@ -74,10 +74,18 @@ public class carRotate : MonoBehaviour {
 
     float count=0;
 
+
+	bool isallowed = false;
+
 	// Update is called once per frame
 	void Update () {
 
 
+
+		
+		
+	
+		
 		if (count > 5) {
 			count = 0;
 		} else 
@@ -87,25 +95,43 @@ public class carRotate : MonoBehaviour {
 	
 
 		if (count == 1) {
-			transform.Translate (-Vector3.up*0.01f);
+	//		transform.Translate (-Vector3.up*0.01f);
 		} else if (count == 5) {
-			transform.Translate (Vector3.up*0.01f);
+	//		transform.Translate (Vector3.up*0.01f);
 			
 		}
 
 
+		if (this.transform.position.z > -15f)
+	//		this.transform.position = this.transform.position - new Vector3 (0,0,-1.25f);
+			transform.Translate (Vector3.forward*-0.05f);
 
+		
 
+//		print("z value : Global ="+transform.position.z+" Local = "+transform.localPosition.z);
+
+		
 		
 		iPx = Input.acceleration.x;
 		
 		
 		//		if(Mathf.Abs(iPx)<2)
 		accx = Mathf.Abs (iPx);
+
+
+
+
+
+		if (this.transform.position.x < 4.8f && this.transform.position.x > -6.6f)
+			isallowed = true;
+		else
+			isallowed = false;
+
+
+
 		
 		
-		
-		if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
+		if ((Input.GetKey (KeyCode.L)||iPx>0.05f)&&isallowed) 
 			//    if(Input.GetKey(KeyCode.K))
 		{
 			left = true;
@@ -113,7 +139,7 @@ public class carRotate : MonoBehaviour {
 			
 			
 		} else
-			if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
+			if ((Input.GetKey (KeyCode.K)||iPx<-0.05f)&&isallowed)
 				//        if(Input.GetKey(KeyCode.L))
 		{
 			left = false;
@@ -141,9 +167,9 @@ public class carRotate : MonoBehaviour {
 
 
 		
-		if(piv1.transform.position.z>-14.8f)
+/*		if(piv1.transform.position.z>-14.8f)
 			transform.Translate(Vector3.forward*-0.05f);
-		
+*/		
 
 		
 
@@ -157,9 +183,9 @@ public class carRotate : MonoBehaviour {
 		{
 	//		rotateDegrees += rotateSpeed* Time.deltaTime;
 
-			rotateDegrees += rotateSpeed*0.025f;
+			rotateDegrees += rotateSpeed*0.035f;
 
-			rotateDegrees+=Mathf.Abs(xspeep)*2.5f;
+			rotateDegrees+=Mathf.Abs(xspeep)*3.5f;
 		}
 		else 
 			//    if (Input.GetKey(KeyCode.RightArrow))
@@ -168,14 +194,19 @@ public class carRotate : MonoBehaviour {
 	//		rotateDegrees -= rotateSpeed * Time.deltaTime;
 	
 
-			rotateDegrees -= rotateSpeed*0.025f;
+			rotateDegrees -= rotateSpeed*0.035f;
 
 
-			rotateDegrees-=Mathf.Abs(xspeep)*2.5f;
+			rotateDegrees-=Mathf.Abs(xspeep)*3.5f;
 
 		}
 		else
 		{
+
+
+
+
+
 		}
 		
 		
@@ -209,13 +240,37 @@ public class carRotate : MonoBehaviour {
 		
 		float newAngle;
 		
+
+
+		if (this.transform.position.x > 4.8f) 
+		{
 		
+//			this.transform.position = this.transform.position - new Vector3 (0.15f, 0, 0);
 		
+
+			this.transform.position = new Vector3 (4.8f, this.transform.position.y, this.transform.position.z);
+
+		}
+
+		if (this.transform.position.x < -6.8f) 
+		{
+//						this.transform.position = this.transform.position - new Vector3 (-0.15f, 0, 0);
+
+
+			this.transform.position = new Vector3 (-6.8f, this.transform.position.y, this.transform.position.z);
+
+
+		}
+
+
+	
+
+
 		
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
 		{    
-			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -20, 20);
+			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -5, 20);
 			rotateDegrees = newAngle - angleBetween;
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 			
@@ -224,7 +279,7 @@ public class carRotate : MonoBehaviour {
 		{
 			newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -20, 20);
 			srotateDegrees = newAngle/2 - angleBetween;
-			this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/10);
+			this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/6);
 			
 		}
 		

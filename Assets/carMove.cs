@@ -4,7 +4,7 @@ using System.Collections;
 public class carMove : MonoBehaviour {
 	
 	float xspeep = 0f;
-	float power = 0.010f;
+	float power = 0.0125f;
 	float friction = 0.95f;
 	bool right = false;
 	bool left = false;
@@ -44,6 +44,7 @@ public class carMove : MonoBehaviour {
 
 
 
+		
 		if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
 			//    if(Input.GetKey(KeyCode.K))
 		{
@@ -75,6 +76,7 @@ public class carMove : MonoBehaviour {
 		}
 		
 		xspeep *= friction;
+
 		transform.Translate(Vector3.right * -xspeep);
 		
 	}
