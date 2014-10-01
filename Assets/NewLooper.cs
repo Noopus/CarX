@@ -6,7 +6,7 @@ public class NewLooper : MonoBehaviour {
 	
 	
 	
-	public GameObject go1,go2;
+	public GameObject go1,go2,go3;
 	
 	
 	GameObject g1,g2,g3;
@@ -97,7 +97,7 @@ public class NewLooper : MonoBehaviour {
 			}
 
 		if(i==2||i==5)
-				gobs [i] = Instantiate (go2, thirdpos, transform.rotation) as GameObject;
+				gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
 			
 			
 			
