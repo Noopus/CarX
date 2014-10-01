@@ -79,6 +79,9 @@ public class carRotate : MonoBehaviour {
 
 	bool isallowed = false;
 
+
+	Touch touch;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -132,7 +135,7 @@ public class carRotate : MonoBehaviour {
 
 
 		
-		
+	/*	
 		if ((Input.GetKey (KeyCode.L)||iPx>0.05f)&&isallowed) 
 			//    if(Input.GetKey(KeyCode.K))
 		{
@@ -153,7 +156,42 @@ public class carRotate : MonoBehaviour {
 			right=false;
 			
 		}
-		
+	*/
+
+
+		if (Input.touchCount == 1) {
+			touch = Input.touches [0];
+			
+			
+			//		if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
+			//    if(Input.GetKey(KeyCode.K))
+			if ((Input.GetKey (KeyCode.L) || touch.position.x > Screen.width / 2)&&isallowed) {
+				left = true;
+				right = false;
+				
+				
+			} else
+				//		if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
+			if ((Input.GetKey (KeyCode.K) || touch.position.x < Screen.width / 2)&&isallowed) {
+				//        if(Input.GetKey(KeyCode.L))
+				left = false;
+				right = true;
+				
+				
+			} else {
+				left = false;
+				right = false;
+				
+			}
+			
+			
+		}
+		else {
+			left = false;
+			right = false;
+			
+		}
+
 		
 		
 		

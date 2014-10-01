@@ -7,7 +7,7 @@ public class carMove : MonoBehaviour {
 //	float power = 0.0110f;
 //	float friction = 0.95f;
 
-	float power = 0.0140f;
+	float power = 0.0190f;
 	float friction = 0.930f;
 
 
@@ -22,11 +22,11 @@ public class carMove : MonoBehaviour {
 		
 		
 		if(right){
-			xspeep += (power)+accx/45;
+			xspeep += (power)+accx/55;
 		//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+accx/45;
+			xspeep -= (power)+accx/55;
 		//	fuel -= power;
 		}
 		
@@ -36,7 +36,9 @@ public class carMove : MonoBehaviour {
 
 	float iPx,accx;
 
-	
+
+	Touch touch;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -49,27 +51,44 @@ public class carMove : MonoBehaviour {
 
 
 
+
+	
+	
+
+
+	if (Input.touchCount == 1) {
+						touch = Input.touches [0];
+
 		
-		if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
-			//    if(Input.GetKey(KeyCode.K))
-		{
-			left = true;
+//		if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
+						//    if(Input.GetKey(KeyCode.K))
+						if (Input.GetKey (KeyCode.L) || touch.position.x > Screen.width / 2) {
+								left = true;
+								right = false;
+			
+			
+						} else
+	//		if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
+			if (Input.GetKey (KeyCode.K) || touch.position.x < Screen.width / 2) {
+				//        if(Input.GetKey(KeyCode.L))
+								left = false;
+								right = true;
+			
+			
+						} else {
+								left = false;
+								right = false;
+			
+						}
+
+
+				}
+		else {
+			left = false;
 			right = false;
 			
-			
-		} else
-			if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
-				//        if(Input.GetKey(KeyCode.L))
-		{
-			left = false;
-			right = true;
-			
-			
-		} else {
-			left=false;
-			right=false;
-			
 		}
+
 
 
 
