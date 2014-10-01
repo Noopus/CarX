@@ -46,11 +46,13 @@ public class carRotate : MonoBehaviour {
 		
 		
 		if(right){
-			xspeep += (power)+accx/25;
+	//		xspeep += (power)+accx/45;
+			xspeep += (power)+accx/45;
+	
 			//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+accx/25;
+			xspeep -= (power)+accx/45;
 			//	fuel -= power;
 		}
 		
@@ -183,9 +185,11 @@ public class carRotate : MonoBehaviour {
 		{
 	//		rotateDegrees += rotateSpeed* Time.deltaTime;
 
-			rotateDegrees += rotateSpeed*0.035f;
+			rotateDegrees += rotateSpeed*0.045f;
 
-			rotateDegrees+=Mathf.Abs(xspeep)*3.5f;
+
+			rotateDegrees+=Mathf.Abs(xspeep)*6.5f;
+
 		}
 		else 
 			//    if (Input.GetKey(KeyCode.RightArrow))
@@ -194,10 +198,10 @@ public class carRotate : MonoBehaviour {
 	//		rotateDegrees -= rotateSpeed * Time.deltaTime;
 	
 
-			rotateDegrees -= rotateSpeed*0.035f;
+			rotateDegrees -= rotateSpeed*0.045f;
 
 
-			rotateDegrees-=Mathf.Abs(xspeep)*3.5f;
+			rotateDegrees-=Mathf.Abs(xspeep)*6.5f;
 
 		}
 		else
@@ -270,7 +274,7 @@ public class carRotate : MonoBehaviour {
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
 		{    
-			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -5, 20);
+			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -7, 7);
 			rotateDegrees = newAngle - angleBetween;
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 			

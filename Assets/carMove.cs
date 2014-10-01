@@ -4,8 +4,13 @@ using System.Collections;
 public class carMove : MonoBehaviour {
 	
 	float xspeep = 0f;
-	float power = 0.0110f;
-	float friction = 0.95f;
+//	float power = 0.0110f;
+//	float friction = 0.95f;
+
+	float power = 0.0140f;
+	float friction = 0.930f;
+
+
 	bool right = false;
 	bool left = false;
 	
