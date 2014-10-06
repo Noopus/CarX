@@ -4,7 +4,7 @@ using System.Collections;
 public class carRotate : MonoBehaviour {
 	
 	float xspeep = 0f;
-	float power = 0.010f;
+	float power = 0.028f;
 	float friction = 0.95f;
 	bool right = false;
 	bool left = false;
@@ -36,6 +36,79 @@ public class carRotate : MonoBehaviour {
 
 		
 	}
+
+
+
+
+	void OnCollisionEnter(Collision collisionInfo)
+	{
+
+		print("Detected collision between " + gameObject.name + " and " + collisionInfo.collider.name);
+		print("There are " + collisionInfo.contacts.Length + " point(s) of contacts");
+		print("Their relative velocity is " + collisionInfo.relativeVelocity);
+
+
+
+
+		collisionInfo.collider.rigidbody.AddForce (Vector3.up * -50);
+
+
+		if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) 
+		{
+
+			gameObject.transform.Translate (Vector3.left * 0.45f);
+
+
+						collisionInfo.collider.rigidbody.AddForce (Vector3.left * -250);
+	
+
+			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -50);
+
+		} 
+		else
+		{
+
+			gameObject.transform.Translate (Vector3.left * -0.45f);
+
+
+						collisionInfo.collider.rigidbody.AddForce (Vector3.left * 250);
+		
+			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 50);
+		}
+
+
+	}
+	
+	void OnCollisionStay(Collision collisionInfo)
+	{
+		print(gameObject.name + " and " + collisionInfo.collider.name + " are still colliding");
+	}
+	
+	void OnCollisionExit(Collision collisionInfo)
+	{
+	
+	//	print(gameObject.name + " and " + collisionInfo.collider.name + " are no longer colliding");
+	
+		if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) 
+		{
+			
+			gameObject.transform.Translate (Vector3.left * 0.45f);
+			
+			
+					
+		} 
+		else
+		{
+			
+			gameObject.transform.Translate (Vector3.left * -0.45f);
+			
+			
+			}
+
+	}
+	
+
+
 
 
 
@@ -159,6 +232,11 @@ public class carRotate : MonoBehaviour {
 	*/
 
 
+
+
+
+		/*
+
 		if (Input.touchCount == 1) {
 			touch = Input.touches [0];
 			
@@ -192,7 +270,36 @@ public class carRotate : MonoBehaviour {
 			
 		}
 
+
+*/
+
+		if (Input.touchCount >0)
+			touch = Input.touches [0];
 		
+		
+
+		
+		
+		
+		if (Input.GetKey (KeyCode.RightArrow)|| (touch.position.x > Screen.width / 2&&Input.touchCount >0)) {
+			left = true;
+			right = false;
+			
+			
+		} else
+		if (Input.GetKey (KeyCode.LeftArrow)|| (touch.position.x < Screen.width / 2&&Input.touchCount >0)) {
+			left = false;
+			right = true;
+			
+			
+		} else {
+			left = false;
+			right = false;
+			
+		}
+
+
+
 		
 		
 		if(fuel < 0){

@@ -32,7 +32,10 @@ public class Obstacle : MonoBehaviour {
 	
 	bool firstwave=false,secondwave=false;
 	
-	
+
+
+
+	public GameObject newlooperscript;
 	
 	// Use this for initialization
 	void Start () {
@@ -168,6 +171,9 @@ public class Obstacle : MonoBehaviour {
 				
 			}
 		*/
+
+
+
 			curob=ob1;
 
 			
@@ -177,8 +183,29 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			for(int j=0;j<curob.transform.childCount;j++)
+			{
+
+
+				curob.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
 				
+				curob.transform.GetChild(j).transform.rigidbody.angularVelocity = Vector3.zero;
+
+
+
+
 				curob.transform.GetChild(j).transform.position=new Vector3(childpos[j].x,childpos[j].y,childpos[j].z);
+
+				curob.transform.GetChild(j).transform.rotation=Quaternion.identity;
+
+			
+
+			
+
+				//				curob.transform.GetChild(j).transform.rigidbody.Sleep( );
+
+			}
+
+
 
 //			firstwave=false;
 
@@ -190,7 +217,7 @@ public class Obstacle : MonoBehaviour {
 			if(firstwave)
 			{
 
-			curob.transform.Translate (Vector3.forward * -0.6f);
+			curob.transform.Translate (Vector3.forward * -0.9f);
 			
 			for(int j=0;j<curob.transform.childCount;j++)
 				{
@@ -271,11 +298,27 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			for(int j=0;j<curob2.transform.childCount;j++)
+			{	
+
+
+				curob2.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
 				
+				curob2.transform.GetChild(j).transform.rigidbody.angularVelocity = Vector3.zero;
+
+
+
+
 				curob2.transform.GetChild(j).transform.position=new Vector3(childpos2[j].x,childpos2[j].y,childpos2[j].z);
 
+				curob2.transform.GetChild(j).transform.rotation=Quaternion.Euler(Vector3.zero);
 
-//			secondwave=false;
+
+//				curob2.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
+//			curob2.transform.GetChild(j).transform.rigidbody.angularVelocity = Vector3.zero;
+//			curob2.transform.GetChild(j).transform.rigidbody.Sleep( );
+
+			}
+			//			secondwave=false;
 
 
 		} else 
@@ -287,7 +330,7 @@ public class Obstacle : MonoBehaviour {
 			{
 			
 
-				curob2.transform.Translate (Vector3.forward * -0.6f);
+				curob2.transform.Translate (Vector3.forward * -0.9f);
 			
 			for(int j=0;j<curob.transform.childCount;j++)
 				{

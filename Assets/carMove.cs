@@ -7,15 +7,21 @@ public class carMove : MonoBehaviour {
 //	float power = 0.0110f;
 //	float friction = 0.95f;
 
-	float power = 0.0190f;
-	float friction = 0.930f;
+	float power = 0.018f;
+	float friction = 0.940f;
 
 
 	bool right = false;
 	bool left = false;
 	
 	public float fuel = 20000;
+
+
 	
+	
+
+
+
 	
 	// Use this for initialization
 	void FixedUpdate () {
@@ -51,12 +57,14 @@ public class carMove : MonoBehaviour {
 
 
 
+		if (Input.touchCount >0)
+		touch = Input.touches [0];
 
 	
-	
+		/*
 
-
-	if (Input.touchCount == 1) {
+	//	if (Input.touchCount == 1||Input.touchCount == 0) 
+		{
 						touch = Input.touches [0];
 
 		
@@ -83,6 +91,7 @@ public class carMove : MonoBehaviour {
 
 
 				}
+/*
 		else {
 			left = false;
 			right = false;
@@ -90,6 +99,28 @@ public class carMove : MonoBehaviour {
 		}
 
 
+
+		*/
+
+
+
+		if (Input.GetKey (KeyCode.RightArrow)|| (touch.position.x > Screen.width / 2&&Input.touchCount >0)) {
+			left = true;
+			right = false;
+			
+			
+		} else
+		if (Input.GetKey (KeyCode.LeftArrow)|| (touch.position.x < Screen.width / 2&&Input.touchCount >0)) {
+			left = false;
+			right = true;
+			
+			
+		} else {
+			left = false;
+			right = false;
+			
+		}
+		
 
 
 
@@ -102,6 +133,15 @@ public class carMove : MonoBehaviour {
 		xspeep *= friction;
 
 		transform.Translate(Vector3.right * -xspeep);
-		
+
+
+
+
+
+	
 	}
+
+
+
+
 }
