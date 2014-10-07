@@ -45,6 +45,26 @@ public class carMove : MonoBehaviour {
 
 	Touch touch;
 
+
+	public int health,count;
+
+
+
+	void setCount(int c)
+	{
+		count = c;
+	}
+	
+	int getCount()
+	{
+		return count;
+	}
+
+
+
+
+	carRotate cr;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -60,7 +80,53 @@ public class carMove : MonoBehaviour {
 		if (Input.touchCount >0)
 		touch = Input.touches [0];
 
+
+
+
+
+		
+		
+		if (count > 150) {
+			setCount(140);
+		} else 
+		{
+			setCount(getCount()+1);		
+		}
+
 	
+
+
+
+
+		foreach (Transform t in transform)
+		{
+	//				if(t.name == "caryell")
+			{	//t.renderer.enabled=false;
+			
+			cr=t.GetComponent<carRotate>();
+
+
+
+		health=cr.delay;
+
+
+
+
+				if(cr.gameover)
+				{
+
+					Debug.ClearDeveloperConsole();
+
+					print ("health is : "+health);
+				
+				}
+			
+			}
+		
+		}
+
+
+
 		/*
 
 	//	if (Input.touchCount == 1||Input.touchCount == 0) 

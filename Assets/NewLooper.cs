@@ -6,7 +6,7 @@ public class NewLooper : MonoBehaviour {
 	
 	
 	
-	public GameObject go1,go2,go3;
+	public GameObject player,go1,go2,go3;
 	
 	
 	GameObject g1,g2,g3;
@@ -20,10 +20,17 @@ public class NewLooper : MonoBehaviour {
 	
 	
 	float sizeofarray;
-	
+
+
+	int delay;
+
+
 	// Use this for initialization
 	void Start () {
-		
+
+		delay = player.GetComponent<carMove> ().health;
+
+
 		gobs = new GameObject[6];
 		
 		speed = 1f;
@@ -149,7 +156,12 @@ public class NewLooper : MonoBehaviour {
 		
 		
 		
-		
+		delay = player.GetComponent<carMove> ().health;
+
+
+
+
+
 		
 		
 		
@@ -296,9 +308,10 @@ public class NewLooper : MonoBehaviour {
 			
 			
 			
-			
+			if(delay==0)
 			gobs[i].transform.Translate (Vector3.forward*-speed);
-			
+
+
 			
 			/*
             int curpos=i;

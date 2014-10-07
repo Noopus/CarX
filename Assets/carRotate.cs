@@ -32,48 +32,68 @@ public class carRotate : MonoBehaviour {
 		
 		
 		
-		
+		delay = 0;
 
 		
 	}
 
 
 
+	public int health;
+
 
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 
-		print("Detected collision between " + gameObject.name + " and " + collisionInfo.collider.name);
-		print("There are " + collisionInfo.contacts.Length + " point(s) of contacts");
-		print("Their relative velocity is " + collisionInfo.relativeVelocity);
+
+		health++;
+
+	
+		collisionInfo.collider.rigidbody.isKinematic = false;
+
+			
+			collisionInfo.collider.rigidbody.useGravity=true;
 
 
 
+		collisionInfo.collider.rigidbody.AddForce (Vector3.forward*650);
 
-		collisionInfo.collider.rigidbody.AddForce (Vector3.up * -50);
+		collisionInfo.collider.rigidbody.AddTorque (Vector3.forward * 1200);
+
+		   //collisionInfo.collider
+
+		
+//		print("Detected collision between " + gameObject.name + " and " + collisionInfo.collider.name);
+//		print("There are " + collisionInfo.contacts.Length + " point(s) of contacts");
+//		print("Their relative velocity is " + collisionInfo.relativeVelocity);
+
+
+
+//		collisionInfo.collider.rigidbody.AddForce (Vector3.up * -50);
 
 
 		if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) 
 		{
 
-			gameObject.transform.Translate (Vector3.left * 0.45f);
+		//	gameObject.transform.Translate (Vector3.left * 0.45f);
 
 
-						collisionInfo.collider.rigidbody.AddForce (Vector3.left * -250);
+						collisionInfo.collider.rigidbody.AddForce (Vector3.left * -450);
 	
 
-			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -50);
+
+			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -2150);
 
 		} 
 		else
 		{
 
-			gameObject.transform.Translate (Vector3.left * -0.45f);
-
-
-						collisionInfo.collider.rigidbody.AddForce (Vector3.left * 250);
 		
-			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 50);
+						collisionInfo.collider.rigidbody.AddForce (Vector3.left * 450);
+		
+
+
+			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 2150);
 		}
 
 
@@ -81,7 +101,7 @@ public class carRotate : MonoBehaviour {
 	
 	void OnCollisionStay(Collision collisionInfo)
 	{
-		print(gameObject.name + " and " + collisionInfo.collider.name + " are still colliding");
+//		print(gameObject.name + " and " + collisionInfo.collider.name + " are still colliding");
 	}
 	
 	void OnCollisionExit(Collision collisionInfo)
@@ -105,19 +125,75 @@ public class carRotate : MonoBehaviour {
 			
 			}
 
+
+
+
+		
 	}
 	
 
 
+	public GameObject explosion;
+	
 
 
 
+	public int delay=0;
 
+
+	public bool gameover;
 
 	// Use this for initialization
 	void FixedUpdate () {
 		
+	
 		
+	
+
+
+		
+		
+
+
+		if (health == 1) 
+		{
+	//							Application.LoadLevel (0);
+		
+
+
+		
+			Instantiate(explosion, transform.position, transform.rotation);
+
+
+
+			foreach (Transform t in transform)
+			{
+		//		if(t.name == "caryell")
+					t.renderer.enabled=false;
+
+
+			}
+
+
+		
+
+//			Destroy(other.gameObject);
+
+
+//			Destroy(gameObject);
+
+
+
+
+
+			gameover=true;
+
+
+
+			health=0;
+		}
+
+
 		if(right){
 	//		xspeep += (power)+accx/45;
 			xspeep += (power)+accx/45;
@@ -147,7 +223,7 @@ public class carRotate : MonoBehaviour {
 
 
 
-    float count=0;
+    static float count=0;
 
 
 	bool isallowed = false;
@@ -155,14 +231,42 @@ public class carRotate : MonoBehaviour {
 
 	Touch touch;
 
+
+
+
+
+
+
+
 	// Update is called once per frame
 	void Update () {
 
 
 
-		
+
+
+
+		if (gameover)
+			delay+=1;
+		else
+			delay=0;
 		
 	
+
+		if (delay > 50) 
+		{
+
+			delay=0;
+
+			gameover=false;
+
+			Application.LoadLevel (0);
+		}
+
+
+		
+	
+
 		
 		if (count > 5) {
 			count = 0;

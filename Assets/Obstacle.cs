@@ -35,8 +35,16 @@ public class Obstacle : MonoBehaviour {
 
 
 
-	public GameObject newlooperscript;
-	
+
+
+
+	int delay;
+
+
+
+
+	bool start=false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -57,9 +65,9 @@ public class Obstacle : MonoBehaviour {
 		ob2pos = new Vector3[ob2.transform.childCount];
 		
 		
-		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,120), transform.rotation) as GameObject;
+		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,140), transform.rotation) as GameObject;
 		
-		ob2=Instantiate (ob2, new Vector3(player.transform.position.x,0,120), transform.rotation) as GameObject;
+		ob2=Instantiate (ob2, new Vector3(player.transform.position.x,0,140), transform.rotation) as GameObject;
 		
 		
 		
@@ -68,7 +76,9 @@ public class Obstacle : MonoBehaviour {
 
 		curob2 = ob2;
 
-		
+
+
+
 		
 		spawnpos = curob.transform.position;
 		
@@ -118,17 +128,56 @@ public class Obstacle : MonoBehaviour {
 
 		childpos2 = ob2pos;
 		
-		
+
+
+
+		reset (curob, childpos);
+		reset (curob2, childpos2);
+
+
+
+
+	//	setKin (curob);
+
+	//	setKin (curob2);
+
+
 	}
 	
 	
-	
-	
+	void setKin(GameObject curob)
+	{
+
+		for (int j=0; j<curob.transform.childCount; j++) {
+			
+						curob.transform.GetChild (j).transform.rigidbody.isKinematic = false;
+				}
+
+	}
+
+
+
+	void setGra(GameObject curob)
+	{
+		
+		for (int j=0; j<curob.transform.childCount; j++) {
+
+
+			
+			curob.transform.GetChild (j).transform.rigidbody.useGravity=true;
+		}
+		
+	}
+
+
+
 	
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
+		delay = player.GetComponent<carMove> ().health;
 		
 		
 		size = rende.bounds.size;
@@ -138,12 +187,34 @@ public class Obstacle : MonoBehaviour {
 
 
 
+		if (delay > 0) 
+		{
+
+/*			setKin (curob);
+			
+			setKin (curob2);
+
+
+			setGra (curob);
+			
+			setGra (curob2);
+*/
+		
+		}
+
 
 		if (curob.transform.position.z < player.transform.position.z - 4 * size.z) {
+
+
+
 			
+
+
+			reset (curob, childpos);
+
 		
 			
-			curob.transform.position = new Vector3(curob.transform.position.x,curob.transform.position.y,120);
+			curob.transform.position = new Vector3(curob.transform.position.x,curob.transform.position.y,140);
 			
 			
 			/*
@@ -185,6 +256,8 @@ public class Obstacle : MonoBehaviour {
 			for(int j=0;j<curob.transform.childCount;j++)
 			{
 
+//				curob.transform.GetChild(j).transform.rigidbody.isKinematic = false;
+
 
 				curob.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
 				
@@ -217,12 +290,14 @@ public class Obstacle : MonoBehaviour {
 			if(firstwave)
 			{
 
-			curob.transform.Translate (Vector3.forward * -0.9f);
+
+				if(delay==0)
+			curob.transform.Translate (Vector3.forward * -0.6f);
 			
 			for(int j=0;j<curob.transform.childCount;j++)
 				{
 
-					curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j));
+					curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.06f*j+0.06f*j));
 				
 				}
 			}
@@ -255,7 +330,7 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			
-			curob2.transform.position = new Vector3(curob2.transform.position.x,curob2.transform.position.y,120);
+			curob2.transform.position = new Vector3(curob2.transform.position.x,curob2.transform.position.y,140);
 			
 			
 			/*
@@ -301,6 +376,12 @@ public class Obstacle : MonoBehaviour {
 			{	
 
 
+
+				reset (curob2, childpos2);
+
+
+
+
 				curob2.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
 				
 				curob2.transform.GetChild(j).transform.rigidbody.angularVelocity = Vector3.zero;
@@ -329,12 +410,12 @@ public class Obstacle : MonoBehaviour {
 			if(secondwave)
 			{
 			
-
-				curob2.transform.Translate (Vector3.forward * -0.9f);
+				if(delay==0)
+				curob2.transform.Translate (Vector3.forward * -0.6f);
 			
 			for(int j=0;j<curob.transform.childCount;j++)
 				{
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.06f*j+0.06f*j));
 				}
 			
 			}
@@ -346,8 +427,11 @@ public class Obstacle : MonoBehaviour {
 
 
 
-		
-		
+		if (delay == 50) {
+						reset (curob, childpos);
+			reset (curob2, childpos2);
+
+				}
 		
 		
 	}
@@ -407,7 +491,35 @@ public class Obstacle : MonoBehaviour {
 			
 		}
 	}
-	
+
+
+
+	void reset(GameObject curo,Vector3[] child)
+	{
+
+
+		for(int j=0;j<curo.transform.childCount;j++)
+		{
+			
+			
+			curo.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
+			
+			curo.transform.GetChild(j).transform.rigidbody.angularVelocity = Vector3.zero;
+			
+			
+			
+			
+			curo.transform.GetChild(j).transform.position=new Vector3(child[j].x,child[j].y,child[j].z);
+			
+			curo.transform.GetChild(j).transform.rotation=Quaternion.identity;
+			
+			
+			
+
+		}
+
+
+	}
 	
 	
 	
