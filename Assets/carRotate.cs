@@ -34,7 +34,12 @@ public class carRotate : MonoBehaviour {
 		
 		delay = 0;
 
-		
+
+
+		smokeparticle.renderer.enabled = false;
+
+
+
 	}
 
 
@@ -282,6 +287,7 @@ public class carRotate : MonoBehaviour {
 
 
 
+	public GameObject smokeparticle;
 
 
 
@@ -292,12 +298,15 @@ public class carRotate : MonoBehaviour {
 
 
 
+//		smokeparticle.particleEmitter.emit = false;
 
 
+		if (gameover) {
+						delay += 1;
+		
+			smokeparticle.renderer.enabled = true;
 
-		if (gameover)
-			delay+=1;
-		else
+		}else
 			delay=0;
 		
 	

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Obstacle.cs" />
      <Compile Include="Assets\ParentLooper.cs" />
      <Compile Include="Assets\SeaMove.cs" />
+     <Compile Include="Assets\Smoker.cs" />
      <Compile Include="Assets\TruckMove.cs" />
      <Compile Include="Assets\car.cs" />
      <Compile Include="Assets\carMove.cs" />
