@@ -51,16 +51,30 @@ public class carRotate : MonoBehaviour {
 	
 		if (collisionInfo.collider.rigidbody != null) {	
 		
-		//	collisionInfo.collider.rigidbody.isKinematic = false;
+			collisionInfo.collider.rigidbody.isKinematic = false;
 
 			
-		//				collisionInfo.collider.rigidbody.useGravity = true;
+						collisionInfo.collider.rigidbody.useGravity = true;
 
 
 
-						collisionInfo.collider.rigidbody.AddForce (Vector3.forward * 150);
+//			gameObject.collider.rigidbody.AddForce (Vector3.forward * 300);
 
-						collisionInfo.collider.rigidbody.AddTorque (Vector3.forward * 300);
+			gameObject.collider.rigidbody.AddForce (Vector3.forward * -200);
+
+
+			gameObject.collider.rigidbody.AddForce (Vector3.up * 100);
+
+
+			gameObject.collider.rigidbody.AddTorque (Vector3.forward * -1000);
+
+
+
+
+			gameObject.rigidbody.useGravity=true;
+
+
+
 
 				}
 
@@ -84,11 +98,18 @@ public class carRotate : MonoBehaviour {
 
 			if (collisionInfo.collider.rigidbody != null) {	
 
-						collisionInfo.collider.rigidbody.AddForce (Vector3.left * -150);
+	//					collider.rigidbody.AddForce (Vector3.left * 50);
 	
 
 
-			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
+	//		rigidbody.AddTorque(Vector3.right * 250);
+
+
+		//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * -150);
+				
+				
+				
+		//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
 
 
 			}
@@ -102,13 +123,21 @@ public class carRotate : MonoBehaviour {
 			if (collisionInfo.collider.rigidbody != null) 
 			{	
 
-			collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
+//	collider.rigidbody.AddForce (Vector3.left * -50);
 		
 
 
-			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 550);
+//			collider.rigidbody.AddTorque(Vector3.right * -250);
 		
 			
+
+
+		//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
+				
+				
+				
+		//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 550);
+
 			
 			}
 			
@@ -182,7 +211,7 @@ public class carRotate : MonoBehaviour {
 
 
 		
-			Instantiate(explosion, transform.position, transform.rotation);
+		//	Instantiate(explosion, transform.position, transform.rotation);
 
 
 
@@ -273,7 +302,29 @@ public class carRotate : MonoBehaviour {
 		
 	
 
-		if (delay > 50) 
+
+		//	Instantiate(explosion, transform.position, transform.rotation);
+		
+		
+		if(delay==100)
+		foreach (Transform t in transform)
+		{
+
+
+			//		if(t.name == "caryell")
+			//			t.renderer.enabled=false;
+			
+
+		//	Instantiate(explosion, transform.position, transform.rotation);
+
+		}
+		
+
+
+
+
+
+		if (delay > 150) 
 		{
 
 			delay=0;

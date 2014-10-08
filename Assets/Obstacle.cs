@@ -181,8 +181,8 @@ public class Obstacle : MonoBehaviour {
 		
 		for (int j=0; j<curob.transform.childCount; j++) {
 
-			if(curob.transform.GetChild(j).transform.rigidbody!=null)
-						curob.transform.GetChild (j).transform.rigidbody.isKinematic = false;
+//			if(curob.transform.GetChild(j).transform.rigidbody!=null)
+//						curob.transform.GetChild (j).transform.rigidbody.isKinematic = false;
 		}
 		
 	}
@@ -241,6 +241,8 @@ public class Obstacle : MonoBehaviour {
 			setGra (curob);
 			
 			setGra (curob2);
+
+			speed=-0.6f;
 
 			
 		}
@@ -343,7 +345,7 @@ public class Obstacle : MonoBehaviour {
 			{
 				
 				
-				if(delay==0)
+			//	if(delay==0)
 					curob.transform.Translate (Vector3.forward * -speed);
 				
 				for(int j=0;j<curob.transform.childCount;j++)
@@ -472,7 +474,7 @@ public class Obstacle : MonoBehaviour {
 			if(secondwave)
 			{
 				
-				if(delay==0)
+			//	if(delay==0)
 					curob2.transform.Translate (Vector3.forward * -speed);
 				
 				for(int j=0;j<curob.transform.childCount;j++)
