@@ -49,16 +49,20 @@ public class carRotate : MonoBehaviour {
 		health++;
 
 	
-		collisionInfo.collider.rigidbody.isKinematic = false;
+		if (collisionInfo.collider.rigidbody != null) {	
+		
+		//	collisionInfo.collider.rigidbody.isKinematic = false;
 
 			
-			collisionInfo.collider.rigidbody.useGravity=true;
+		//				collisionInfo.collider.rigidbody.useGravity = true;
 
 
 
-		collisionInfo.collider.rigidbody.AddForce (Vector3.forward*650);
+						collisionInfo.collider.rigidbody.AddForce (Vector3.forward * 150);
 
-		collisionInfo.collider.rigidbody.AddTorque (Vector3.forward * 1200);
+						collisionInfo.collider.rigidbody.AddTorque (Vector3.forward * 300);
+
+				}
 
 		   //collisionInfo.collider
 
@@ -78,23 +82,37 @@ public class carRotate : MonoBehaviour {
 		//	gameObject.transform.Translate (Vector3.left * 0.45f);
 
 
-						collisionInfo.collider.rigidbody.AddForce (Vector3.left * -450);
+			if (collisionInfo.collider.rigidbody != null) {	
+
+						collisionInfo.collider.rigidbody.AddForce (Vector3.left * -150);
 	
 
 
-			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -2150);
+			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
+
+
+			}
+
 
 		} 
 		else
 		{
 
 		
-						collisionInfo.collider.rigidbody.AddForce (Vector3.left * 450);
+			if (collisionInfo.collider.rigidbody != null) 
+			{	
+
+			collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
 		
 
 
-			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 2150);
-		}
+			collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 550);
+		
+			
+			
+			}
+			
+			}
 
 
 	}
@@ -157,7 +175,9 @@ public class carRotate : MonoBehaviour {
 
 		if (health == 1) 
 		{
-	//							Application.LoadLevel (0);
+	
+
+		//	Application.LoadLevel (0);
 		
 
 
@@ -169,7 +189,7 @@ public class carRotate : MonoBehaviour {
 			foreach (Transform t in transform)
 			{
 		//		if(t.name == "caryell")
-					t.renderer.enabled=false;
+		//			t.renderer.enabled=false;
 
 
 			}

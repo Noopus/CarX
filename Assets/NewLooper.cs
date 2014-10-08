@@ -19,7 +19,7 @@ public class NewLooper : MonoBehaviour {
 	
 	
 	
-	float sizeofarray;
+	int sizeofarray;
 
 
 	int delay;
@@ -31,14 +31,16 @@ public class NewLooper : MonoBehaviour {
 		delay = player.GetComponent<carMove> ().health;
 
 
-		gobs = new GameObject[6];
+		sizeofarray = 9;
+
+
+		gobs = new GameObject[sizeofarray];
 		
 		speed = 1f;
 
 
 //		sizeofarray = 4;
 
-		sizeofarray = 6;
 
 
 		
@@ -73,7 +75,7 @@ public class NewLooper : MonoBehaviour {
 
 */
 		
-		
+	
 		
 		
 		for (int i=0; i<sizeofarray; i++) 
@@ -94,24 +96,96 @@ public class NewLooper : MonoBehaviour {
 
 
 
-			if(i==0||i==3)
-				gobs [i] = Instantiate (go1, firstpos, transform.rotation) as GameObject;
-			
-			if(i==1||i==4)
+
+
+		
+
+		
+			if(i>=0&&i<3)
 			{
-				gobs [i] = Instantiate (go2, secondpos, transform.rotation) as GameObject;
-				
+
+				if(i==0)
+				gobs [i] = Instantiate (go1, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==1)
+				gobs [i] = Instantiate (go1, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==2)
+						gobs [i] = Instantiate (go1, thirdpos, transform.rotation) as GameObject;
+
+
+
+
+//				gobs [0] = Instantiate (go1, firstpos, transform.rotation) as GameObject;
+			    
+//				gobs [1] = Instantiate (go1, secondpos, transform.rotation) as GameObject;
+
+//				gobs [2] = Instantiate (go1, thirdpos, transform.rotation) as GameObject;
+
+
+			}
+			if(i>=3&&i<6)
+			{
+
+//				gobs [i] = Instantiate (go2, secondpos, transform.rotation) as GameObject;
+
+
+				if(i==3)
+					gobs [i] = Instantiate (go2, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==4)
+						gobs [i] = Instantiate (go2, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==5)
+						gobs [i] = Instantiate (go2, thirdpos, transform.rotation) as GameObject;
+
+
+
+
 			}
 
-		if(i==2||i==5)
-				gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
+			if(i>=6&&i<9)
+			{
+
+
+				if(i==6)
+					gobs [i] = Instantiate (go3, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==7)
+						gobs [i] = Instantiate (go3, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==8)
+						gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
+
+
+
+
+//				gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
+			
+			}
+
+
+
+
+
+
+
+
+
+
+
+		
 			
 			
-			
-			
-			if(i>sizeofarray/2-1)
-				gobs[i].SetActive(false);
-			
+//			if(i>sizeofarray/3-1)
+
+			if(i>2)
+			gobs[i].SetActive(false);
+
+
+
+
+
 			
 			/*
             gobs[0].renderer.material.color = new Color(0.7f,0.7f,0);
@@ -162,8 +236,6 @@ public class NewLooper : MonoBehaviour {
 
 
 
-		
-		
 		
 		
 		size.x = 0;
@@ -222,31 +294,64 @@ public class NewLooper : MonoBehaviour {
 					
 					counter++;
 					
+
 					
+					print ("counter is : "+counter);
+
 				}
 				
 				
-				
+				if(counter==3)
+				{
+					if(i>=0&&i<3)
+						gobs[i].SetActive(true);
+					else
+						
+						gobs[i].SetActive(false);
+				}
+				else if(counter==6)
+				{
+					
+					if(i>=3&&i<6)
+						gobs[i].SetActive(true);
+					else
+						gobs[i].SetActive(false);
+				}
+				else if(counter==9)
+				{
+					
+					if(i>=6&&i<9)
+						gobs[i].SetActive(true);
+					else
+						gobs[i].SetActive(false);
+				}
+
+				if(counter>12)
+					counter=0;
+
+
+
 				
 				/*
                 if(counter<5||counter>10)
                 {
-                    if(i==3||i==4||i==5)
-                        gobs[i].SetActive(true);
+					if(i>=3&&i<6)
+						gobs[i].SetActive(true);
                     else
                         
                         gobs[i].SetActive(false);
                 }
                 else if(counter>5&&counter<10)
                 {
-                    if(i==0||i==1||i==2)
-                        gobs[i].SetActive(true);
+                
+					if(i>=0&&i<3)
+						gobs[i].SetActive(true);
                     else
                         gobs[i].SetActive(false);
                 }
 
-*/
-				
+
+				*/
 				
 				
 				gobs[i].transform.position = gobs[nextpos].transform.position + size;

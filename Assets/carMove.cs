@@ -117,7 +117,7 @@ public class carMove : MonoBehaviour {
 
 					Debug.ClearDeveloperConsole();
 
-					print ("health is : "+health);
+		//			print ("health is : "+health);
 				
 				}
 			
