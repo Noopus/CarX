@@ -6,8 +6,8 @@ public class carRotate : MonoBehaviour {
 	float xspeep = 0f;
 	float power = 0.028f;
 	float friction = 0.95f;
-	bool right = false;
-	bool left = false;
+	public bool right = false;
+	public bool left = false;
 	
 	public float fuel = 20000;
 	
@@ -55,23 +55,36 @@ public class carRotate : MonoBehaviour {
 
 	
 		if (collisionInfo.collider.rigidbody != null) {	
-		
+
+
+
+//			if(!collisionInfo.collider.name.Equals("Obtruck"))
 			collisionInfo.collider.rigidbody.isKinematic = false;
+
+
+			if(collisionInfo.collider.name.Equals("Obtruck"))
+			Physics.gravity=new Vector3(0,-50,0);
+			else
+				Physics.gravity=new Vector3(0,-10,0);
+
+
+
 
 			
 						collisionInfo.collider.rigidbody.useGravity = true;
 
 
 
+
 //			gameObject.collider.rigidbody.AddForce (Vector3.forward * 300);
 
-			gameObject.collider.rigidbody.AddForce (Vector3.forward * -200);
+			gameObject.collider.rigidbody.AddForce (Vector3.forward * -100);
 
 
-			gameObject.collider.rigidbody.AddForce (Vector3.up * 100);
+			gameObject.collider.rigidbody.AddForce (Vector3.up * 50);
 
 
-			gameObject.collider.rigidbody.AddTorque (Vector3.forward * -1000);
+			gameObject.collider.rigidbody.AddTorque (Vector3.forward * -500);
 
 
 
@@ -463,26 +476,31 @@ public class carRotate : MonoBehaviour {
 		
 
 		
-		
-		
-		if (Input.GetKey (KeyCode.RightArrow)|| (touch.position.x > Screen.width / 2&&Input.touchCount >0)) {
-			left = true;
-			right = false;
+		if (gameover == false) {	
+						if (Input.GetKey (KeyCode.RightArrow) || (touch.position.x > Screen.width / 2 && Input.touchCount > 0)) {
+								left = true;
+								right = false;
 			
 			
-		} else
-		if (Input.GetKey (KeyCode.LeftArrow)|| (touch.position.x < Screen.width / 2&&Input.touchCount >0)) {
-			left = false;
-			right = true;
+						} else
+		if (Input.GetKey (KeyCode.LeftArrow) || (touch.position.x < Screen.width / 2 && Input.touchCount > 0)) {
+								left = false;
+								right = true;
 			
 			
-		} else {
+						} else {
+								left = false;
+								right = false;
+			
+						}
+
+
+				}
+		else {
 			left = false;
 			right = false;
 			
 		}
-
-
 
 		
 		

@@ -6,7 +6,7 @@ public class NewLooper : MonoBehaviour {
 	
 	
 	
-	public GameObject player,go1,go2,go3;
+	public GameObject player,go1,go2,go3,obstaclemaker;
 	
 	
 	GameObject g1,g2,g3;
@@ -37,6 +37,14 @@ public class NewLooper : MonoBehaviour {
 		gobs = new GameObject[sizeofarray];
 		
 		speed = 1f;
+
+
+
+		speed = obstaclemaker.GetComponent<Obstacle> ().speed;
+
+
+
+
 
 
 //		sizeofarray = 4;
@@ -232,6 +240,10 @@ public class NewLooper : MonoBehaviour {
 		
 		delay = player.GetComponent<carMove> ().health;
 
+
+
+
+		speed = 0.7f+obstaclemaker.GetComponent<Obstacle> ().speed;
 
 
 

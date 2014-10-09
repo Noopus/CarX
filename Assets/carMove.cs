@@ -22,17 +22,39 @@ public class carMove : MonoBehaviour {
 
 
 
+
+	public GameObject parent;
+	
+	
+	
+	float speed;
+
+
+
+	void Start()
+	{
+
+
+
+		speed = parent.GetComponent<Obstacle> ().speed;
+
+
+	}
+
+
 	
 	// Use this for initialization
 	void FixedUpdate () {
 		
-		
+
+		speed = parent.GetComponent<Obstacle> ().speed;
+
 		if(right){
-			xspeep += (power)+accx/55;
+			xspeep += (power)+(speed-0.4f)/30;
 		//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+accx/55;
+			xspeep -= (power)+(speed-0.4f)/30;
 		//	fuel -= power;
 		}
 		
@@ -115,8 +137,9 @@ public class carMove : MonoBehaviour {
 				if(cr.gameover)
 				{
 
-					Debug.ClearDeveloperConsole();
 
+
+				
 		//			print ("health is : "+health);
 				
 				}
@@ -169,24 +192,33 @@ public class carMove : MonoBehaviour {
 		*/
 
 
+		if (cr.gameover == false) {
+						if (Input.GetKey (KeyCode.RightArrow) || (touch.position.x > Screen.width / 2 && Input.touchCount > 0)) {
+								left = true;
+								right = false;
+			
+			
+						} else
+		if (Input.GetKey (KeyCode.LeftArrow) || (touch.position.x < Screen.width / 2 && Input.touchCount > 0)) {
+								left = false;
+								right = true;
+			
+			
+						} else {
+								left = false;
+								right = false;
+			
+						}
+				}
 
-		if (Input.GetKey (KeyCode.RightArrow)|| (touch.position.x > Screen.width / 2&&Input.touchCount >0)) {
-			left = true;
-			right = false;
-			
-			
-		} else
-		if (Input.GetKey (KeyCode.LeftArrow)|| (touch.position.x < Screen.width / 2&&Input.touchCount >0)) {
-			left = false;
-			right = true;
-			
-			
-		} else {
+		else {
 			left = false;
 			right = false;
 			
 		}
-		
+
+
+
 
 
 

@@ -53,13 +53,13 @@ public class Obstacle : MonoBehaviour {
 
 
 
-	float speed;
+	public float speed,time=0,turntime=0;
 	
 	// Use this for initialization
 	void Start () {
 		
 
-		speed = 0.9f;
+		speed = 0.4f;
 
 		
 		
@@ -132,12 +132,7 @@ public class Obstacle : MonoBehaviour {
 		firstpos = curob.transform;
 		
 		
-		
-		
-		
-		
-		
-		for (int j = 0; j < ob1.transform.childCount; j++)
+			for (int j = 0; j < ob1.transform.childCount; j++)
 		{
 			
 			ob1pos[j]=ob1.transform.GetChild(j).transform.position;
@@ -242,13 +237,13 @@ public class Obstacle : MonoBehaviour {
 			
 			setGra (curob2);
 
-			speed=-0.6f;
+			speed=-0.4f;
 
 			
 		}
 		
 		
-		if (curob.transform.position.z < player.transform.position.z - 4 * size.z) {
+		if (curob.transform.position.z < player.transform.position.z - 4 * size.z&&delay==0) {
 			
 			
 			
@@ -351,13 +346,32 @@ public class Obstacle : MonoBehaviour {
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
 					
-					curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j));
+					curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/2000));
 					
 					if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z&&curob.transform.GetChild (j).transform.position.y>0&&reg1[j]==false)
 					{
 						reg1 [j] = true;
 						
 						//						print ("hit is detected");
+					
+						time+=1;
+
+
+						if(time==5+turntime)
+						{
+
+							if(speed<0.85f)
+						speed+=0.05f;
+
+						
+							time=0;
+
+							turntime+=3;
+
+
+						}
+
+
 					}
 					
 					
@@ -387,7 +401,7 @@ public class Obstacle : MonoBehaviour {
 		
 		
 		//		if (curob2.transform.position.z < player.transform.position.z - 4 * size.z)
-		if (curob2.transform.position.z < player.transform.position.z - 4 * size.z)
+		if (curob2.transform.position.z < player.transform.position.z - 4 * size.z&&delay==0)
 			
 		{
 			
@@ -479,7 +493,7 @@ public class Obstacle : MonoBehaviour {
 				
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
-					curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j));
+					curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/2000));
 					
 					
 					if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z&&curob2.transform.GetChild (j).transform.position.y>0&&reg2[j]==false)
@@ -576,37 +590,35 @@ public class Obstacle : MonoBehaviour {
 	void reset(GameObject curo,Vector3[] child,bool[] reg)
 	{
 		
-		
-		
-		for(int j=0;j<curo.transform.childCount;j++)
-		{
+		if (delay == 0) {	
+						for (int j=0; j<curo.transform.childCount; j++) {
 			
-			reg[j]=false;
+								reg [j] = false;
 	
 
 
-			if(!curo.transform.GetChild(j).transform.rigidbody.isKinematic&&curo.transform.GetChild(j).transform.rigidbody!=null)
-			{		
+								if (!curo.transform.GetChild (j).transform.rigidbody.isKinematic && curo.transform.GetChild (j).transform.rigidbody != null) {		
 				
-				curo.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
+										curo.transform.GetChild (j).transform.rigidbody.velocity = Vector3.zero;
 				
-				curo.transform.GetChild(j).transform.rigidbody.angularVelocity = Vector3.zero;
+										curo.transform.GetChild (j).transform.rigidbody.angularVelocity = Vector3.zero;
 				
 				
-			}
-			
+								}
+			 
 
 			
 			
-			curo.transform.GetChild(j).transform.position=new Vector3(child[j].x,child[j].y,child[j].z);
+								curo.transform.GetChild (j).transform.position = new Vector3 (child [j].x, child [j].y, child [j].z);
 			
-			curo.transform.GetChild(j).transform.rotation=Quaternion.identity;
-			
-			
+								curo.transform.GetChild (j).transform.rotation = Quaternion.identity;
 			
 			
-		}
+			
+			
+						}
 		
+				}
 		
 	}
 	
