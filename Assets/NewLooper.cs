@@ -308,7 +308,7 @@ public class NewLooper : MonoBehaviour {
 					
 
 					
-					print ("counter is : "+counter);
+		//			print ("counter is : "+counter);
 
 				}
 				

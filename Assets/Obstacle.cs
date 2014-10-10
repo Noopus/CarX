@@ -191,7 +191,7 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			
-	//			curob.transform.GetChild (j).transform.rigidbody.useGravity=true;
+				curob.transform.GetChild (j).transform.rigidbody.useGravity=true;
 		}
 		
 	}
@@ -237,9 +237,10 @@ public class Obstacle : MonoBehaviour {
 			
 			setGra (curob2);
 
-			speed=-0.4f;
+		//	speed=-0.2f;
 
-			
+		
+			speed=0;
 		}
 		
 		
@@ -317,7 +318,7 @@ public class Obstacle : MonoBehaviour {
 				
 				curob.transform.GetChild(j).transform.position=new Vector3(childpos[j].x,childpos[j].y,childpos[j].z);
 				
-				curob.transform.GetChild(j).transform.rotation=Quaternion.identity;
+		//		curob.transform.GetChild(j).transform.rotation=Quaternion.identity;
 				
 				
 				
@@ -345,9 +346,33 @@ public class Obstacle : MonoBehaviour {
 				
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
+
+
 					
+					if(delay==0)
 					curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/2000));
-					
+					else
+						if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z)
+					{
+						
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/2000));
+						
+					}
+					else
+					{
+
+						if(j==0)
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/2000));
+
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/2000));
+
+					}
+
+
+
+
+
+
 					if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z&&curob.transform.GetChild (j).transform.position.y>0&&reg1[j]==false)
 					{
 						reg1 [j] = true;
@@ -357,7 +382,7 @@ public class Obstacle : MonoBehaviour {
 						time+=1;
 
 
-						if(time==5+turntime)
+						if(time==5)
 						{
 
 							if(speed<0.85f)
@@ -467,9 +492,9 @@ public class Obstacle : MonoBehaviour {
 				
 				
 				
-				curob2.transform.GetChild(j).transform.position=new Vector3(childpos2[j].x,childpos2[j].y,childpos2[j].z);
+			//	curob2.transform.GetChild(j).transform.position=new Vector3(childpos2[j].x,childpos2[j].y,childpos2[j].z);
 				
-				curob2.transform.GetChild(j).transform.rotation=Quaternion.Euler(Vector3.zero);
+			//	curob2.transform.GetChild(j).transform.rotation=Quaternion.Euler(Vector3.zero);
 				
 				
 				//				curob2.transform.GetChild(j).transform.rigidbody.velocity = Vector3.zero;
@@ -493,8 +518,26 @@ public class Obstacle : MonoBehaviour {
 				
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
+
+					if(delay==0)
 					curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/2000));
-					
+					else
+						if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z)
+					{
+
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/2000));
+
+					}
+					else
+					{
+
+						if(j==0)
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/2000));
+
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/2000));
+
+					}
+
 					
 					if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z&&curob2.transform.GetChild (j).transform.position.y>0&&reg2[j]==false)
 					{

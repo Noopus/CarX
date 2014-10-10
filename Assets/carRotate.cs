@@ -47,56 +47,62 @@ public class carRotate : MonoBehaviour {
 	public int health;
 
 
+	bool repos;
+
+	int repostime=0;
+
+
+
+
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 
+		if (gameObject.transform.position.z + 2 < collisionInfo.collider.transform.position.z) {
 
-		health++;
+						health++;
 
 	
-		if (collisionInfo.collider.rigidbody != null) {	
+						if (collisionInfo.collider.rigidbody != null) {	
 
 
 
 //			if(!collisionInfo.collider.name.Equals("Obtruck"))
-			collisionInfo.collider.rigidbody.isKinematic = false;
+								collisionInfo.collider.rigidbody.isKinematic = false;
 
 
-			if(collisionInfo.collider.name.Equals("Obtruck"))
-			Physics.gravity=new Vector3(0,-50,0);
-			else
-				Physics.gravity=new Vector3(0,-10,0);
+								if (collisionInfo.collider.name.Equals ("Obtruck"))
+										Physics.gravity = new Vector3 (0, -100, 0);
+								else
+										Physics.gravity = new Vector3 (0, -50, 0);
 
 
 
 
 			
-						collisionInfo.collider.rigidbody.useGravity = true;
+								collisionInfo.collider.rigidbody.useGravity = true;
 
 
 
 
-//			gameObject.collider.rigidbody.AddForce (Vector3.forward * 300);
-
-			gameObject.collider.rigidbody.AddForce (Vector3.forward * -100);
+//			gameObject.collider.rigidbody.AddForce (Vector3.forward * -100);
 
 
-			gameObject.collider.rigidbody.AddForce (Vector3.up * 50);
+//			gameObject.collider.rigidbody.AddForce (Vector3.up * 50);
 
 
-			gameObject.collider.rigidbody.AddTorque (Vector3.forward * -500);
+//			gameObject.collider.rigidbody.AddTorque (Vector3.forward * -500);
 
 
 
 
-			gameObject.rigidbody.useGravity=true;
+								gameObject.rigidbody.useGravity = true;
 
 
 
 
-				}
+						}
 
-		   //collisionInfo.collider
+						//collisionInfo.collider
 
 		
 //		print("Detected collision between " + gameObject.name + " and " + collisionInfo.collider.name);
@@ -108,38 +114,34 @@ public class carRotate : MonoBehaviour {
 //		collisionInfo.collider.rigidbody.AddForce (Vector3.up * -50);
 
 
-		if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) 
-		{
+						if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) {
 
-		//	gameObject.transform.Translate (Vector3.left * 0.45f);
+								//	gameObject.transform.Translate (Vector3.left * 0.45f);
 
 
-			if (collisionInfo.collider.rigidbody != null) {	
+								if (collisionInfo.collider.rigidbody != null) {	
 
-	//					collider.rigidbody.AddForce (Vector3.left * 50);
+										//					collider.rigidbody.AddForce (Vector3.left * 50);
 	
 
 
-	//		rigidbody.AddTorque(Vector3.right * 250);
+										//		rigidbody.AddTorque(Vector3.right * 250);
 
 
-		//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * -150);
+										//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * -150);
 				
 				
 				
-		//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
+										//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
 
 
-			}
+								}
 
 
-		} 
-		else
-		{
+						} else {
 
 		
-			if (collisionInfo.collider.rigidbody != null) 
-			{	
+								if (collisionInfo.collider.rigidbody != null) {	
 
 //	collider.rigidbody.AddForce (Vector3.left * -50);
 		
@@ -150,28 +152,42 @@ public class carRotate : MonoBehaviour {
 			
 
 
-		//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
+										//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
 				
 				
 				
-		//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 550);
+										//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 550);
 
 			
-			}
+								}
 			
-			}
+						}
 
+				} else {
+
+
+			this.gameObject.rigidbody.useGravity=true;
+
+			Physics.gravity=new Vector3(0,-150,0);
+
+
+				}
 
 	}
 	
 	void OnCollisionStay(Collision collisionInfo)
 	{
 //		print(gameObject.name + " and " + collisionInfo.collider.name + " are still colliding");
+	
+
 	}
 	
 	void OnCollisionExit(Collision collisionInfo)
 	{
 	
+
+	
+
 	//	print(gameObject.name + " and " + collisionInfo.collider.name + " are no longer colliding");
 	
 		if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) 
@@ -213,11 +229,9 @@ public class carRotate : MonoBehaviour {
 		
 	
 		
-	
+	 
 
 
-		
-		
 
 
 		if (health == 1) 
@@ -312,6 +326,14 @@ public class carRotate : MonoBehaviour {
 
 
 //		smokeparticle.particleEmitter.emit = false;
+
+	
+
+
+		if (this.transform.position.y < 0.0144f)
+			this.transform.Translate (Vector3.up*0.002f);
+
+
 
 
 		if (gameover) {

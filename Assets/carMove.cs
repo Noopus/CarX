@@ -8,7 +8,7 @@ public class carMove : MonoBehaviour {
 //	float friction = 0.95f;
 
 	float power = 0.018f;
-	float friction = 0.940f;
+	float friction = 0.930f;
 
 
 	bool right = false;
@@ -23,11 +23,11 @@ public class carMove : MonoBehaviour {
 
 
 
-	public GameObject parent;
+	public GameObject parent,frontfire;
 	
 	
 	
-	float speed;
+	float speed,flareval;
 
 
 
@@ -39,6 +39,8 @@ public class carMove : MonoBehaviour {
 		speed = parent.GetComponent<Obstacle> ().speed;
 
 
+		flareval = -0.4f;
+
 	}
 
 
@@ -47,14 +49,31 @@ public class carMove : MonoBehaviour {
 	void FixedUpdate () {
 		
 
+		flareval = speed - 0.4f;
+
+
+		if(flareval<0.1f)
+		frontfire.renderer.material.color = new Color (1,1,1,flareval);
+
+
+		frontfire.transform.Rotate(0,5*100000,0);
+
+
+		print ("speed is : "+flareval);
+
+
+
+
+
+
 		speed = parent.GetComponent<Obstacle> ().speed;
 
 		if(right){
-			xspeep += (power)+(speed-0.4f)/30;
+			xspeep += (power)+(speed-0.4f)/20;
 		//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+(speed-0.4f)/30;
+			xspeep -= (power)+(speed-0.4f)/20;
 		//	fuel -= power;
 		}
 		

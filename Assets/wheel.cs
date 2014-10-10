@@ -44,6 +44,9 @@ public class wheel : MonoBehaviour
 	//	iniangles = wheel1.transform.eulerAngles;
 
 
+	
+
+
 
 		if(delay>0)
 		renderer.material.SetTexture("_MainTex", dmgtex);
@@ -122,7 +125,7 @@ public class wheel : MonoBehaviour
 
 		curangles.x=0;
 		
-		curangles.y=Mathf.Clamp(curangles.y,-40,40);
+		curangles.y=Mathf.Clamp(curangles.y,-10,10);
 		
 		curangles.z=0;
 		
