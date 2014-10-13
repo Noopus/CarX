@@ -7,7 +7,7 @@ public class carMove : MonoBehaviour {
 //	float power = 0.0110f;
 //	float friction = 0.95f;
 
-	float power = 0.018f;
+	float power = 0.019f;
 	float friction = 0.930f;
 
 
@@ -59,9 +59,7 @@ public class carMove : MonoBehaviour {
 		frontfire.transform.Rotate(0,5*100000,0);
 
 
-		print ("speed is : "+flareval);
-
-
+	
 
 
 
@@ -69,11 +67,11 @@ public class carMove : MonoBehaviour {
 		speed = parent.GetComponent<Obstacle> ().speed;
 
 		if(right){
-			xspeep += (power)+(speed-0.4f)/20;
+			xspeep += (power)+(speed-0.4f)/15;
 		//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+(speed-0.4f)/20;
+			xspeep -= (power)+(speed-0.4f)/15;
 		//	fuel -= power;
 		}
 		

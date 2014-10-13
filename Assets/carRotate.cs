@@ -330,9 +330,32 @@ public class carRotate : MonoBehaviour {
 	
 
 
-		if (this.transform.position.y < 0.0144f)
-			this.transform.Translate (Vector3.up*0.002f);
+		if (this.transform.position.y < 0.65f)
+		{
 
+			//			this.transform.Translate (Vector3.up * 0.5f);
+
+			this.transform.position=new Vector3(this.transform.position.x,0.66f,this.transform.position.z);
+
+			this.transform.rigidbody.angularVelocity=Vector3.zero;
+
+			this.transform.rigidbody.velocity=Vector3.zero;
+
+			this.transform.rotation=Quaternion.identity;
+
+			this.gameObject.rigidbody.useGravity=false;
+
+		}
+
+		this.transform.rigidbody.angularVelocity=Vector3.zero;
+		
+		this.transform.rigidbody.velocity=Vector3.zero;
+
+
+
+
+		print ("speed s: "+this.transform.position.y);
+		
 
 
 
