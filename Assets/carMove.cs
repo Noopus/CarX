@@ -36,7 +36,7 @@ public class carMove : MonoBehaviour {
 
 
 
-		speed = parent.GetComponent<Obstacle> ().speed;
+		speed = parent.GetComponent<AdvObstacle> ().speed/2;
 
 
 		flareval = -0.4f;
@@ -64,7 +64,7 @@ public class carMove : MonoBehaviour {
 
 
 
-		speed = parent.GetComponent<Obstacle> ().speed;
+		speed = parent.GetComponent<AdvObstacle> ().speed;
 
 		if(right){
 			xspeep += (power)+(speed-0.4f)/15;

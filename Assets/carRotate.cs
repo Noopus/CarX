@@ -354,7 +354,7 @@ public class carRotate : MonoBehaviour {
 
 
 
-		print ("speed s: "+this.transform.position.y);
+//		print ("speed s: "+this.transform.position.y);
 		
 
 
