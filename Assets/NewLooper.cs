@@ -40,7 +40,7 @@ public class NewLooper : MonoBehaviour {
 
 
 
-		speed = obstaclemaker.GetComponent<AdvObstacle> ().speed;
+		speed = obstaclemaker.GetComponent<Obstacle> ().speed;
 
 
 
@@ -243,7 +243,7 @@ public class NewLooper : MonoBehaviour {
 
 
 
-		speed = 0.7f+obstaclemaker.GetComponent<AdvObstacle> ().speed;
+		speed = 0.7f+obstaclemaker.GetComponent<Obstacle> ().speed;
 
 
 
