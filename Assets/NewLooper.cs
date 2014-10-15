@@ -25,6 +25,10 @@ public class NewLooper : MonoBehaviour {
 	int delay;
 
 
+
+
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -176,9 +180,10 @@ public class NewLooper : MonoBehaviour {
 
 
 
+		//	gobs[i].renderer.material.shader = Shader.Find("Custom/Curved");
 
 
-
+		//	renderer.material.SetFloat("Distance", 1000);
 
 
 
@@ -224,6 +229,11 @@ public class NewLooper : MonoBehaviour {
 
 
 //		InvokeRepeating ("LoopStage",0.0001f,0.0001f);
+	
+	
+	
+	
+
 	}
 	
 	

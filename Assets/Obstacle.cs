@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour {
 	
 	
 	
-	bool firstwave=false,secondwave=false;
+	bool firstwave=false,secondwave=true;
 	
 	
 	
@@ -67,12 +67,12 @@ public class Obstacle : MonoBehaviour {
 	
 	
 	
-	public GameObject vehicle,vcar,vtruck;
+	public GameObject vehicle,vcar,vredcar,vpinkcar,vtruck,vtaxi,vltruck,vftruck,vbus,vrover;
 	
 	
 	
 	
-	GameObject[] veh,veh2,car,truck,car2,truck2;
+	GameObject[] veh,veh2,car,redcar,pinkcar,truck,ltruck,ftruck,taxi,bus,rover,car2,redcar2,pinkcar2,truck2,taxi2,ltruck2,ftruck2,bus2,rover2;
 	
 	
 	/////////
@@ -89,18 +89,19 @@ public class Obstacle : MonoBehaviour {
 
 	int[] x,x2;
 	
-	
+
+	int randrange=9;
 		
 	public void Randomizer(int[] x)
 	{
 		
-		x[0] = Random.Range(0,2);
+		x[0] = Random.Range(0,randrange);
+
+		x[1] = Random.Range(0,randrange/2);
 		
-		x[1] = Random.Range(0,2);
+		x[2] = Random.Range(0,randrange-2);
 		
-		x[2] = Random.Range(0,2);
-		
-		x[3] = Random.Range(0,2);
+		x[3] = Random.Range(0,randrange);
 		
 		
 		
@@ -136,15 +137,46 @@ public class Obstacle : MonoBehaviour {
 		
 		
 		car=new GameObject[4];
-		
+
+		redcar=new GameObject[4];
+
+		pinkcar=new GameObject[4];
+
+
 		truck=new GameObject[4];
 		
-		
+		taxi=new GameObject[4];
+
+		ltruck=new GameObject[4];
+
+		ftruck=new GameObject[4];
+
+		rover=new GameObject[4];
+		bus=new GameObject[4];
+
+
+
+
 		car2=new GameObject[4];
+
+		redcar2=new GameObject[4];
 		
+		pinkcar2=new GameObject[4];
+
+
 		truck2=new GameObject[4];
 		
-		
+		taxi2=new GameObject[4];
+
+		ltruck2=new GameObject[4];
+
+		ftruck2=new GameObject[4];
+
+		rover2=new GameObject[4];
+
+		bus2=new GameObject[4];
+
+
 		
 		par1pos = new Vector3[8];
 		
@@ -173,12 +205,30 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			car [i] = Instantiate (vcar, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
-			
-			
+
+
+			redcar [i] = Instantiate (vredcar, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+			pinkcar [i] = Instantiate (vpinkcar, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+
+
+
 			truck [i] = Instantiate (vtruck, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
 			
-			
-			
+			taxi [i] = Instantiate (vtaxi, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+
+			ltruck [i] = Instantiate (vltruck, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+
+			ftruck [i] = Instantiate (vftruck, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+
+			rover [i] = Instantiate (vrover, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+			bus [i] = Instantiate (vbus, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
 			//    veh[i]=truck[i];
 			
 			
@@ -223,12 +273,32 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			
+			redcar2 [i] = Instantiate (vredcar, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+			
+			pinkcar2 [i] = Instantiate (vpinkcar, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
 			
 			car2 [i] = Instantiate (vcar, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
 			
 			
 			truck2 [i] = Instantiate (vtruck, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+			taxi2 [i] = Instantiate (vtaxi, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+			ltruck2 [i] = Instantiate (vltruck, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
 			
+			
+			ftruck2 [i] = Instantiate (vftruck, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+
+
+			rover2 [i] = Instantiate (vrover, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+			
+			bus2 [i] = Instantiate (vbus, new Vector3 (3.7f - 3.2f * i, 0, 10*140), transform.rotation) as GameObject;
+
+
+
+
 			
 			par2pos[i]=veh2[i].transform.position;
 			
@@ -278,8 +348,7 @@ public class Obstacle : MonoBehaviour {
 		
 		
 		firstwave = false;
-
-		secondwave = true;
+		
 		
 		
 		childpos = new Vector3[10];
@@ -353,7 +422,59 @@ public class Obstacle : MonoBehaviour {
 
 
 		reset (curob2, childpos2,reg2);
+
+
+
+
+		Randomizer(x);
+	
+		for (int i=0; i<4; i++) {
+
+
+
+
+			veh[i].transform.parent=null;
+
+
+			vchooser1(i);
 		
+
+			veh[i].transform.parent = curob.transform;
+			
+			
+			reset (curob, childpos,reg1);
+
+
+
+
+
+
+
+
+
+						Randomizer (x2);
+		
+			
+			veh2[i].transform.parent=null;
+
+
+			vchooser2(i);
+
+
+
+
+			veh2[i].transform.parent = curob2.transform;
+			
+			
+			reset (curob2, childpos2,reg2);
+
+		
+
+
+				}
+
+
+
 		
 		
 		
@@ -390,7 +511,133 @@ public class Obstacle : MonoBehaviour {
 		
 	}
 	
-	
+
+
+
+
+	void vchooser1(int i)
+	{
+
+
+		if (x [i] == 0) {
+			veh [i] = car [i];
+			
+		} else
+		if (x [i] == 1) {
+			
+			veh [i] = rover [i];
+			
+		} else
+		if (x[i] == 2) {
+			veh [i] = taxi [i];
+		}
+		
+		else
+		if (x [i] == 3) {
+			veh [i] = redcar [i];
+		}
+		else
+		if (x [i] == 4) {
+			
+			
+			veh [i] = pinkcar [i];
+		}
+		
+		
+		if (x [i] == 5) {
+			veh [i] = truck [i];
+		}
+		
+		else
+		if (x [i] == 6) {
+			veh [i] = ftruck [i];
+		}
+		
+		else
+		if (x [i] == 7) {
+			veh [i] = bus [i];
+		}
+		else
+		if (x [i] == 8) {
+			
+			
+			veh [i] = ltruck [i];
+		}
+
+
+
+
+		}
+
+
+
+
+
+	void vchooser2(int i)
+	{
+		
+		
+	//	for (int i=0; i<10; i++) 
+		{
+			if (x2 [i] == 0) {
+				veh2 [i] = car2 [i];
+				
+			} else
+			if (x2 [i] == 1) {
+
+				veh2 [i] = rover2 [i];
+
+			} else
+			if (x2[i] == 2) {
+				veh2 [i] = taxi2 [i];
+			}
+		
+				else
+				if (x2 [i] == 3) {
+					veh2 [i] = redcar2 [i];
+				}
+			else
+			if (x2 [i] == 4) {
+				
+				
+				veh2 [i] = pinkcar2 [i];
+			}
+
+
+			if (x2 [i] == 5) {
+				veh2 [i] = truck2 [i];
+			}
+			
+			else
+			if (x2 [i] == 6) {
+				veh2 [i] = ftruck2 [i];
+			}
+			
+			else
+			if (x2 [i] == 7) {
+				veh2 [i] = bus2 [i];
+			}
+			else
+			if (x2 [i] == 8) {
+			
+				
+				veh2 [i] = ltruck2 [i];
+			}
+
+
+
+
+			
+		}
+		
+		
+		
+	}
+
+
+
+
+
 	
 	
 	
@@ -456,27 +703,7 @@ public class Obstacle : MonoBehaviour {
 				
 				veh[i].transform.parent=null;
 				
-				
-				/*	if(count==2)
-				{
-					veh[i]=truck[i];
-				}
-
-				if(count==3)
-				{
-
-					veh[i]=car[i];
-
-				}
-				
-				if(count==4)
-				{
-					
-					veh[i]=truck[i];
-					
-				}
-*/
-				
+	
 				
 				
 				reset (curob, childpos,reg1);
@@ -487,8 +714,10 @@ public class Obstacle : MonoBehaviour {
 
 
 
+				vchooser1(i);
 
 
+/*
 				if(x[i]==0)
 				{
 					veh[i]=car[i];
@@ -499,6 +728,12 @@ public class Obstacle : MonoBehaviour {
 				{
 					veh[i]=truck[i];
 				}
+				else
+				if (x [i] == 2) {
+					veh [i] = taxi [i];
+				}
+
+*/
 
 
 
@@ -565,7 +800,7 @@ public class Obstacle : MonoBehaviour {
 			
 			if(firstwave)
 			{
-			/*	
+				
 				
 				//    if(delay==0)
 				curob.transform.Translate (Vector3.forward * -speed);
@@ -581,16 +816,16 @@ public class Obstacle : MonoBehaviour {
 						if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/2000));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/1000));
 						
 					}
 					else
 					{
 						
 						if(j==0)
-							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/2000));
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/1000));
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/2000));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/1000));
 						
 					}
 					
@@ -611,7 +846,7 @@ public class Obstacle : MonoBehaviour {
 						if(time==5)
 						{
 							
-							if(speed<0.9f)
+							if(speed<0.85f)
 		
 							speed+=0.1f;
 							
@@ -629,8 +864,6 @@ public class Obstacle : MonoBehaviour {
 					
 					
 				}
-
-*/
 			}
 			
 			
@@ -667,7 +900,9 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			//    curob2=ob2;
-			
+			reset (curob2, childpos2,reg1);
+
+
 			
 			reshuffle(childpos2);
 
@@ -684,24 +919,16 @@ public class Obstacle : MonoBehaviour {
 				
 
 				
-				reset (curob2, childpos2,reg1);
-				
+
 				
 				//		if(i>1)
 				
+
 				
+				vchooser2(i);
+
 				
-				if(x2[i]==0)
-				{
-					veh2[i]=car2[i];
-					
-				}
-				else
-					if(x2[i]==1)
-				{
-					veh2[i]=truck2[i];
-				}
-				
+
 				
 				
 				
@@ -715,7 +942,7 @@ public class Obstacle : MonoBehaviour {
 				veh2[i].transform.parent = curob2.transform;
 				
 				
-				reset (curob2, childpos2,reg2);
+		//		reset (curob2, childpos2,reg2);
 				
 				
 			}
@@ -758,15 +985,10 @@ public class Obstacle : MonoBehaviour {
 			{
 				
 				//    if(delay==0)
-	
-
-
-
+		
 
 				curob2.transform.Translate (Vector3.forward * -speed);
-
-
-
+				
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
 					
@@ -776,16 +998,16 @@ public class Obstacle : MonoBehaviour {
 						if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/2000));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/1000));
 						
 					}
 					else
 					{
 						
 						if(j==0)
-							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/2000));
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/1000));
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/2000));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/1000));
 						
 					}
 					
