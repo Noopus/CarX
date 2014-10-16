@@ -728,7 +728,7 @@ public class Obstacle : MonoBehaviour {
 		
 		
 		
-		if (curvect.x < 0f)
+		if (curvect.x < -0.08f)
 			turn = true;
 		
 		
@@ -920,6 +920,10 @@ public class Obstacle : MonoBehaviour {
 						
 					}
 					else
+					
+						
+						if(curob.transform.GetChild (j).transform.position.z>player.transform.position.z+10)
+
 					{
 						
 						if(j==0)
@@ -947,8 +951,7 @@ public class Obstacle : MonoBehaviour {
 						{
 							
 							if(speed<0.90f)
-		
-							speed+=0.1f;
+		          	speed+=0.1f;
 							
 							
 							time=0;
@@ -1098,10 +1101,12 @@ public class Obstacle : MonoBehaviour {
 						if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/500));
+					//	curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/500));
 						
 					}
-					else
+					else 
+				
+						if(curob2.transform.GetChild (j).transform.position.z>player.transform.position.z+8)
 					{
 						
 						if(j==0)

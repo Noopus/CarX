@@ -93,7 +93,7 @@ else
 		}
 
 
-		if (gameObject.transform.position.z + 2 < collisionInfo.collider.transform.position.z) {
+		if (gameObject.transform.position.z + 0 < collisionInfo.collider.transform.position.z) {
 
 						health++;
 
@@ -162,6 +162,7 @@ else
 	
 
 
+
 										//		rigidbody.AddTorque(Vector3.right * 250);
 
 
@@ -172,6 +173,10 @@ else
 										//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
 
 
+										collisionInfo.collider.rigidbody.AddTorque (Vector3.left * -1200);
+		
+					collisionInfo.collider.rigidbody.AddForce (Vector3.left * -1200);
+
 								}
 
 
@@ -180,16 +185,25 @@ else
 		
 								if (collisionInfo.collider.rigidbody != null) {	
 
-//	collider.rigidbody.AddForce (Vector3.left * -50);
+					collisionInfo.collider.rigidbody.AddTorque (Vector3.left * 1200);
+		
+					collisionInfo.collider.rigidbody.AddForce (Vector3.left * 1200);
+
+
+					
+					/*collider.rigidbody.AddTorque(Vector3.right * -25);
 		
 
 
-//			collider.rigidbody.AddTorque(Vector3.right * -250);
-		
-			
+
+					rigidbody.AddForce (Vector3.up * -6550);
 
 
-										//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
+					rigidbody.AddTorque(Vector3.right * 250);
+*/
+
+					
+					//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
 				
 				
 				
@@ -263,12 +277,21 @@ else
 
 	public bool gameover;
 
+
+
+	float speed;
+
+
+	public GameObject obstaclemaker;
+
+
 	// Use this for initialization
 	void FixedUpdate () {
 		
 	
+		speed = obstaclemaker.GetComponent<Obstacle> ().speed;
+
 		
-	 
 
 
 
@@ -314,14 +337,16 @@ else
 		}
 
 
+
+
 		if(right){
 	//		xspeep += (power)+accx/45;
-			xspeep += (power)+accx/45;
+			xspeep += (power)+speed/25;
 	
 			//	fuel -= power;
 		}
 		if(left){
-			xspeep -= (power)+accx/45;
+			xspeep -= (power)+speed/25;
 			//	fuel -= power;
 		}
 		
@@ -711,7 +736,7 @@ else
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
 		{    
-			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -7, 7);
+			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10, 10);
 			rotateDegrees = newAngle - angleBetween;
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 			

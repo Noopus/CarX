@@ -36,7 +36,7 @@ public class carMove : MonoBehaviour {
 
 
 
-		speed = parent.GetComponent<Obstacle> ().speed/2;
+		speed = parent.GetComponent<Obstacle> ().speed;
 
 
 		flareval = -0.4f;
