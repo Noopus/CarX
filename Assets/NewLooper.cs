@@ -28,11 +28,15 @@ public class NewLooper : MonoBehaviour {
 
 
 
+	Vector3 curvect;
 
 	// Use this for initialization
 	void Start () {
 
 		delay = player.GetComponent<carMove> ().health;
+
+
+		curvect = new Vector3 (0,0,0);
 
 
 		sizeofarray = 9;
@@ -180,16 +184,18 @@ public class NewLooper : MonoBehaviour {
 
 
 
-		//	gobs[i].renderer.material.shader = Shader.Find("Custom/Curved");
+	//		gobs[i].renderer.material.shader = Shader.Find("Custom/Curved");
 
 
-		//	renderer.material.SetFloat("Distance", 1000);
+	//		renderer.material.SetFloat("Distance", 5);
 
-
+			print(gobs[i].renderer.material.GetFloat("_Dist"));
 
 		
-			
-			
+		
+
+
+
 //			if(i>sizeofarray/3-1)
 
 			if(i>2)
@@ -489,10 +495,44 @@ public class NewLooper : MonoBehaviour {
 
 
 */
+
+
+
+
 		
 		
 		if (Input.GetKey ("p"))
 			speed += 0.02f;
+
+
+
+		for (int i=0; i<sizeofarray; i++)
+		for (int j=0; j<gobs[i].renderer.materials.Length; j++) 
+		{
 		
+		//	gobs [i].renderer.materials [j].SetFloat ("_Dist", counter);
+
+			gobs [i].renderer.materials [j].SetVector("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
+
+
+
+
+
+			//.SetFloat ("_QOffset.x", counter);
+
+		}
+
+
+
+
+
+
+
+
 	}
+
+	bool turn=false;
+
+
+
 }

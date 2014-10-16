@@ -99,7 +99,7 @@ public class Obstacle : MonoBehaviour {
 
 		x[1] = Random.Range(0,randrange/2);
 		
-		x[2] = Random.Range(0,randrange-2);
+		x[2] = Random.Range(0,randrange/2);
 		
 		x[3] = Random.Range(0,randrange);
 		
@@ -482,7 +482,11 @@ public class Obstacle : MonoBehaviour {
 		
 		setKin (curob2);
 		
-		
+	
+
+		curvect = new Vector3 (0,0,0);
+
+
 	}
 	
 	
@@ -631,15 +635,15 @@ public class Obstacle : MonoBehaviour {
 		}
 		
 		
-		
+
+	
 	}
 
 
 
+	bool turn=false;
 
-
-	
-	
+	public Vector3 curvect;
 	
 	// Update is called once per frame
 	void Update () {
@@ -647,7 +651,103 @@ public class Obstacle : MonoBehaviour {
 		
 		delay = player.GetComponent<carMove> ().health;
 		
+
+
+
+
+
+
+
+		for (int i=0; i<4; i++) {
+						for (int j=0; j<veh[i].renderer.materials.Length; j++) {
+			
+								//	gobs [i].renderer.materials [j].SetFloat ("_Dist", counter);
+			
+								veh [i].renderer.materials [j].SetVector ("_QOffset", curvect);
+
+				
+				veh[i].renderer.materials [j].SetFloat ("_Dist", 10);
+
+
+			
+								//.SetFloat ("_QOffset.x", counter);
+			
+						}
+
+
+
+			for (int j=0; j<veh2[i].renderer.materials.Length; j++) {
+				
+				//	gobs [i].renderer.materials [j].SetFloat ("_Dist", counter);
+				
+
+				veh2 [i].renderer.materials [j].SetVector ("_QOffset", curvect);
+
+
+				veh2 [i].renderer.materials [j].SetFloat ("_Dist", 10);
+
+				
+				//print(veh[i].renderer.material.GetFloat("_Dist"));
+				
+			//	print ("curv .x" + curvect.x);
+				
+				
+				
+				//.SetFloat ("_QOffset.x", counter);
+				
+			}
+
+
+
+
+
+		}
+
+
+
+		if (!turn) 
+		{
+			curvect.x -= 0.0001f;
+			
+			
+	//		if(curvect.z>0)
+	//			curvect.z -= 0.00005f;
+			
+		} 
+		else if (turn) 
+		{
+			
+			curvect.x += 0.0001f;
+			
+			
+	//		if(curvect.z<0.1f)
+	//			curvect.z += 0.0001f;
+			
+		}
 		
+		
+		
+		
+		if (curvect.x < 0f)
+			turn = true;
+		
+		
+		if (curvect.x > 0.08f)
+			turn = false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 		
 		
@@ -811,21 +911,21 @@ public class Obstacle : MonoBehaviour {
 					
 					
 					if(delay==0)
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/1000));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/500));
 					else
 						if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/1000));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/500));
 						
 					}
 					else
 					{
 						
 						if(j==0)
-							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/1000));
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/500));
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/1000));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/500));
 						
 					}
 					
@@ -846,7 +946,7 @@ public class Obstacle : MonoBehaviour {
 						if(time==5)
 						{
 							
-							if(speed<0.85f)
+							if(speed<0.90f)
 		
 							speed+=0.1f;
 							
@@ -993,21 +1093,21 @@ public class Obstacle : MonoBehaviour {
 				{
 					
 					if(delay==0)
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/1000));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/500));
 					else
 						if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/1000));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/500));
 						
 					}
 					else
 					{
 						
 						if(j==0)
-							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/1000));
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/500));
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/1000));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/500));
 						
 					}
 					

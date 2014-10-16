@@ -59,6 +59,7 @@ ModelImporter:
     2300030: Cone_015
     2300032: Cube
     2300034: Cube_001
+    2300036: //RootNode
     3300000: Cone
     3300002: Cone_001
     3300004: Cone_002
@@ -77,6 +78,7 @@ ModelImporter:
     3300030: Cone_015
     3300032: Cube
     3300034: Cube_001
+    3300036: //RootNode
     4300000: Cone_015
     4300002: Cone_014
     4300004: Cone_013

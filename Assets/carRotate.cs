@@ -19,12 +19,17 @@ public class carRotate : MonoBehaviour {
 	
 	
 	// Use this for initialization
-	
+
+
+
+
+
 		
 	void Start () {
 		
 		
-		
+		//sparkparticle.particleEmitter.renderer = false;
+
 		
 		initialVector = transform.position - piv1.transform.position;
 		
@@ -38,8 +43,9 @@ public class carRotate : MonoBehaviour {
 
 		smokeparticle.renderer.enabled = false;
 
+		sparkparticle.particleEmitter.emit=false;
 
-
+		
 	}
 
 
@@ -57,12 +63,43 @@ public class carRotate : MonoBehaviour {
 	void OnCollisionEnter(Collision collisionInfo)
 	{
 
+
+
+		foreach (ContactPoint contact in collisionInfo) 
+		{
+
+
+			//Instantiate(sparkparticle, contact.point, Quaternion.identity);
+
+
+			Vector3 conpos;
+
+			if(contact.point.x>this.transform.position.x)
+				conpos=new Vector3(contact.point.x-0.2f,contact.point.y-0.6f,contact.point.z);
+else
+					conpos=new Vector3(contact.point.x+0.2f,contact.point.y-0.6f,contact.point.z);
+
+			sparkparticle.transform.position=conpos;
+		
+
+		//	sparkparticle.particleEmitter.renderer = true;
+
+
+			sparkparticle.particleEmitter.emit=true;
+
+
+
+
+		}
+
+
 		if (gameObject.transform.position.z + 2 < collisionInfo.collider.transform.position.z) {
 
 						health++;
 
 	
-						if (collisionInfo.collider.rigidbody != null) {	
+						if (collisionInfo.collider.rigidbody != null) 
+			{	
 
 
 
@@ -186,7 +223,9 @@ public class carRotate : MonoBehaviour {
 	{
 	
 
-	
+		
+		sparkparticle.particleEmitter.emit=false;
+
 
 	//	print(gameObject.name + " and " + collisionInfo.collider.name + " are no longer colliding");
 	
@@ -314,7 +353,7 @@ public class carRotate : MonoBehaviour {
 
 
 
-	public GameObject smokeparticle;
+	public GameObject smokeparticle,sparkparticle;
 
 
 
@@ -385,7 +424,13 @@ public class carRotate : MonoBehaviour {
 		//	Instantiate(explosion, transform.position, transform.rotation);
 
 		}
-		
+
+
+
+	
+
+
+
 
 
 
