@@ -189,7 +189,9 @@ public class NewLooper : MonoBehaviour {
 
 	//		renderer.material.SetFloat("Distance", 5);
 
-			print(gobs[i].renderer.material.GetFloat("_Dist"));
+
+
+
 
 		
 		
@@ -511,6 +513,9 @@ public class NewLooper : MonoBehaviour {
 		{
 		
 		//	gobs [i].renderer.materials [j].SetFloat ("_Dist", counter);
+
+		
+
 
 			gobs [i].renderer.materials [j].SetVector("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
 

@@ -65,165 +65,115 @@ public class carRotate : MonoBehaviour {
 
 
 
-		foreach (ContactPoint contact in collisionInfo) 
-		{
+		if (!gameover) {
+	
 
 
-			//Instantiate(sparkparticle, contact.point, Quaternion.identity);
+						//	collider.rigidbody.AddForce (Vector3.up * 52);
 
 
-			Vector3 conpos;
+		
+						foreach (ContactPoint contact in collisionInfo) {
 
-			if(contact.point.x>this.transform.position.x)
-				conpos=new Vector3(contact.point.x-0.2f,contact.point.y-0.6f,contact.point.z);
-else
-					conpos=new Vector3(contact.point.x+0.2f,contact.point.y-0.6f,contact.point.z);
 
-			sparkparticle.transform.position=conpos;
+								//Instantiate(sparkparticle, contact.point, Quaternion.identity);
+
+
+								Vector3 conpos;
+
+								if (contact.point.x > this.transform.position.x)
+										conpos = new Vector3 (contact.point.x - 0.2f, contact.point.y - 0.6f, contact.point.z);
+								else
+										conpos = new Vector3 (contact.point.x + 0.2f, contact.point.y - 0.6f, contact.point.z);
+
+								sparkparticle.transform.position = conpos;
 		
 
-		//	sparkparticle.particleEmitter.renderer = true;
-
-
-			sparkparticle.particleEmitter.emit=true;
-
-
-
-
-		}
-
-
-		if (gameObject.transform.position.z + 0 < collisionInfo.collider.transform.position.z) {
-
-						health++;
-
-	
-						if (collisionInfo.collider.rigidbody != null) 
-			{	
-
-
-
-//			if(!collisionInfo.collider.name.Equals("Obtruck"))
-								collisionInfo.collider.rigidbody.isKinematic = false;
-
-
-								if (collisionInfo.collider.name.Equals ("Obtruck"))
-										Physics.gravity = new Vector3 (0, -100, 0);
-								else
-										Physics.gravity = new Vector3 (0, -50, 0);
-
-
-
-
-			
-								collisionInfo.collider.rigidbody.useGravity = true;
-
-
-
-
-//			gameObject.collider.rigidbody.AddForce (Vector3.forward * -100);
-
-
-//			gameObject.collider.rigidbody.AddForce (Vector3.up * 50);
-
-
-//			gameObject.collider.rigidbody.AddTorque (Vector3.forward * -500);
-
-
-
-
-								gameObject.rigidbody.useGravity = true;
+								sparkparticle.particleEmitter.emit = true;
 
 
 
 
 						}
 
-						//collisionInfo.collider
 
-		
-//		print("Detected collision between " + gameObject.name + " and " + collisionInfo.collider.name);
-//		print("There are " + collisionInfo.contacts.Length + " point(s) of contacts");
-//		print("Their relative velocity is " + collisionInfo.relativeVelocity);
+						if (gameObject.transform.position.z + 0 < collisionInfo.collider.transform.position.z) {
 
+								health++;
 
-
-//		collisionInfo.collider.rigidbody.AddForce (Vector3.up * -50);
-
-
-						if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) {
-
-								//	gameObject.transform.Translate (Vector3.left * 0.45f);
-
-
+	
 								if (collisionInfo.collider.rigidbody != null) {	
 
-										//					collider.rigidbody.AddForce (Vector3.left * 50);
-	
+										collisionInfo.collider.rigidbody.isKinematic = false;
+
+
+										Physics.gravity = new Vector3 (0, -20, 0);
 
 
 
-										//		rigidbody.AddTorque(Vector3.right * 250);
+
+			
+										collisionInfo.collider.rigidbody.useGravity = true;
 
 
-										//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * -150);
-				
-				
-				
-										//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * -550);
+
+										gameObject.rigidbody.useGravity = true;
 
 
-										collisionInfo.collider.rigidbody.AddTorque (Vector3.left * -1200);
-		
-					collisionInfo.collider.rigidbody.AddForce (Vector3.left * -1200);
+
 
 								}
 
+
+
+
+
+
+								if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) {
+
+										//	gameObject.transform.Translate (Vector3.left * 0.45f);
+
+
+										if (collisionInfo.collider.rigidbody != null) {	
+
+				
+												collisionInfo.collider.rigidbody.AddTorque (Vector3.left * -1200);
+		
+												collisionInfo.collider.rigidbody.AddForce (Vector3.left * -1200);
+
+										}
+
+
+								} else {
+
+		
+										if (collisionInfo.collider.rigidbody != null) {	
+
+												collisionInfo.collider.rigidbody.AddTorque (Vector3.left * 1200);
+		
+												collisionInfo.collider.rigidbody.AddForce (Vector3.left * 1200);
+
+
+
+			
+										}
+			
+								}
 
 						} else {
 
-		
-								if (collisionInfo.collider.rigidbody != null) {	
 
-					collisionInfo.collider.rigidbody.AddTorque (Vector3.left * 1200);
-		
-					collisionInfo.collider.rigidbody.AddForce (Vector3.left * 1200);
+								this.gameObject.rigidbody.useGravity = true;
+
+								//	Physics.gravity=new Vector3(0,-150,0);
 
 
-					
-					/*collider.rigidbody.AddTorque(Vector3.right * -25);
-		
-
-
-
-					rigidbody.AddForce (Vector3.up * -6550);
-
-
-					rigidbody.AddTorque(Vector3.right * 250);
-*/
-
-					
-					//		collisionInfo.collider.rigidbody.AddForce (Vector3.left * 150);
-				
-				
-				
-										//		collisionInfo.collider.rigidbody.AddTorque(Vector3.right * 550);
-
-			
-								}
-			
 						}
 
-				} else {
 
-
-			this.gameObject.rigidbody.useGravity=true;
-
-			Physics.gravity=new Vector3(0,-150,0);
 
 
 				}
-
 	}
 	
 	void OnCollisionStay(Collision collisionInfo)
@@ -246,7 +196,7 @@ else
 		if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) 
 		{
 			
-			gameObject.transform.Translate (Vector3.left * 0.45f);
+		//	gameObject.transform.Translate (Vector3.left * 0.45f);
 			
 			
 					
@@ -254,7 +204,7 @@ else
 		else
 		{
 			
-			gameObject.transform.Translate (Vector3.left * -0.45f);
+		//	gameObject.transform.Translate (Vector3.left * -0.45f);
 			
 			
 			}
@@ -388,42 +338,55 @@ else
 	void Update () {
 
 
+		if (!gameover) {
+						if (this.transform.position.y < 0.65f) {
 
-//		smokeparticle.particleEmitter.emit = false;
+								this.transform.position = new Vector3 (this.transform.position.x, 0.66f, this.transform.position.z);
 
-	
+								this.transform.rigidbody.angularVelocity = Vector3.zero;
 
+								this.transform.rigidbody.velocity = Vector3.zero;
 
-		if (this.transform.position.y < 0.65f)
-		{
+								this.transform.rotation = Quaternion.identity;
 
-			//			this.transform.Translate (Vector3.up * 0.5f);
+								this.gameObject.rigidbody.useGravity = false;
 
-			this.transform.position=new Vector3(this.transform.position.x,0.66f,this.transform.position.z);
+						}
 
-			this.transform.rigidbody.angularVelocity=Vector3.zero;
-
-			this.transform.rigidbody.velocity=Vector3.zero;
-
-			this.transform.rotation=Quaternion.identity;
-
-			this.gameObject.rigidbody.useGravity=false;
-
-		}
-
-		this.transform.rigidbody.angularVelocity=Vector3.zero;
+						this.transform.rigidbody.angularVelocity = Vector3.zero;
 		
-		this.transform.rigidbody.velocity=Vector3.zero;
-
-
-
-
-//		print ("speed s: "+this.transform.position.y);
-		
-
+						this.transform.rigidbody.velocity = Vector3.zero;
+				}
 
 
 		if (gameover) {
+
+			if(delay<1)
+			{
+		
+
+			//	collider.rigidbody.AddForce (Vector3.left * 152);
+			
+			//	collider.rigidbody.AddForce (Vector3.forward * 1052);
+
+				collider.rigidbody.AddForce (Vector3.up * 52);
+
+				collider.rigidbody.AddForce (Vector3.forward * 52);
+
+
+				collider.rigidbody.AddTorque (Vector3.up * 152);
+				
+				collider.rigidbody.AddTorque (Vector3.forward * 152);
+
+
+
+
+			//	collider.rigidbody.AddTorque (Vector3.left * 152);
+			
+			//	collider.rigidbody.AddTorque (Vector3.forward * 1052);
+
+			}
+
 						delay += 1;
 		
 			smokeparticle.renderer.enabled = true;
@@ -432,12 +395,7 @@ else
 			delay=0;
 		
 	
-
-
-		//	Instantiate(explosion, transform.position, transform.rotation);
-		
-		
-		if(delay==100)
+	if(delay==100)
 		foreach (Transform t in transform)
 		{
 
@@ -484,30 +442,15 @@ else
 		}
 	
 
-		if (count == 1) {
-	//		transform.Translate (-Vector3.up*0.01f);
-		} else if (count == 5) {
-	//		transform.Translate (Vector3.up*0.01f);
-			
-		}
+	
 
-
-		if (this.transform.position.z > -15f)
-	//		this.transform.position = this.transform.position - new Vector3 (0,0,-1.25f);
+		if (this.transform.position.z > -15f&&!gameover)
 			transform.Translate (Vector3.forward*-0.05f);
 
-		
 
-//		print("z value : Global ="+transform.position.z+" Local = "+transform.localPosition.z);
-
-		
-		
 		iPx = Input.acceleration.x;
 		
 		
-		//		if(Mathf.Abs(iPx)<2)
-		accx = Mathf.Abs (iPx);
-
 
 
 
@@ -519,71 +462,6 @@ else
 
 
 
-		
-	/*	
-		if ((Input.GetKey (KeyCode.L)||iPx>0.05f)&&isallowed) 
-			//    if(Input.GetKey(KeyCode.K))
-		{
-			left = true;
-			right = false;
-			
-			
-		} else
-			if ((Input.GetKey (KeyCode.K)||iPx<-0.05f)&&isallowed)
-				//        if(Input.GetKey(KeyCode.L))
-		{
-			left = false;
-			right = true;
-			
-			
-		} else {
-			left=false;
-			right=false;
-			
-		}
-	*/
-
-
-
-
-
-		/*
-
-		if (Input.touchCount == 1) {
-			touch = Input.touches [0];
-			
-			
-			//		if (Input.GetKey (KeyCode.L)||iPx>0.05f) 
-			//    if(Input.GetKey(KeyCode.K))
-			if ((Input.GetKey (KeyCode.L) || touch.position.x > Screen.width / 2)&&isallowed) {
-				left = true;
-				right = false;
-				
-				
-			} else
-				//		if (Input.GetKey (KeyCode.K)||iPx<-0.05f)
-			if ((Input.GetKey (KeyCode.K) || touch.position.x < Screen.width / 2)&&isallowed) {
-				//        if(Input.GetKey(KeyCode.L))
-				left = false;
-				right = true;
-				
-				
-			} else {
-				left = false;
-				right = false;
-				
-			}
-			
-			
-		}
-		else {
-			left = false;
-			right = false;
-			
-		}
-
-
-*/
 
 		if (Input.touchCount >0)
 			touch = Input.touches [0];
@@ -627,26 +505,13 @@ else
 		
 		xspeep *= friction;
 
-//		transform.Translate(Vector3.right * -xspeep);
-
-
-		
-/*		if(piv1.transform.position.z>-14.8f)
-			transform.Translate(Vector3.forward*-0.05f);
-*/		
-
-		
-
-		
+	
 		rotateDegrees = 0f;
 		
 		float srotateDegrees = 0f;
 		
-		//        if (Input.GetKey(KeyCode.LeftArrow))
 		if(left)
 		{
-	//		rotateDegrees += rotateSpeed* Time.deltaTime;
-
 			rotateDegrees += rotateSpeed*0.045f;
 
 
@@ -729,9 +594,6 @@ else
 		}
 
 
-	
-
-
 		
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
@@ -749,10 +611,13 @@ else
 			
 		}
 		
-		
-		
-		
-
 
 	}
+
+
+
+
+
+
+
 }
