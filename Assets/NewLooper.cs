@@ -6,11 +6,14 @@ public class NewLooper : MonoBehaviour {
 	
 	
 	
-	public GameObject player,go1,go2,go3,obstaclemaker;
+	public GameObject player,go1,go2,go3,go4,go5,go6,obstaclemaker;
 	
 	
-	GameObject g1,g2,g3;
-	
+
+	GameObject g1,g2,g3,g4,g5,g6;
+
+
+
 	
 	GameObject[] gobs;
 	
@@ -39,7 +42,7 @@ public class NewLooper : MonoBehaviour {
 		curvect = new Vector3 (0,0,0);
 
 
-		sizeofarray = 9;
+		sizeofarray = 3*6;
 
 
 		gobs = new GameObject[sizeofarray];
@@ -173,12 +176,58 @@ public class NewLooper : MonoBehaviour {
 					if(i==8)
 						gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
 
-
-
-
-//				gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
-			
 			}
+
+
+
+			if(i>=9&&i<12)
+			{
+				
+				
+				if(i==9)
+					gobs [i] = Instantiate (go4, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==10)
+						gobs [i] = Instantiate (go4, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==11)
+						gobs [i] = Instantiate (go4, thirdpos, transform.rotation) as GameObject;
+				
+			}
+
+
+			if(i>=12&&i<15)
+			{
+				
+				
+				if(i==12)
+					gobs [i] = Instantiate (go5, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==13)
+						gobs [i] = Instantiate (go5, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==14)
+						gobs [i] = Instantiate (go5, thirdpos, transform.rotation) as GameObject;
+				
+			}
+
+
+
+			if(i>=15&&i<18)
+			{
+				
+				
+				if(i==15)
+					gobs [i] = Instantiate (go6, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==16)
+						gobs [i] = Instantiate (go6, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==17)
+						gobs [i] = Instantiate (go6, thirdpos, transform.rotation) as GameObject;
+				
+			}
+
 
 
 
@@ -355,8 +404,27 @@ public class NewLooper : MonoBehaviour {
 					else
 						gobs[i].SetActive(false);
 				}
+				else if(counter==12)
+				{
+					
+					if(i>=9&&i<12)
+						gobs[i].SetActive(true);
+					else
+						gobs[i].SetActive(false);
+				}
+				else if(counter==15)
+				{
+					
+					if(i>=12&&i<15)
+						gobs[i].SetActive(true);
+					else
+						gobs[i].SetActive(false);
+				}
 
-				if(counter>12)
+
+
+
+				if(counter>15)
 					counter=0;
 
 

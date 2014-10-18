@@ -8,8 +8,6 @@ public class backwheel : MonoBehaviour {
 	Vector3 pivot;
 
 
-	public GameObject front;
-
 
 
 	// Use this for initialization
@@ -32,7 +30,7 @@ public class backwheel : MonoBehaviour {
 
 	//	this.transform.localEulerAngles= new Vector3(4000*Time.deltaTime,0,0);
 
-		this.transform.Rotate(-360,0,0);
+		this.transform.Rotate(-50,0,0);
 
 	
 	//	front.transform.Rotate(-100,0,0);

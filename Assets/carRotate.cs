@@ -583,12 +583,12 @@ public class carRotate : MonoBehaviour {
 
 		}
 
-		if (this.transform.position.x < -6.8f) 
+		if (this.transform.position.x < -5.8f) 
 		{
 //						this.transform.position = this.transform.position - new Vector3 (-0.15f, 0, 0);
 
 
-			this.transform.position = new Vector3 (-6.8f, this.transform.position.y, this.transform.position.z);
+			this.transform.position = new Vector3 (-5.8f, this.transform.position.y, this.transform.position.z);
 
 
 		}

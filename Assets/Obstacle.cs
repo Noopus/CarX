@@ -707,22 +707,18 @@ public class Obstacle : MonoBehaviour {
 
 		if (!turn) 
 		{
-			curvect.x -= 0.0003f;
+		
+		//	curvect.x -= 0.0003f;
 			
 			
-	//		if(curvect.z>0)
-	//			curvect.z -= 0.00005f;
-			
+
 		} 
 		else if (turn) 
 		{
 			
-			curvect.x += 0.0003f;
+//			curvect.x += 0.0003f;
 			
-			
-	//		if(curvect.z<0.1f)
-	//			curvect.z += 0.0001f;
-			
+
 		}
 		
 		
