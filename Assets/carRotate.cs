@@ -4,8 +4,8 @@ using System.Collections;
 public class carRotate : MonoBehaviour {
 	
 	float xspeep = 0f;
-	float power = 0.028f;
-	float friction = 0.95f;
+	float power = 0.0828f;
+	float friction = 0.795f;
 	public bool right = false;
 	public bool left = false;
 	
@@ -22,11 +22,17 @@ public class carRotate : MonoBehaviour {
 
 
 
-
+	public AudioClip clip;
 
 		
+
+	public ParticleSystem nitros;
+
+
 	void Start () {
-		
+
+
+
 		
 		//sparkparticle.particleEmitter.renderer = false;
 
@@ -45,7 +51,15 @@ public class carRotate : MonoBehaviour {
 
 		sparkparticle.particleEmitter.emit=false;
 
-		
+
+
+		audio.loop = true;
+		audio.clip = clip; 
+
+		audio.Play();
+
+
+		audio.pitch = 2.0f;
 	}
 
 
@@ -68,6 +82,7 @@ public class carRotate : MonoBehaviour {
 		if (!gameover) {
 	
 
+		
 
 						//	collider.rigidbody.AddForce (Vector3.up * 52);
 
@@ -243,7 +258,7 @@ public class carRotate : MonoBehaviour {
 
 		
 
-
+		nitros.startSize = 0.3f+speed/4;
 
 
 		if (health == 1) 
@@ -364,7 +379,9 @@ public class carRotate : MonoBehaviour {
 			if(delay<1)
 			{
 		
+				audio.Stop();
 
+				
 			//	collider.rigidbody.AddForce (Vector3.left * 152);
 			
 			//	collider.rigidbody.AddForce (Vector3.forward * 1052);
@@ -474,17 +491,36 @@ public class carRotate : MonoBehaviour {
 								left = true;
 								right = false;
 			
+				audio.pitch-=0.005f;
+
+		//		obstaclemaker.GetComponent<Obstacle> ().speed-=0.0025f;
+
+
+
 			
 						} else
 		if (Input.GetKey (KeyCode.LeftArrow) || (touch.position.x < Screen.width / 2 && Input.touchCount > 0)) {
 								left = false;
 								right = true;
-			
+
+				audio.pitch-=0.005f;
+
+
+		//		if(speed>obstaclemaker.GetComponent<Obstacle> ().latestspeed-3)
+		//		obstaclemaker.GetComponent<Obstacle> ().speed-=0.0025f;
+
 			
 						} else {
 								left = false;
 								right = false;
 			
+				 
+				if(audio.pitch<2.0f+speed-0.4f)
+					audio.pitch+=0.01f;
+
+
+		//		obstaclemaker.GetComponent<Obstacle> ().speed=obstaclemaker.GetComponent<Obstacle> ().latestspeed;
+
 						}
 
 
@@ -598,7 +634,7 @@ public class carRotate : MonoBehaviour {
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
 		{    
-			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10, 10);
+			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10/2, 10/2);
 			rotateDegrees = newAngle - angleBetween;
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 			

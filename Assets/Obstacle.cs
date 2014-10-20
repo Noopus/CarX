@@ -110,7 +110,7 @@ public class Obstacle : MonoBehaviour {
 
 
 
-
+	public float latestspeed=0.4f;
 	
 	void Start () {
 		
@@ -653,8 +653,12 @@ public class Obstacle : MonoBehaviour {
 		
 
 
+		if (latestspeed < speed)
+						latestspeed = speed;
 
 
+
+		print ("hit is detec"+latestspeed);
 
 
 
@@ -779,7 +783,7 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			
-			curob.transform.position = new Vector3(curob.transform.position.x,curob.transform.position.y,150);
+			curob.transform.position = new Vector3(curob.transform.position.x,curob.transform.position.y,150+20);
 			
 			
 			
@@ -907,8 +911,12 @@ public class Obstacle : MonoBehaviour {
 					
 					
 					if(delay==0)
+					{
 						curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/500));
-					else
+					
+						curob.transform.GetChild (j).renderer.enabled=true;
+
+					}else
 						if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
@@ -938,15 +946,14 @@ public class Obstacle : MonoBehaviour {
 					{
 						reg1 [j] = true;
 						
-						                        print ("hit is detected");
-						
+
 						time+=1;
 						
 						
 						if(time==5)
 						{
 							
-							if(speed<0.90f)
+							if(speed<0.98f)
 		          	speed+=0.1f;
 							
 							
@@ -993,7 +1000,7 @@ public class Obstacle : MonoBehaviour {
 			
 			
 			
-			curob2.transform.position = new Vector3(curob2.transform.position.x,curob2.transform.position.y,150);
+			curob2.transform.position = new Vector3(curob2.transform.position.x,curob2.transform.position.y,150+20);
 			
 			
 			
@@ -1092,8 +1099,12 @@ public class Obstacle : MonoBehaviour {
 				{
 					
 					if(delay==0)
+					{
 						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/500));
-					else
+					
+						curob2.transform.GetChild (j).renderer.enabled=true;
+
+					}else
 						if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
@@ -1200,7 +1211,7 @@ public class Obstacle : MonoBehaviour {
 				
 				curo.transform.GetChild (j).transform.rotation = Quaternion.identity;
 				
-				
+				curo.transform.GetChild (j).renderer.enabled=false;
 				
 				
 			}

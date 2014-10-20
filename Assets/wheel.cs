@@ -131,9 +131,9 @@ public class wheel : MonoBehaviour
 		
 		
 		
-		wheel1.transform.eulerAngles=iniangles+curangles;
+	//	wheel1.transform.eulerAngles=iniangles+curangles;
 
-		wheel2.transform.eulerAngles=iniangles+curangles;
+	//	wheel2.transform.eulerAngles=iniangles+curangles;
 
 
 
