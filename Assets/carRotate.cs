@@ -29,6 +29,11 @@ public class carRotate : MonoBehaviour {
 	public ParticleSystem nitros;
 
 
+
+	public TextMesh score;
+
+
+
 	void Start () {
 
 
@@ -250,9 +255,23 @@ public class carRotate : MonoBehaviour {
 	public GameObject obstaclemaker;
 
 
+
+
+	int distance;
+
+
+	public GameObject carbody;
+
 	// Use this for initialization
 	void FixedUpdate () {
-		
+
+
+
+		distance=distance+(int)(speed+0.8f);
+
+
+		score.text = ""+distance;
+
 	
 		speed = obstaclemaker.GetComponent<Obstacle> ().speed;
 
@@ -637,14 +656,20 @@ public class carRotate : MonoBehaviour {
 			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10/2, 10/2);
 			rotateDegrees = newAngle - angleBetween;
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
-			
+		
+
+			carbody.transform.RotateAround(this.transform.position,Vector3.forward,rotateDegrees/2);
+
 		}
 		else
 		{
 			newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -20, 20);
 			srotateDegrees = newAngle/2 - angleBetween;
 			this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/6);
-			
+
+			carbody.transform.RotateAround(this.transform.position,Vector3.forward,srotateDegrees/(6*2));
+
+
 		}
 		
 

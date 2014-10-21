@@ -9,29 +9,49 @@ ModelImporter:
     100006: TyreFL
     100008: TyreFL_001
     100010: TyreFL_002
+    100012: CARparent
+    100014: Cube
+    100016: TyreFL_003
+    100018: pcube
     400000: CarBody
     400002: Floor
     400004: //RootNode
     400006: TyreFL
     400008: TyreFL_001
     400010: TyreFL_002
+    400012: CARparent
+    400014: Cube
+    400016: TyreFL_003
+    400018: pcube
     2300000: CarBody
     2300002: Floor
     2300004: TyreFL
     2300006: TyreFL_001
     2300008: TyreFL_002
     2300010: //RootNode
+    2300012: CARparent
+    2300014: Cube
+    2300016: TyreFL_003
+    2300018: pcube
     3300000: CarBody
     3300002: Floor
     3300004: TyreFL
     3300006: TyreFL_001
     3300008: TyreFL_002
     3300010: //RootNode
+    3300012: CARparent
+    3300014: Cube
+    3300016: TyreFL_003
+    3300018: pcube
     4300000: Floor
     4300002: CarBody
     4300004: TyreFL_002
     4300006: TyreFL_001
     4300008: TyreFL
+    4300010: CARparent
+    4300012: Cube
+    4300014: TyreFL_003
+    4300016: pcube
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -42,6 +62,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5

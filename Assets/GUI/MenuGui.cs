@@ -66,8 +66,25 @@ public class MenuGui : MonoBehaviour {
 
 
 			if(Physics.Raycast(ray,out hit)){
-				Debug.Log("Hit point: " + hit.point);
+
+				//Debug.Log("Hit point: " + hit.point);
+			
+
+
+
+
+				if(hit.collider.name.Equals("GoRace"))
+					Application.LoadLevel(1);
+
+
+
+
+
 			}
+
+
+
+
 		}
 
 

@@ -14,6 +14,8 @@ ModelImporter:
     100016: Plane_007
     100018: Plane_008
     100020: Plane_009
+    100022: GoRace
+    100024: Logo
     400000: //RootNode
     400002: Plane
     400004: Plane_001
@@ -25,6 +27,8 @@ ModelImporter:
     400016: Plane_007
     400018: Plane_008
     400020: Plane_009
+    400022: GoRace
+    400024: Logo
     2300000: Plane
     2300002: Plane_001
     2300004: Plane_002
@@ -36,6 +40,8 @@ ModelImporter:
     2300016: Plane_007
     2300018: Plane_008
     2300020: Plane_009
+    2300022: GoRace
+    2300024: Logo
     3300000: Plane
     3300002: Plane_001
     3300004: Plane_002
@@ -47,6 +53,8 @@ ModelImporter:
     3300016: Plane_007
     3300018: Plane_008
     3300020: Plane_009
+    3300022: GoRace
+    3300024: Logo
     4300000: Plane_002
     4300002: Plane_001
     4300004: Plane
@@ -57,6 +65,8 @@ ModelImporter:
     4300014: Plane_007
     4300016: Plane_008
     4300018: Plane_009
+    4300020: Logo
+    4300022: GoRace
     7400000: Default Take
     9500000: //RootNode
   materials:
