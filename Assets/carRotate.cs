@@ -59,9 +59,10 @@ public class carRotate : MonoBehaviour {
 
 
 		audio.loop = true;
+	
 		audio.clip = clip; 
 
-		audio.Play();
+	//	audio.Play();
 
 
 		audio.pitch = 2.0f;
@@ -149,7 +150,7 @@ public class carRotate : MonoBehaviour {
 
 
 
-								if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x) {
+								if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x+2) {
 
 										//	gameObject.transform.Translate (Vector3.left * 0.45f);
 
@@ -157,26 +158,35 @@ public class carRotate : MonoBehaviour {
 										if (collisionInfo.collider.rigidbody != null) {	
 
 				
-												collisionInfo.collider.rigidbody.AddTorque (Vector3.left * -1200);
+								//				collisionInfo.collider.rigidbody.AddTorque (collisionInfo.collider.transform.right * 3200);
 		
-												collisionInfo.collider.rigidbody.AddForce (Vector3.left * -1200);
+						collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.right * 5200);
 
 										}
 
 
-								} else {
+								} else
+				
+					if (collisionInfo.collider.transform.position.x < gameObject.transform.position.x-2)
+				{
 
 		
 										if (collisionInfo.collider.rigidbody != null) {	
 
-												collisionInfo.collider.rigidbody.AddTorque (Vector3.left * 1200);
+											//	collisionInfo.collider.rigidbody.AddTorque (Vector3.left * 1200);
 		
-												collisionInfo.collider.rigidbody.AddForce (Vector3.left * 1200);
+											//	collisionInfo.collider.rigidbody.AddForce (Vector3.left * 1200);
+
+
+				//		collisionInfo.collider.rigidbody.AddTorque (collisionInfo.collider.transform.right * -3200);
+						
+						collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.right * -5200);
 
 
 
-			
-										}
+						
+						
+					}
 			
 								}
 
@@ -362,14 +372,113 @@ public class carRotate : MonoBehaviour {
 
 
 
-	public GameObject smokeparticle,sparkparticle;
+	public GameObject smokeparticle,sparkparticle,missile;
 
+	GameObject fmiss;
 
+	bool fire=false;
 
+	public bool firepress=false;
 
 
 	// Update is called once per frame
 	void Update () {
+
+
+
+
+		if (Input.GetButtonDown ("Fire1")) {
+			
+						RaycastHit hit;
+			
+						Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			
+			
+						if (Physics.Raycast (ray, out hit)) {
+				
+								//Debug.Log("Hit point: " + hit.point);
+				
+				
+				
+				
+				
+								if (hit.collider.name.Equals ("Fire")) {
+										fire = true;
+
+										firepress = true;
+								} else {
+										firepress = false;
+								}
+				
+				
+				
+						} else {
+								firepress = false;
+
+						}
+			
+			
+			
+			
+		}
+
+		if(Input.GetKey("up"))
+		{
+			fire=true;
+		}
+
+		if (fire) {
+
+			if(fmiss==null)
+			fmiss=Instantiate (missile, this.transform.position+new Vector3(0,1,-2), Quaternion.Euler(Vector3.zero)) as GameObject;
+			
+
+
+			fmiss.transform.GetChild(0).Rotate(fmiss.transform.GetChild(0).forward*10);
+
+			fmiss.transform.Translate(fmiss.transform.forward*2);
+
+
+			//fmiss.transform.GetChild(0).RotateAround(fmiss.transform.GetChild(3).position,Vector3.forward,Time.deltaTime*400);
+
+				}
+
+		if(fmiss!=null)
+			if (fmiss.transform.position.z > 150) 
+		{
+
+
+			fire=false;
+
+			Destroy(fmiss);
+
+			fmiss.transform.position=this.transform.position;
+
+			fmiss=null;
+
+		
+
+		/*	for(int i=0;i<4;i++)
+			{
+			
+		//	missile.transform.GetChild (i).transform.rigidbody.velocity = Vector3.zero;
+			
+			missile.transform.GetChild (i).transform.position = Vector3.zero;
+			
+
+
+			//curo.transform.GetChild (j).transform.position = new Vector3 (child [j].x, child [j].y, child [j].z);
+
+
+			}
+
+			missile.transform.position=new Vector3(0,0,0);
+
+*/
+		}
+
+
+		
 
 
 		if (!gameover) {
@@ -505,12 +614,12 @@ public class carRotate : MonoBehaviour {
 		
 
 		
-		if (gameover == false) {	
+		if (gameover == false&&firepress==false) {	
 						if (Input.GetKey (KeyCode.RightArrow) || (touch.position.x > Screen.width / 2 && Input.touchCount > 0)) {
 								left = true;
 								right = false;
 			
-				audio.pitch-=0.005f;
+				audio.pitch-=0.001f;
 
 		//		obstaclemaker.GetComponent<Obstacle> ().speed-=0.0025f;
 
@@ -522,7 +631,7 @@ public class carRotate : MonoBehaviour {
 								left = false;
 								right = true;
 
-				audio.pitch-=0.005f;
+				audio.pitch-=0.001f;
 
 
 		//		if(speed>obstaclemaker.GetComponent<Obstacle> ().latestspeed-3)
@@ -655,19 +764,62 @@ public class carRotate : MonoBehaviour {
 		{    
 			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10/2, 10/2);
 			rotateDegrees = newAngle - angleBetween;
+		
+
+
 			this.transform.RotateAround(piv2.transform.position,Vector3.up,rotateDegrees);
 		
 
-			carbody.transform.RotateAround(this.transform.position,Vector3.forward,rotateDegrees/2);
+		//	carbody.transform.RotateAround(this.transform.position,Vector3.forward,rotateDegrees);
+
+
+		//	this.transform.rotation=Quaternion.Slerp(this.transform.rotation,Quaternion.Euler(new Vector3(0,0,0)),Time.time*0.01f);
+
+
+
+//			print ("speed "+speed);
+
+
+			if(left)
+			{
+				carbody.transform.localRotation=Quaternion.Slerp(carbody.transform.localRotation,Quaternion.Euler(new Vector3(0,0,-5/2)),Time.time*speed/15);
+			
+
+//				this.transform.rotation=Quaternion.Lerp(piv2.transform.localRotation,Quaternion.Euler(new Vector3(0,15,0)),Time.time*0.05f);
+
+			}
+			else
+			{
+				carbody.transform.localRotation=Quaternion.Slerp(carbody.transform.localRotation,Quaternion.Euler(new Vector3(0,0,5/2)),Time.time*speed/15);
+
+			
+//				this.transform.rotation=Quaternion.Lerp(piv2.transform.localRotation,Quaternion.Euler(new Vector3(0,-15,0)),Time.time*0.05f);
+
+			}
+
 
 		}
 		else
 		{
 			newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -20, 20);
 			srotateDegrees = newAngle/2 - angleBetween;
+		
+
 			this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/6);
 
-			carbody.transform.RotateAround(this.transform.position,Vector3.forward,srotateDegrees/(6*2));
+		//	carbody.transform.RotateAround(this.transform.position,Vector3.forward,srotateDegrees/(6*2));
+
+
+
+
+		//	this.transform.localRotation=Quaternion.Slerp(piv1.transform.localRotation,Quaternion.Euler(new Vector3(0,0,0)),Time.time*0.5f);
+
+
+
+			carbody.transform.localRotation=Quaternion.Slerp(carbody.transform.localRotation,Quaternion.Euler(new Vector3(0,0,0)),Time.time*speed/15);
+
+			carbody.transform.localPosition=new Vector3(-3.035522f,carbody.transform.localPosition.y,carbody.transform.localPosition.z);
+
 
 
 		}

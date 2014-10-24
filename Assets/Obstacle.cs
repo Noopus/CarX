@@ -658,7 +658,7 @@ public class Obstacle : MonoBehaviour {
 
 
 
-		print ("hit is detec"+latestspeed);
+//		print ("hit is detec"+latestspeed);
 
 
 
@@ -912,28 +912,31 @@ public class Obstacle : MonoBehaviour {
 					
 					if(delay==0)
 					{
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/500));
-					
+
+						if(curob.transform.GetChild (j).rigidbody.angularVelocity.y==0)
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.15f*j+j*speed/250));
+					else
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * -speed*(1.2f));
+
+
 						curob.transform.GetChild (j).renderer.enabled=true;
 
 					}else
 						if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/500));
+				//		curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/250));
 						
 					}
 					else
-					
-						
-						if(curob.transform.GetChild (j).transform.position.z>player.transform.position.z+10)
-
+				//		if(curob.transform.GetChild (j).transform.position.z>player.transform.position.z+10)
+						if(curob.transform.GetChild (j).transform.rotation.x==0)
 					{
 						
 						if(j==0)
-							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/500));
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/250));
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/500));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/250));
 						
 					}
 					
@@ -950,16 +953,16 @@ public class Obstacle : MonoBehaviour {
 						time+=1;
 						
 						
-						if(time==5)
+						if(time==5+turntime)
 						{
 							
-							if(speed<0.98f)
-		          	speed+=0.1f;
+							if(speed<1.38f)
+		        			speed+=0.1f;
 							
 							
 							time=0;
 							
-							turntime+=3;
+							turntime+=2;
 							
 							
 						}
@@ -1100,8 +1103,13 @@ public class Obstacle : MonoBehaviour {
 					
 					if(delay==0)
 					{
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.05f*j+j*speed/500));
-					
+						if(curob2.transform.GetChild (j).rigidbody.angularVelocity.y==0)
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.15f*j+j*speed/250));
+					else
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -speed*(1.2f));
+
+						
+						
 						curob2.transform.GetChild (j).renderer.enabled=true;
 
 					}else
@@ -1113,13 +1121,14 @@ public class Obstacle : MonoBehaviour {
 					}
 					else 
 				
-						if(curob2.transform.GetChild (j).transform.position.z>player.transform.position.z+8)
+					//	if(curob2.transform.GetChild (j).transform.position.z>player.transform.position.z+8)
+						if(curob2.transform.GetChild (j).transform.rotation.x==0)
 					{
 						
 						if(j==0)
-							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/500));
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/250));
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/500));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/250));
 						
 					}
 					
@@ -1200,8 +1209,11 @@ public class Obstacle : MonoBehaviour {
 					curo.transform.GetChild (j).transform.rigidbody.velocity = Vector3.zero;
 					
 					curo.transform.GetChild (j).transform.rigidbody.angularVelocity = Vector3.zero;
-					
-					
+				
+					curo.transform.GetChild (j).rigidbody.isKinematic=true;
+
+					curo.transform.GetChild (j).rigidbody.useGravity=false;
+
 				}
 				
 				

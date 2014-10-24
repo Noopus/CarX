@@ -22,7 +22,7 @@ public class carMove : MonoBehaviour {
 	
 	
 
-
+	public AudioClip music;
 
 
 	public GameObject parent,frontfire;
@@ -42,6 +42,14 @@ public class carMove : MonoBehaviour {
 
 
 		flareval = -0.4f;
+
+
+		audio.clip = music;
+
+
+		audio.loop = true;
+
+		audio.Play ();
 
 	}
 
@@ -211,7 +219,7 @@ public class carMove : MonoBehaviour {
 		*/
 
 
-		if (cr.gameover == false) {
+		if (cr.gameover == false&&cr.firepress==false) {
 						if (Input.GetKey (KeyCode.RightArrow) || (touch.position.x > Screen.width / 2 && Input.touchCount > 0)) {
 								left = true;
 								right = false;
