@@ -17,7 +17,7 @@ public class GoGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	
+/*	
 		if (Input.touchCount > 0) {
 						touch = Input.touches [0];
 		
@@ -25,7 +25,7 @@ public class GoGame : MonoBehaviour {
 
 
 		}
-
+*/
 
 
 	}

@@ -73,7 +73,7 @@ public class MenuGui : MonoBehaviour {
 
 
 
-				if(hit.collider.name.Equals("GoRace"))
+				if(hit.collider.name.Equals("race"))
 					Application.LoadLevel(1);
 
 
