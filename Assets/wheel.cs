@@ -48,9 +48,9 @@ public class wheel : MonoBehaviour
 
 
 
-		if(delay>0)
-		renderer.material.SetTexture("_MainTex", dmgtex);
-
+		if (delay > 0) {
+				//		renderer.material.SetTexture ("_MainTex", dmgtex);
+				}
 
 		if (parent.GetComponent<carRotate> ().left) {
 			

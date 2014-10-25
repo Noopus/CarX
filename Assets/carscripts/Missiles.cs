@@ -25,8 +25,7 @@ public class Missiles : MonoBehaviour {
 
 		other.rigidbody.useGravity = true;
 
-		print("hit trigger");
-
+	
 		//other.rigidbody.AddExplosionForce (500000, other.transform.up*50000, 300000);
 
 		if(other.transform.rigidbody.mass==8)

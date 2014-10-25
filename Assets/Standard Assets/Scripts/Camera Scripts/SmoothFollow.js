@@ -27,12 +27,15 @@ function LateUpdate () {
 	// Early out if we don't have a target
 	if (!target)
 		return;
+
 	
+/*		
+				
 	// Calculate the current rotation angles
 	var wantedRotationAngle = target.eulerAngles.y;
 	var wantedHeight = target.position.y + height;
 		
-	var currentRotationAngle = transform.eulerAngles.y;
+	var currentRotationAngle = transform.eulerAngles.y+4;
 	var currentHeight = transform.position.y;
 	
 	// Damp the rotation around the y-axis
@@ -53,5 +56,21 @@ function LateUpdate () {
 	transform.position.y = currentHeight;
 	
 	// Always look at the target
-	transform.LookAt (target);
+//	transform.LookAt (target);
+
+
+*/
+
+
+if(this.transform.position.x>target.transform.position.x+0.3f)
+this.transform.Translate(Vector3.left*0.12f);
+else
+if(this.transform.position.x<target.transform.position.x-0.3f)
+this.transform.Translate(Vector3.left*-0.12f);
+
+
+
+
+
+
 }

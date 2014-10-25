@@ -5,7 +5,7 @@ public class carRotate : MonoBehaviour {
 	
 	float xspeep = 0f;
 	float power = 0.0828f;
-	float friction = 0.795f;
+	float friction = 0.1795f;
 	public bool right = false;
 	public bool left = false;
 	
