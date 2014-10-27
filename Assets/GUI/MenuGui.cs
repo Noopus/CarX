@@ -11,13 +11,17 @@ public class MenuGui : MonoBehaviour {
 	public GameObject logoobj,soundobj;
 
 
-	public GameObject storeoptions,firstscreen,specscreen,powerupscreen;
+	public GameObject storeoptions,firstscreen,specscreen,powerupscreen,buycashscreen;
+
+	public GameObject multiplierscreen,nitroscreen,weaponscreen,transplane;
 
 
+	Renderer[] storerenderers,fsrenderers,specrenderer,pwsrenderers,buycashrenderers;
 
-	Renderer[] storerenderers,fsrenderers,specrenderer;
+	Renderer[] multiplierrenderers,nitrorenderers,weaponsrenderers;
 
 
+	Renderer transrend;
 
 	// Use this for initialization
 	void Start () {
@@ -40,9 +44,9 @@ public class MenuGui : MonoBehaviour {
 		//		logopos.x = ray.x - renderer.bounds.size.x/2;
 		
 		
-		logopos.x = ray.x + logoobj.renderer.bounds.size.x/2-4f;
+		logopos.x = ray.x + logoobj.renderer.bounds.size.x/2-4.3f;
 		
-		logopos.y = ray.y - logoobj.renderer.bounds.size.y/2+0.1f;
+		logopos.y = ray.y - logoobj.renderer.bounds.size.y/2+0.3f;
 
 //		logopos.z = ray.z;
 		
@@ -107,6 +111,73 @@ public class MenuGui : MonoBehaviour {
 
 
 
+		pwsrenderers = powerupscreen.GetComponentsInChildren<Renderer>();
+		
+		
+		foreach (Renderer r in pwsrenderers)
+		{
+			
+			r.enabled = false;
+			
+		}
+
+
+
+
+		buycashrenderers = buycashscreen.GetComponentsInChildren<Renderer>();
+		
+		
+		foreach (Renderer r in buycashrenderers)
+		{
+			
+			r.enabled = false;
+			
+		}
+
+
+
+
+
+
+		multiplierrenderers = multiplierscreen.GetComponentsInChildren<Renderer>();
+		
+		
+		foreach (Renderer r in multiplierrenderers)
+		{
+			
+			r.enabled = false;
+			
+		}
+
+
+
+		nitrorenderers = nitroscreen.GetComponentsInChildren<Renderer>();
+		
+		
+		foreach (Renderer r in nitrorenderers)
+		{
+			
+			r.enabled = false;
+			
+		}
+
+
+
+		weaponsrenderers = weaponscreen.GetComponentsInChildren<Renderer>();
+		
+		
+		foreach (Renderer r in weaponsrenderers)
+		{
+			
+			r.enabled = false;
+			
+		}
+
+
+		transrend = transplane.renderer;
+
+		transrend.enabled = false;
+
 
 
 
@@ -129,16 +200,32 @@ public class MenuGui : MonoBehaviour {
 		if(Input.GetButtonDown("Fire1"))
 		{
 
+
 			RaycastHit hit;
 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
-			if(Physics.Raycast(ray,out hit)){
 
+
+			RaycastHit[] hits;
+
+			hits = Physics.RaycastAll(ray);
+
+			int i = 0;
+
+
+			while(i<hits.Length){
+		//	if(Physics.Raycast(ray,out hit)){
+		//	if(Physics.RaycastAll(ray,hits)){
 			
-		
+				hit = hits[i];
 
+				Debug.Log (hit.collider.gameObject.name);
+		
+				i++;
+
+				//Race button
 				if(hit.collider.name.Equals("race")&&hit.collider.renderer.enabled==true)
 					Application.LoadLevel(1);
 
@@ -147,10 +234,14 @@ public class MenuGui : MonoBehaviour {
 
 
 
-
+				//store button
+				/////
 				if(hit.collider.name.Equals("store")&&hit.collider.renderer.enabled==true)
 				{
-					
+
+					transrend.enabled=true;
+
+					//store renderers
 					foreach (Renderer r in storerenderers)
 					{
 						
@@ -158,6 +249,7 @@ public class MenuGui : MonoBehaviour {
 						
 					}
 
+					//first screen renderers
 					foreach (Renderer r in fsrenderers)
 					{
 						
@@ -165,6 +257,7 @@ public class MenuGui : MonoBehaviour {
 						
 					}
 
+					//specifications plane renderers
 					foreach (Renderer r in specrenderer)
 					{
 						
@@ -175,8 +268,117 @@ public class MenuGui : MonoBehaviour {
 					
 				}
 
-                
-				if(hit.collider.name.Equals("back")&&hit.collider.renderer.enabled==true)
+
+				if(hit.collider.name.Equals("powerups")&&hit.collider.renderer.enabled==true)
+				{
+
+					//powerup renderers
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+
+					//store renderers
+					foreach (Renderer r in storerenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+
+
+
+				}
+
+
+
+				if(hit.collider.name.Equals("buycash")&&hit.collider.renderer.enabled==true)
+				{
+
+					//powerup renderers
+					foreach (Renderer r in buycashrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+
+					//store renderers
+					foreach (Renderer r in storerenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+
+
+
+
+				}
+
+
+
+
+				if(hit.collider.name.Equals("pwsback")&&hit.collider.renderer.enabled==true)
+				{
+
+					print("gobackpws");
+
+					//store renderers
+					foreach (Renderer r in storerenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+
+
+
+					//power ups screen renderers
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+
+
+				}
+
+
+
+				if(hit.collider.name.Equals("buyback")&&hit.collider.renderer.enabled==true)
+				{
+					
+					//store renderers
+					foreach (Renderer r in storerenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+					
+					
+					
+					//power ups screen renderers
+					foreach (Renderer r in buycashrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					
+					
+				}
+
+
+
+
+					
+					
+				if(hit.collider.name.Equals("storeback")&&hit.collider.renderer.enabled==true)
 				{
 					foreach (Renderer r in storerenderers)
 					{
@@ -199,13 +401,145 @@ public class MenuGui : MonoBehaviour {
 						
 					}
 
+					transrend.enabled=false;
+
+					
+				}
 
 
+				/*
+				 * 
+				 * inside powerups selection
+				 * 
+				 * 
+				 *
+                 */
+
+
+				if(hit.collider.name.Equals("pmult")&&hit.collider.renderer.enabled==true)
+				{
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					foreach (Renderer r in multiplierrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+								
+				}
+
+
+
+				if(hit.collider.name.Equals("multiback")&&hit.collider.renderer.enabled==true)
+				{
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+					foreach (Renderer r in multiplierrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					
+				}
+
+				
+
+
+
+				if(hit.collider.name.Equals("pweaps")&&hit.collider.renderer.enabled==true)
+				{
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					foreach (Renderer r in weaponsrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+					
+				}
+				
+				
+				
+				if(hit.collider.name.Equals("shotback")&&hit.collider.renderer.enabled==true)
+				{
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+					foreach (Renderer r in weaponsrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					
 				}
 
 
 
 
+
+				if(hit.collider.name.Equals("pnos")&&hit.collider.renderer.enabled==true)
+				{
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					foreach (Renderer r in nitrorenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+					
+				}
+				
+				
+				
+				if(hit.collider.name.Equals("nosback")&&hit.collider.renderer.enabled==true)
+				{
+					foreach (Renderer r in pwsrenderers)
+					{
+						
+						r.enabled = true;
+						
+					}
+					foreach (Renderer r in nitrorenderers)
+					{
+						
+						r.enabled = false;
+						
+					}
+					
+				}
+
+
+				
+
+/*
+ * 
+ * 
+ * 
+*/
 
 
 

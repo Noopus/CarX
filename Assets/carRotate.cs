@@ -5,7 +5,7 @@ public class carRotate : MonoBehaviour {
 	
 	float xspeep = 0f;
 	float power = 0.0828f;
-	float friction = 0.1795f;
+	float friction = 0.795f;
 	public bool right = false;
 	public bool left = false;
 	
@@ -33,12 +33,18 @@ public class carRotate : MonoBehaviour {
 	public TextMesh score;
 
 
-
+	Quaternion secrot;
 	void Start () {
 
 
+		firstrot = this.transform.rotation;
 
-		
+
+		//secrot = Quaternion.Euler ((firstrot.eulerAngles)*400);
+
+		secrot = Quaternion.Euler (new Vector3(900,100,100));
+
+
 		//sparkparticle.particleEmitter.renderer = false;
 
 		
@@ -90,11 +96,15 @@ public class carRotate : MonoBehaviour {
 
 		
 
-						//	collider.rigidbody.AddForce (Vector3.up * 52);
+
 
 
 		
 						foreach (ContactPoint contact in collisionInfo) {
+
+
+
+			//	this.transform.rigidbody.AddExplosionForce(1000,Vector3.forward*-2500,1000);
 
 
 								//Instantiate(sparkparticle, contact.point, Quaternion.identity);
@@ -114,7 +124,7 @@ public class carRotate : MonoBehaviour {
 
 
 
-
+			
 						}
 
 
@@ -128,7 +138,7 @@ public class carRotate : MonoBehaviour {
 										collisionInfo.collider.rigidbody.isKinematic = false;
 
 
-										Physics.gravity = new Vector3 (0, -20, 0);
+									//	Physics.gravity = new Vector3 (0, -20, 0);
 
 
 
@@ -242,10 +252,10 @@ public class carRotate : MonoBehaviour {
 
 
 
-		
+	
 	}
 	
-
+	Quaternion firstrot;
 
 	public GameObject explosion;
 	
@@ -274,6 +284,35 @@ public class carRotate : MonoBehaviour {
 
 	// Use this for initialization
 	void FixedUpdate () {
+
+
+
+
+
+		Camera.main.backgroundColor = Color.Lerp (Color.gray,new Color(0.8f,0.8f,0.8f,1), Mathf.PingPong (Time.time, 50) / 50);
+
+		RenderSettings.fogColor=Color.Lerp (Color.gray,new Color(0.8f,0.8f,0.8f,1), Mathf.PingPong (Time.time, 50) / 50);
+
+
+		if (gameover) 
+		{
+
+		//	Camera.main.transform.rotation=Quaternion.Lerp(this.transform.rotation,secrot,0.001f*Time.deltaTime);
+
+
+			Camera.main.transform.RotateAround (this.transform.position, Vector3.up, 10 * Time.deltaTime);
+		
+
+		
+			if(Camera.main.transform.position.z<-28)
+			{
+			Camera.main.transform.Translate(Vector3.forward*0.05f);
+
+			Camera.main.transform.Translate(Vector3.down*0.05f);
+			}
+
+
+		}
 
 
 
@@ -381,9 +420,42 @@ public class carRotate : MonoBehaviour {
 	public bool firepress=false;
 
 
+	public GameObject wheelset;
+
+
+
+
+
+
+
+
 	// Update is called once per frame
 	void Update () {
 
+
+
+
+		for (int j=0; j<carbody.renderer.materials.Length; j++) 
+		carbody.renderer.materials [j].SetVector ("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
+
+
+
+
+		for(int i=0;i<wheelset.transform.childCount;i++)
+//		for(int i=0;i<3;i++)
+		{
+
+			for(int j=0;j<wheelset.transform.GetChild(i).renderer.materials.Length;j++)
+//			for(int j=0;j<3;j++)
+			{
+
+				wheelset.transform.GetChild(i).renderer.materials [j].SetVector ("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
+
+
+
+			}
+
+		}
 
 
 
@@ -435,6 +507,24 @@ public class carRotate : MonoBehaviour {
 
 
 			fmiss.transform.GetChild(0).Rotate(fmiss.transform.GetChild(0).forward*10);
+
+
+			for(int i=0;i<fmiss.transform.GetChild(0).transform.childCount;i++)
+			{
+
+				for(int j=0;j<fmiss.transform.GetChild(0).transform.GetChild(i).renderer.materials.Length;j++)
+					//			for(int j=0;j<3;j++)
+				{
+					fmiss.transform.GetChild(0).transform.GetChild(i).renderer.materials [j].SetVector ("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
+				
+					fmiss.transform.GetChild(0).transform.GetChild(i).GetComponent<TrailRenderer>().materials[j].SetVector ("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
+
+				}
+
+
+
+			}
+
 
 			fmiss.transform.Translate(fmiss.transform.forward*2);
 
@@ -509,11 +599,8 @@ public class carRotate : MonoBehaviour {
 		
 				audio.Stop();
 
-				
-			//	collider.rigidbody.AddForce (Vector3.left * 152);
-			
-			//	collider.rigidbody.AddForce (Vector3.forward * 1052);
-
+		
+				/*
 				collider.rigidbody.AddForce (Vector3.up * 52);
 
 				collider.rigidbody.AddForce (Vector3.forward * 52);
@@ -523,13 +610,10 @@ public class carRotate : MonoBehaviour {
 				
 				collider.rigidbody.AddTorque (Vector3.forward * 152);
 
+*/
 
 
-
-			//	collider.rigidbody.AddTorque (Vector3.left * 152);
-			
-			//	collider.rigidbody.AddTorque (Vector3.forward * 1052);
-
+	
 			}
 
 						delay += 1;

@@ -42,7 +42,7 @@ public class NewLooper : MonoBehaviour {
 		curvect = new Vector3 (0,0,0);
 
 
-		sizeofarray = 3*6;
+		sizeofarray = 4*6;
 
 
 		gobs = new GameObject[sizeofarray];
@@ -69,7 +69,7 @@ public class NewLooper : MonoBehaviour {
 		
 		
 		
-		Vector3 firstpos, secondpos,thirdpos;
+		Vector3 firstpos, secondpos,thirdpos,fourthpos;
 		
 		firstpos = new Vector3 (0,0,0);
 		
@@ -77,7 +77,9 @@ public class NewLooper : MonoBehaviour {
 		
 		thirdpos = new Vector3 (0,0,secondpos.z+size.z);
 		
-		
+		fourthpos = new Vector3 (0,0,thirdpos.z+size.z);
+
+
 		/*
         g1=Instantiate (go1, firstpos, transform.rotation) as GameObject;
 
@@ -120,7 +122,7 @@ public class NewLooper : MonoBehaviour {
 		
 
 		
-			if(i>=0&&i<3)
+			if(i>=0&&i<4)
 			{
 
 				if(i==0)
@@ -131,6 +133,9 @@ public class NewLooper : MonoBehaviour {
 				else
 					if(i==2)
 						gobs [i] = Instantiate (go1, thirdpos, transform.rotation) as GameObject;
+				else
+					if(i==3)
+						gobs [i] = Instantiate (go1, fourthpos, transform.rotation) as GameObject;
 
 
 
@@ -143,89 +148,103 @@ public class NewLooper : MonoBehaviour {
 
 
 			}
-			if(i>=3&&i<6)
+			if(i>=4&&i<8)
 			{
 
 //				gobs [i] = Instantiate (go2, secondpos, transform.rotation) as GameObject;
 
 
-				if(i==3)
-					gobs [i] = Instantiate (go2, firstpos, transform.rotation) as GameObject;
-				else
 					if(i==4)
 						gobs [i] = Instantiate (go2, secondpos, transform.rotation) as GameObject;
 				else
 					if(i==5)
 						gobs [i] = Instantiate (go2, thirdpos, transform.rotation) as GameObject;
-
-
-
-
-			}
-
-			if(i>=6&&i<9)
-			{
-
-
-				if(i==6)
-					gobs [i] = Instantiate (go3, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==6)
+						gobs [i] = Instantiate (go2, thirdpos, transform.rotation) as GameObject;
 				else
 					if(i==7)
+						gobs [i] = Instantiate (go2, fourthpos, transform.rotation) as GameObject;
+
+
+
+
+			}
+
+			if(i>=8&&i<12)
+			{
+
+
+				if(i==8)
+					gobs [i] = Instantiate (go3, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==9)
 						gobs [i] = Instantiate (go3, secondpos, transform.rotation) as GameObject;
 				else
-					if(i==8)
-						gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
-
-			}
-
-
-
-			if(i>=9&&i<12)
-			{
-				
-				
-				if(i==9)
-					gobs [i] = Instantiate (go4, firstpos, transform.rotation) as GameObject;
-				else
 					if(i==10)
-						gobs [i] = Instantiate (go4, secondpos, transform.rotation) as GameObject;
+						gobs [i] = Instantiate (go3, thirdpos, transform.rotation) as GameObject;
 				else
 					if(i==11)
-						gobs [i] = Instantiate (go4, thirdpos, transform.rotation) as GameObject;
-				
+						gobs [i] = Instantiate (go3, fourthpos, transform.rotation) as GameObject;
+
 			}
 
 
-			if(i>=12&&i<15)
+
+			if(i>=12&&i<16)
 			{
 				
 				
 				if(i==12)
-					gobs [i] = Instantiate (go5, firstpos, transform.rotation) as GameObject;
+					gobs [i] = Instantiate (go4, firstpos, transform.rotation) as GameObject;
 				else
 					if(i==13)
-						gobs [i] = Instantiate (go5, secondpos, transform.rotation) as GameObject;
+						gobs [i] = Instantiate (go4, secondpos, transform.rotation) as GameObject;
 				else
 					if(i==14)
-						gobs [i] = Instantiate (go5, thirdpos, transform.rotation) as GameObject;
+						gobs [i] = Instantiate (go4, thirdpos, transform.rotation) as GameObject;
+				if(i==15)
+					gobs [i] = Instantiate (go4, fourthpos, transform.rotation) as GameObject;
+
+			}
+
+
+			if(i>=16&&i<20)
+			{
 				
+				
+				if(i==16)
+					gobs [i] = Instantiate (go5, firstpos, transform.rotation) as GameObject;
+				else
+					if(i==17)
+						gobs [i] = Instantiate (go5, secondpos, transform.rotation) as GameObject;
+				else
+					if(i==18)
+						gobs [i] = Instantiate (go5, thirdpos, transform.rotation) as GameObject;
+				else
+					if(i==19)
+						gobs [i] = Instantiate (go5, fourthpos, transform.rotation) as GameObject;
+
 			}
 
 
 
-			if(i>=15&&i<18)
+			if(i>=20&&i<24)
 			{
 				
 				
-				if(i==15)
+				if(i==20)
 					gobs [i] = Instantiate (go6, firstpos, transform.rotation) as GameObject;
 				else
-					if(i==16)
+					if(i==21)
 						gobs [i] = Instantiate (go6, secondpos, transform.rotation) as GameObject;
 				else
-					if(i==17)
+					if(i==22)
 						gobs [i] = Instantiate (go6, thirdpos, transform.rotation) as GameObject;
-				
+				else
+					if(i==23)
+						gobs [i] = Instantiate (go6, fourthpos, transform.rotation) as GameObject;
+
 			}
 
 
@@ -249,7 +268,7 @@ public class NewLooper : MonoBehaviour {
 
 //			if(i>sizeofarray/3-1)
 
-			if(i>2)
+			if(i>3)
 			gobs[i].SetActive(false);
 
 
@@ -382,7 +401,7 @@ public class NewLooper : MonoBehaviour {
 				
 				if(counter==3)
 				{
-					if(i>=0&&i<3)
+					if(i>=0&&i<4)
 						gobs[i].SetActive(true);
 					else
 						
@@ -391,7 +410,7 @@ public class NewLooper : MonoBehaviour {
 				else if(counter==6)
 				{
 					
-					if(i>=3&&i<6)
+					if(i>=4&&i<8)
 						gobs[i].SetActive(true);
 					else
 						gobs[i].SetActive(false);
@@ -399,7 +418,7 @@ public class NewLooper : MonoBehaviour {
 				else if(counter==9)
 				{
 					
-					if(i>=6&&i<9)
+					if(i>=8&&i<12)
 						gobs[i].SetActive(true);
 					else
 						gobs[i].SetActive(false);
@@ -407,7 +426,7 @@ public class NewLooper : MonoBehaviour {
 				else if(counter==12)
 				{
 					
-					if(i>=9&&i<12)
+					if(i>=12&&i<16)
 						gobs[i].SetActive(true);
 					else
 						gobs[i].SetActive(false);
@@ -415,7 +434,7 @@ public class NewLooper : MonoBehaviour {
 				else if(counter==15)
 				{
 					
-					if(i>=12&&i<15)
+					if(i>=16&&i<20)
 						gobs[i].SetActive(true);
 					else
 						gobs[i].SetActive(false);
@@ -588,6 +607,7 @@ public class NewLooper : MonoBehaviour {
 			gobs [i].renderer.materials [j].SetVector("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
 
 
+			gobs [i].renderer.materials [j].SetFloat ("_Dist", 8);
 
 
 

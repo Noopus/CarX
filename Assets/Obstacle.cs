@@ -120,7 +120,7 @@ public class Obstacle : MonoBehaviour {
 
 
 
-		speed = 0.4f;
+		speed = 0.2f;
 		
 		
 		//////////////
@@ -484,7 +484,7 @@ public class Obstacle : MonoBehaviour {
 		
 	
 
-		curvect = new Vector3 (0,0,0);
+		curvect = new Vector3 (0,-0.04f,0);
 
 
 	}
@@ -670,7 +670,7 @@ public class Obstacle : MonoBehaviour {
 								veh [i].renderer.materials [j].SetVector ("_QOffset", curvect);
 
 				
-				veh[i].renderer.materials [j].SetFloat ("_Dist", 10);
+				veh[i].renderer.materials [j].SetFloat ("_Dist", 8);
 
 
 			
@@ -688,7 +688,7 @@ public class Obstacle : MonoBehaviour {
 				veh2 [i].renderer.materials [j].SetVector ("_QOffset", curvect);
 
 
-				veh2 [i].renderer.materials [j].SetFloat ("_Dist", 10);
+				veh2 [i].renderer.materials [j].SetFloat ("_Dist", 8);
 
 				
 				//print(veh[i].renderer.material.GetFloat("_Dist"));
@@ -712,7 +712,7 @@ public class Obstacle : MonoBehaviour {
 		if (!turn) 
 		{
 		
-		//	curvect.x -= 0.0003f;
+			curvect.x -= 0.0003f;
 			
 			
 
@@ -720,7 +720,7 @@ public class Obstacle : MonoBehaviour {
 		else if (turn) 
 		{
 			
-//			curvect.x += 0.0003f;
+			curvect.x += 0.0003f;
 			
 
 		}
@@ -728,11 +728,11 @@ public class Obstacle : MonoBehaviour {
 		
 		
 		
-		if (curvect.x < -0.18f)
+		if (curvect.x < -0.10f)
 			turn = true;
 		
 		
-		if (curvect.x > 0.18f)
+		if (curvect.x > 0.10f)
 			turn = false;
 
 
@@ -956,7 +956,7 @@ public class Obstacle : MonoBehaviour {
 						if(time==5+turntime)
 						{
 							
-							if(speed<1.38f)
+							if(speed<0.90f)
 		        			speed+=0.1f;
 							
 							

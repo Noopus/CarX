@@ -8,6 +8,10 @@ Shader "RedDotGames/Mobile/Car Paint Low Detail" {
 	  _Shininess ("Shininess", Range (0.01, 10)) = 1
 	  _Gloss ("Gloss", Range (0.0, 10)) = 1
 	  _MainTex ("Diffuse Texture", 2D) = "white" {} 
+	  
+	  _QOffset ("Offset", Vector) = (0,0,0,0)
+      _Dist ("Distance", Float) = 100.0
+
 	  _Cube("Reflection Map", Cube) = "" {}
 	  _Reflection("Reflection Power", Range (0.00, 1)) = 0
 	  _FrezPow("Fresnel Power",Range(0,2)) = .25
@@ -59,6 +63,10 @@ SubShader {
          uniform fixed4 _LightColor0; 
             // color of light source (from "Lighting.cginc")
  
+ 
+ float4 _QOffset;
+float _Dist;
+ 
          struct vertexInput {
             float4 vertex : POSITION;
             fixed3 normal : NORMAL;
@@ -70,9 +78,11 @@ SubShader {
             float4 posWorld : TEXCOORD0;
             fixed3 normalDir : TEXCOORD1;
 			half4 tex : TEXCOORD3;
+			
 			//LIGHTING_COORDS(7,8)
 			
          };
+ 
  
          vertexOutput vert(vertexInput input)
          {          
@@ -84,8 +94,21 @@ SubShader {
 
 			   
 			o.tex = input.texcoord;
-            o.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+  //          o.pos = mul(UNITY_MATRIX_MVP, input.vertex);
   
+  /////
+  
+  
+float4 vPos = mul (UNITY_MATRIX_MV, input.vertex);
+float zOff = vPos.z/_Dist;
+vPos += _QOffset*zOff*zOff;
+o.pos = mul (UNITY_MATRIX_P, vPos);
+// o.uv = v.texcoord;
+o.posWorld = mul( UNITY_MATRIX_TEXTURE0, input.texcoord );
+return o;
+
+  
+  /////
             //TRANSFER_VERTEX_TO_FRAGMENT(o);			   
             return o;
          }
@@ -149,6 +172,34 @@ SubShader {
 			
 			
          }
+         
+         
+         
+         
+         
+struct v2f {
+float4 pos : SV_POSITION;
+float4 uv : TEXCOORD0;
+};
+v2f verti (appdata_base v)
+{
+v2f o;
+float4 vPos = mul (UNITY_MATRIX_MV, v.vertex);
+float zOff = vPos.z/_Dist;
+vPos += _QOffset*zOff*zOff;
+o.pos = mul (UNITY_MATRIX_P, vPos);
+// o.uv = v.texcoord;
+o.uv = mul( UNITY_MATRIX_TEXTURE0, v.texcoord );
+return o;
+}
+half4 fragi (v2f i) : COLOR
+{
+half4 col = tex2D(_MainTex, i.uv.xy);
+return col;
+}
+         
+         
+         
          ENDCG
       }
  }
