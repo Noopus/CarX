@@ -4,8 +4,9 @@ using System.Collections;
 public class carRotate : MonoBehaviour {
 	
 	float xspeep = 0f;
-	float power = 0.0828f;
-	float friction = 0.795f;
+	float power = 0.0320f;
+//	float friction = 0.670f;
+	float friction = 0.570f;
 	public bool right = false;
 	public bool left = false;
 	
@@ -157,20 +158,24 @@ public class carRotate : MonoBehaviour {
 
 
 
+				collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.forward * 500*speed);
+
+				collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.up * 500*speed);
+
+				collisionInfo.collider.rigidbody.AddTorque (collisionInfo.collider.transform.up * 6500*speed);
+
+
+				collider.rigidbody.AddForce (collisionInfo.collider.transform.forward * -3500*speed);
 
 
 
 								if (collisionInfo.collider.transform.position.x > gameObject.transform.position.x+2) {
 
-										//	gameObject.transform.Translate (Vector3.left * 0.45f);
-
 
 										if (collisionInfo.collider.rigidbody != null) {	
 
-				
-								//				collisionInfo.collider.rigidbody.AddTorque (collisionInfo.collider.transform.right * 3200);
 		
-						collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.right * 5200);
+				//		collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.right * 200);
 
 										}
 
@@ -183,14 +188,7 @@ public class carRotate : MonoBehaviour {
 		
 										if (collisionInfo.collider.rigidbody != null) {	
 
-											//	collisionInfo.collider.rigidbody.AddTorque (Vector3.left * 1200);
-		
-											//	collisionInfo.collider.rigidbody.AddForce (Vector3.left * 1200);
-
-
-				//		collisionInfo.collider.rigidbody.AddTorque (collisionInfo.collider.transform.right * -3200);
-						
-						collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.right * -5200);
+				//		collisionInfo.collider.rigidbody.AddForce (collisionInfo.collider.transform.right * -200);
 
 
 
@@ -205,8 +203,7 @@ public class carRotate : MonoBehaviour {
 
 								this.gameObject.rigidbody.useGravity = true;
 
-								//	Physics.gravity=new Vector3(0,-150,0);
-
+			
 
 						}
 
@@ -283,12 +280,23 @@ public class carRotate : MonoBehaviour {
 	public GameObject carbody;
 
 	// Use this for initialization
+
+
+
+	public  float updateInterval = 0.5F;
+	
+	private float accum   = 0; // FPS accumulated over the interval
+	private int   frames  = 0; // Frames drawn over the interval
+	private float timeleft; // Left
+
+
+
+
 	void FixedUpdate () {
 
 
 
-
-
+	
 		Camera.main.backgroundColor = Color.Lerp (Color.gray,new Color(0.8f,0.8f,0.8f,1), Mathf.PingPong (Time.time, 50) / 50);
 
 		RenderSettings.fogColor=Color.Lerp (Color.gray,new Color(0.8f,0.8f,0.8f,1), Mathf.PingPong (Time.time, 50) / 50);
@@ -319,7 +327,19 @@ public class carRotate : MonoBehaviour {
 		distance=distance+(int)(speed+0.8f);
 
 
-		score.text = ""+distance;
+
+
+
+
+
+
+
+
+
+
+	
+
+
 
 	
 		speed = obstaclemaker.GetComponent<Obstacle> ().speed;
@@ -435,6 +455,37 @@ public class carRotate : MonoBehaviour {
 
 
 
+		timeleft -= Time.deltaTime;
+		accum += Time.timeScale/Time.deltaTime;
+		++frames;
+		
+		// Interval ended - update GUI text and start new interval
+		if( timeleft <= 0.0 )
+		{
+			// display two fractional digits (f2 format)
+			float fps = accum/frames;
+			//string format = System.String.Format("{0:F2} FPS",fps);
+			//		guiText.text = format;
+			
+			
+			
+			score.text = ""+fps;
+			
+			
+			//	DebugConsole.Log(format,level);
+			timeleft = updateInterval;
+			accum = 0.0F;
+			frames = 0;
+		}
+		
+
+
+
+
+
+
+
+
 		for (int j=0; j<carbody.renderer.materials.Length; j++) 
 		carbody.renderer.materials [j].SetVector ("_QOffset", obstaclemaker.GetComponent<Obstacle> ().curvect);
 
@@ -502,7 +553,7 @@ public class carRotate : MonoBehaviour {
 		if (fire) {
 
 			if(fmiss==null)
-			fmiss=Instantiate (missile, this.transform.position+new Vector3(0,1,-2), Quaternion.Euler(Vector3.zero)) as GameObject;
+			fmiss=Instantiate (missile, this.transform.position+new Vector3(0,1.2f,-2), Quaternion.Euler(Vector3.zero)) as GameObject;
 			
 
 
@@ -674,8 +725,8 @@ public class carRotate : MonoBehaviour {
 	
 
 		if (this.transform.position.z > -15f&&!gameover)
-			transform.Translate (Vector3.forward*-0.05f);
-
+		//	transform.Translate (Vector3.forward*-0.05f);
+			transform.rigidbody.AddForce(Vector3.forward*-0.5f);
 
 		iPx = Input.acceleration.x;
 		
@@ -846,7 +897,7 @@ public class carRotate : MonoBehaviour {
 		//if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
 		if(left||right)
 		{    
-			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -10/2, 10/2);
+			newAngle = Mathf.Clamp(angleBetween + rotateDegrees, -5, 6f);
 			rotateDegrees = newAngle - angleBetween;
 		
 

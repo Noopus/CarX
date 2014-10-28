@@ -28,8 +28,8 @@ public class Missiles : MonoBehaviour {
 	
 		//other.rigidbody.AddExplosionForce (500000, other.transform.up*50000, 300000);
 
-		if(other.transform.rigidbody.mass==8)
-		other.rigidbody.AddForce (other.transform.up*1200*(other.transform.rigidbody.mass*1.2f));
+		if(other.transform.rigidbody.mass==2)
+		other.rigidbody.AddForce (other.transform.up*1200*(other.transform.rigidbody.mass*0.45f));
 		else
 			other.rigidbody.AddForce (other.transform.up*1200*(other.transform.rigidbody.mass*0.3f));
 
@@ -40,8 +40,10 @@ public class Missiles : MonoBehaviour {
 
 	//	other.rigidbody.AddTorque (other.transform.forward*2000);
 	//	other.rigidbody.AddTorque (other.transform.right*2000);
+
 		other.rigidbody.AddTorque (other.transform.forward*10000);
 
+		other.rigidbody.AddForce (other.transform.forward*-2000);
 
 
 	}

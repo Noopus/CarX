@@ -399,7 +399,7 @@ public class NewLooper : MonoBehaviour {
 				}
 				
 				
-				if(counter==3)
+				if(counter==3*2)
 				{
 					if(i>=0&&i<4)
 						gobs[i].SetActive(true);
@@ -407,7 +407,7 @@ public class NewLooper : MonoBehaviour {
 						
 						gobs[i].SetActive(false);
 				}
-				else if(counter==6)
+				else if(counter==6*2)
 				{
 					
 					if(i>=4&&i<8)
@@ -415,7 +415,7 @@ public class NewLooper : MonoBehaviour {
 					else
 						gobs[i].SetActive(false);
 				}
-				else if(counter==9)
+				else if(counter==9*2)
 				{
 					
 					if(i>=8&&i<12)
@@ -423,7 +423,7 @@ public class NewLooper : MonoBehaviour {
 					else
 						gobs[i].SetActive(false);
 				}
-				else if(counter==12)
+				else if(counter==12*2)
 				{
 					
 					if(i>=12&&i<16)
@@ -431,7 +431,7 @@ public class NewLooper : MonoBehaviour {
 					else
 						gobs[i].SetActive(false);
 				}
-				else if(counter==15)
+				else if(counter==15*2)
 				{
 					
 					if(i>=16&&i<20)
@@ -443,7 +443,7 @@ public class NewLooper : MonoBehaviour {
 
 
 
-				if(counter>15)
+				if(counter>15*2)
 					counter=0;
 
 

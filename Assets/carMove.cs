@@ -7,10 +7,10 @@ public class carMove : MonoBehaviour {
 //	float power = 0.0110f;
 //	float friction = 0.95f;
 
-	float power = 0.034f;
+	float power = 0.030f;
 //	float friction = 0.900f;
 
-	float friction = 0.880f;
+	float friction = 0.870f;
 
 
 	bool right = false;
