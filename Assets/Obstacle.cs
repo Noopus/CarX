@@ -115,7 +115,11 @@ public class Obstacle : MonoBehaviour {
 	
 	
 	public float latestspeed=0.4f;
-	
+
+
+
+
+
 	void Start () {
 		
 		x=new int[4];
@@ -366,9 +370,9 @@ public class Obstacle : MonoBehaviour {
 		ob2pos = new Vector3[ob2.transform.childCount];
 		
 		
-		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,120), transform.rotation) as GameObject;
+		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,170), transform.rotation) as GameObject;
 		
-		ob2=Instantiate (ob2, new Vector3(player.transform.position.x,0,120), transform.rotation) as GameObject;
+		ob2=Instantiate (ob2, new Vector3(player.transform.position.x,0,170), transform.rotation) as GameObject;
 		
 		
 		
@@ -998,13 +1002,13 @@ public class Obstacle : MonoBehaviour {
 						if(time==5+turntime)
 						{
 							
-							if(speed<0.90f)
+							if(speed<1.20f)
 								speed+=0.1f;
 							
 							
 							time=0;
 							
-							turntime+=2;
+							turntime+=1;
 							
 							
 						}
@@ -1032,7 +1036,7 @@ public class Obstacle : MonoBehaviour {
 		
 		//        if (curob2.transform.position.z < player.transform.position.z + 4* size2.z)
 		
-		if (curob2.transform.position.z < player.transform.position.z + 70)
+		if (curob2.transform.position.z < player.transform.position.z + 90)
 			firstwave = true;
 		
 		

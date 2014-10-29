@@ -65,9 +65,9 @@ public class carRotate : MonoBehaviour {
 
 
 
-		audio.loop = true;
+	//	audio.loop = true;
 	
-		audio.clip = clip; 
+	//	audio.clip = clip; 
 
 	//	audio.Play();
 
@@ -754,8 +754,7 @@ public class carRotate : MonoBehaviour {
 								left = true;
 								right = false;
 			
-				audio.pitch-=0.001f;
-
+			
 		//		obstaclemaker.GetComponent<Obstacle> ().speed-=0.0025f;
 
 
@@ -766,8 +765,7 @@ public class carRotate : MonoBehaviour {
 								left = false;
 								right = true;
 
-				audio.pitch-=0.001f;
-
+			
 
 		//		if(speed>obstaclemaker.GetComponent<Obstacle> ().latestspeed-3)
 		//		obstaclemaker.GetComponent<Obstacle> ().speed-=0.0025f;
@@ -778,9 +776,7 @@ public class carRotate : MonoBehaviour {
 								right = false;
 			
 				 
-				if(audio.pitch<2.0f+speed-0.4f)
-					audio.pitch+=0.01f;
-
+			
 
 		//		obstaclemaker.GetComponent<Obstacle> ().speed=obstaclemaker.GetComponent<Obstacle> ().latestspeed;
 

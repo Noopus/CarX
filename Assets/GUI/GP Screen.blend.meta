@@ -1,13 +1,39 @@
 fileFormatVersion: 2
-guid: b797441edebe94a4e85144a2f2e27639
+guid: 6329b2a68fc714bfe99ace3d67f01c60
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Plane
+    100000: 3Shots
+    100002: Disance
+    100004: //RootNode
+    100006: Needle
+    100008: NOS
+    100010: Plane
+    100012: Speed
+    400000: 3Shots
+    400002: Disance
+    400004: //RootNode
+    400006: Needle
+    400008: NOS
+    400010: Plane
+    400012: Speed
+    2300000: 3Shots
+    2300002: Disance
+    2300004: Needle
+    2300006: NOS
+    2300008: Plane
+    2300010: Speed
+    3300000: 3Shots
+    3300002: Disance
+    3300004: Needle
+    3300006: NOS
+    3300008: Plane
+    3300010: Speed
+    4300000: NOS
+    4300002: Disance
+    4300004: Needle
+    4300006: Speed
+    4300008: 3Shots
     7400000: Default Take
     9500000: //RootNode
   materials:

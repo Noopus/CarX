@@ -51,6 +51,9 @@ public class carMove : MonoBehaviour {
 
 		audio.Play ();
 
+		audio.pitch = 1.4f;
+
+
 	}
 
 
@@ -166,7 +169,8 @@ public class carMove : MonoBehaviour {
 
 
 
-				
+					audio.Stop();
+
 		//			print ("health is : "+health);
 				
 				}
@@ -225,15 +229,25 @@ public class carMove : MonoBehaviour {
 								right = false;
 			
 			
+				audio.pitch-=0.001f;
+
 						} else
 		if (Input.GetKey (KeyCode.LeftArrow) || (touch.position.x < Screen.width / 2 && Input.touchCount > 0)) {
 								left = false;
 								right = true;
+
+				audio.pitch-=0.001f;
+
 			
 			
 						} else {
 								left = false;
 								right = false;
+
+				if(audio.pitch<2.0f+speed-0.4f)
+					audio.pitch+=0.01f;
+
+
 			
 						}
 				}

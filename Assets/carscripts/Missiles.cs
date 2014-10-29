@@ -19,18 +19,31 @@ public class Missiles : MonoBehaviour {
 
 */
 
+
 	void OnTriggerEnter(Collider other) {
 
 		other.rigidbody.isKinematic = false;
 
 		other.rigidbody.useGravity = true;
 
-	
+
+
+
+		if (other.GetComponent<VehExploSound> () != null) 
+		{
+
+			other.GetComponent<VehExploSound>().explode();
+
+
+		
+		}
+
+
 		//other.rigidbody.AddExplosionForce (500000, other.transform.up*50000, 300000);
 
-		if(other.transform.rigidbody.mass==2)
-		other.rigidbody.AddForce (other.transform.up*1200*(other.transform.rigidbody.mass*0.45f));
-		else
+		if (other.transform.rigidbody.mass == 2) {
+						other.rigidbody.AddForce (other.transform.up * 1200 * (other.transform.rigidbody.mass * 0.45f));
+				}else
 			other.rigidbody.AddForce (other.transform.up*1200*(other.transform.rigidbody.mass*0.3f));
 
 
@@ -53,6 +66,8 @@ public class Missiles : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+
+
 	}
 	
 	// Update is called once per frame
