@@ -89,7 +89,8 @@ public class Obstacle : MonoBehaviour {
 	// Use this for initialization
 	
 	
-	
+	bool readytomove1,readytomove2;
+
 	
 	int[] x,x2;
 	
@@ -121,6 +122,10 @@ public class Obstacle : MonoBehaviour {
 
 
 	void Start () {
+
+		readytomove1 = false;
+
+		readytomove2 = false;
 		
 		x=new int[4];
 		
@@ -134,8 +139,7 @@ public class Obstacle : MonoBehaviour {
 		//////////////
 		
 		
-		
-		
+
 		
 		
 		veh=new GameObject[4];
@@ -190,14 +194,14 @@ public class Obstacle : MonoBehaviour {
 		
 		curob = new GameObject ();
 		
-		curob.transform.position = new Vector3 (0,0,170);
+		curob.transform.position = new Vector3 (0,0,190);
 		
 		
 		par2pos = new Vector3[8];
 		
 		curob2 = new GameObject ();
 		
-		curob2.transform.position = new Vector3 (0,0,170);
+		curob2.transform.position = new Vector3 (0,0,190);
 		
 		
 		
@@ -206,36 +210,36 @@ public class Obstacle : MonoBehaviour {
 		{
 			
 			
-			veh [i] = Instantiate (vehicle, new Vector3 (3.7f - 3.2f * i, 0, 170), transform.rotation) as GameObject;
+			veh [i] = Instantiate (vehicle, new Vector3 (3.7f - 3.2f * i, 0, 190), transform.rotation) as GameObject;
 			
 			
 			
 			
 			
-			car [i] = Instantiate (vcar, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			car [i] = Instantiate (vcar, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
-			redcar [i] = Instantiate (vredcar, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			redcar [i] = Instantiate (vredcar, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
-			pinkcar [i] = Instantiate (vpinkcar, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
-			
-			
+			pinkcar [i] = Instantiate (vpinkcar, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
-			truck [i] = Instantiate (vtruck, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
-			
-			taxi [i] = Instantiate (vtaxi, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
 			
 			
-			ltruck [i] = Instantiate (vltruck, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			truck [i] = Instantiate (vtruck, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
+			
+			taxi [i] = Instantiate (vtaxi, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
-			ftruck [i] = Instantiate (vftruck, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			ltruck [i] = Instantiate (vltruck, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
-			rover [i] = Instantiate (vrover, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			ftruck [i] = Instantiate (vftruck, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
-			bus [i] = Instantiate (vbus, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			
+			rover [i] = Instantiate (vrover, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
+			
+			bus [i] = Instantiate (vbus, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			//    veh[i]=truck[i];
 			
@@ -276,33 +280,33 @@ public class Obstacle : MonoBehaviour {
 		{
 			
 			
-			veh2 [i] = Instantiate (vehicle, new Vector3 (3.7f - 3.2f * i, 0, 170), transform.rotation) as GameObject;
+			veh2 [i] = Instantiate (vehicle, new Vector3 (3.7f - 3.2f * i, 0, 190), transform.rotation) as GameObject;
 			
 			
 			
 			
-			redcar2 [i] = Instantiate (vredcar, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			redcar2 [i] = Instantiate (vredcar, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
-			pinkcar2 [i] = Instantiate (vpinkcar, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
-			
-			
-			car2 [i] = Instantiate (vcar, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			pinkcar2 [i] = Instantiate (vpinkcar, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
-			truck2 [i] = Instantiate (vtruck, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
-			
-			taxi2 [i] = Instantiate (vtaxi, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
-			
-			ltruck2 [i] = Instantiate (vltruck, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			car2 [i] = Instantiate (vcar, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
-			ftruck2 [i] = Instantiate (vftruck, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			truck2 [i] = Instantiate (vtruck, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
+			
+			taxi2 [i] = Instantiate (vtaxi, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
+			
+			ltruck2 [i] = Instantiate (vltruck, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
+			
+			
+			ftruck2 [i] = Instantiate (vftruck, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
 			
-			rover2 [i] = Instantiate (vrover, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			rover2 [i] = Instantiate (vrover, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
-			bus2 [i] = Instantiate (vbus, new Vector3 (3.7f - 3.2f * i, 0, 10*170), transform.rotation) as GameObject;
+			bus2 [i] = Instantiate (vbus, new Vector3 (3.7f - 3.2f * i, 0, 10*190), transform.rotation) as GameObject;
 			
 			
 			
@@ -370,9 +374,9 @@ public class Obstacle : MonoBehaviour {
 		ob2pos = new Vector3[ob2.transform.childCount];
 		
 		
-		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,170), transform.rotation) as GameObject;
+		ob1=Instantiate (ob1, new Vector3(player.transform.position.x,0,190), transform.rotation) as GameObject;
 		
-		ob2=Instantiate (ob2, new Vector3(player.transform.position.x,0,170), transform.rotation) as GameObject;
+		ob2=Instantiate (ob2, new Vector3(player.transform.position.x,0,190), transform.rotation) as GameObject;
 		
 		
 		
@@ -658,18 +662,27 @@ public class Obstacle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
+
+		if(Input.GetKey("p"))
+		Time.timeScale = 0;
+		else
+			Time.timeScale = 1;
+
+
+
 		
 		delay = player.GetComponent<carMove> ().health;
 		
 		
 		
-		if (latestspeed < speed)
-			latestspeed = speed;
+		if (latestspeed < speed*Time.timeScale)
+			latestspeed = speed*Time.timeScale;
 		
 		
 		
-		//		print ("hit is detec"+latestspeed);
+		//		print ("hit is detec"+latestspeed*Time.timeScale);
 		
 		
 		
@@ -723,7 +736,7 @@ public class Obstacle : MonoBehaviour {
 		if (!turn) 
 		{
 			
-			curvect.x -= 0.0003f;
+			curvect.x -= 0.0003f*Time.timeScale;
 			
 			
 			
@@ -731,7 +744,7 @@ public class Obstacle : MonoBehaviour {
 		else if (turn) 
 		{
 			
-			curvect.x += 0.0003f;
+			curvect.x += 0.0003f*Time.timeScale;
 			
 			
 		}
@@ -740,9 +753,9 @@ public class Obstacle : MonoBehaviour {
 		
 		
 		if (!upturn)
-			curvect.y -= 0.0001f;
+			curvect.y -= 0.0001f*Time.timeScale;
 		else if(upturn)
-			curvect.y += 0.0001f;
+			curvect.y += 0.0001f*Time.timeScale;
 		
 		
 		
@@ -945,7 +958,7 @@ public class Obstacle : MonoBehaviour {
 				
 				
 				//    if(delay==0)
-				curob.transform.Translate (Vector3.forward * -speed);
+				curob.transform.Translate (Vector3.forward * -speed*Time.timeScale);
 				
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
@@ -956,12 +969,55 @@ public class Obstacle : MonoBehaviour {
 					{
 						
 						if(curob.transform.GetChild (j).rigidbody.angularVelocity.y==0)
-						{		curob.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.15f*j+j*speed/250));
-						}else
 						{
-							//curob.transform.GetChild (j).transform.Translate (Vector3.forward * -speed*(1.5f));
+
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * -Time.timeScale*(0.045f+0.05f*j+0.15f*j+j*speed*Time.timeScale/250));
 						
-							curob.transform.GetChild (j).transform.rigidbody.AddForce(Vector3.forward * -speed*(500.5f));
+
+							Ray ray = new Ray(curob.transform.GetChild (j).position,-curob.transform.GetChild (j).forward);
+							
+							RaycastHit hit;
+							
+							//if (curob2.transform.GetChild (j).transform.collider.Raycast (ray,out hit,100.0)) 
+							if(Physics.Raycast(ray,out hit,25))
+							{
+								//	Debug.DrawLine (ray.origin, hit.point);
+
+								if(readytomove1)
+								{
+									
+									movefunc (hit);
+									
+								}
+
+
+
+								if(!hit.collider.name.Equals("BottomBlock")&&hit.collider.renderer.enabled)
+								{
+	//								Debug.Log("The object in front of 1st is  "+curob.transform.GetChild (j).transform.name+" is "+hit.collider.name);
+
+									readytomove1=true;
+
+
+
+								}
+
+							
+
+
+							}
+							
+
+
+
+
+
+						}
+						else
+						{
+							//curob.transform.GetChild (j).transform.Translate (Vector3.forward * -speed*Time.timeScale*(1.5f));
+						
+							curob.transform.GetChild (j).transform.rigidbody.AddForce(Vector3.forward * -speed*Time.timeScale*(500.5f));
 
 						}
 						
@@ -971,7 +1027,7 @@ public class Obstacle : MonoBehaviour {
 						if(curob.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						//		curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed/250));
+						//		curob.transform.GetChild (j).transform.Translate (Vector3.forward *-(0.045f+0.05f*j+0.05f*j+j*speed*Time.timeScale/250));
 						
 					}
 					else
@@ -980,9 +1036,9 @@ public class Obstacle : MonoBehaviour {
 					{
 						
 						if(j==0)
-							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/250));
+							curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed*Time.timeScale/250));
 						
-						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/250));
+						curob.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed*Time.timeScale/250));
 						
 					}
 					
@@ -1140,9 +1196,13 @@ public class Obstacle : MonoBehaviour {
 			{
 				
 				//    if(delay==0)
-				
-				
-				curob2.transform.Translate (Vector3.forward * -speed);
+
+
+
+			
+
+
+				curob2.transform.Translate (Vector3.forward * -speed*Time.timeScale);
 				
 				for(int j=0;j<curob.transform.childCount;j++)
 				{
@@ -1150,12 +1210,49 @@ public class Obstacle : MonoBehaviour {
 					if(delay==0)
 					{
 						if(curob2.transform.GetChild (j).rigidbody.angularVelocity.y==0)
-							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -(0.045f+0.05f*j+0.15f*j+j*speed/250));
+						{
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -Time.timeScale*(0.045f+0.05f*j+0.15f*j+j*speed*Time.timeScale/250));
+						
+							Ray ray = new Ray(curob2.transform.GetChild (j).position,-curob2.transform.GetChild (j).forward);
+
+							RaycastHit hit;
+
+							//if (curob2.transform.GetChild (j).transform.collider.Raycast (ray,out hit,100.0)) 
+							if(Physics.Raycast(ray,out hit,25))
+							{
+							//	Debug.DrawLine (ray.origin, hit.point);
+							
+								if(readytomove2)
+								{
+									
+									movefunc (hit);
+									
+								}
+
+
+
+								if(!hit.collider.name.Equals("BottomBlock")&&hit.collider.renderer.enabled)
+								{
+				//					Debug.Log("The object in front of "+curob2.transform.GetChild (j).transform.name+" is "+hit.collider.name);
+								
+								//	hit.transform.Translate (hit.transform.right * -Time.timeScale*1);
+
+									readytomove2=true;
+
+								}
+							}
+
+
+
+
+
+
+						}
 						else
 						{
-						//	curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -speed*(1.5f));
+						//	curob2.transform.GetChild (j).transform.Translate (Vector3.forward * -speed*Time.timeScale*(1.5f));
 						
-							curob2.transform.GetChild (j).transform.rigidbody.AddForce(Vector3.forward * -speed*(500.5f));
+							curob2.transform.GetChild (j).transform.rigidbody.AddForce(Vector3.forward * -speed*Time.timeScale*(500.5f));
 
 						}
 						
@@ -1166,7 +1263,7 @@ public class Obstacle : MonoBehaviour {
 						if(curob2.transform.GetChild (j).transform.position.z<player.transform.position.z)
 					{
 						
-						//	curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed/500));
+						//	curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.045f+0.05f*j+0.05f*j+j*speed*Time.timeScale/500));
 						
 					}
 					else 
@@ -1176,9 +1273,9 @@ public class Obstacle : MonoBehaviour {
 					{
 						
 						if(j==0)
-							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed/250));
+							curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*1+0.03f*1+1*speed*Time.timeScale/250));
 						
-						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed/250));
+						curob2.transform.GetChild (j).transform.Translate (Vector3.forward * (0.04f*j+0.03f*j+j*speed*Time.timeScale/250));
 						
 					}
 					
@@ -1217,7 +1314,19 @@ public class Obstacle : MonoBehaviour {
 		
 	}
 	
-	
+
+
+	void movefunc(RaycastHit hit)
+	{
+		
+		Vector3 newpos=new Vector3(hit.transform.position.x+5,hit.transform.position.y,hit.transform.position.z);
+		
+		hit.transform.position = Vector3.Lerp(hit.transform.position, newpos, Time.deltaTime * 300);
+		
+	}
+
+
+
 	public Transform[] prefabpos,prefabinipos;
 	// List of prefab childs.
 	

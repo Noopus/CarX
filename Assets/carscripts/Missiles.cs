@@ -22,41 +22,50 @@ public class Missiles : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		other.rigidbody.isKinematic = false;
-
-		other.rigidbody.useGravity = true;
 
 
+		if (!other.name.Equals ("BottomBlock")) {
 
 
-		if (other.GetComponent<VehExploSound> () != null) 
-		{
 
-			other.GetComponent<VehExploSound>().explode();
+						other.rigidbody.isKinematic = false;
+
+						other.rigidbody.useGravity = true;
+
+
+
+
+						if (other.GetComponent<VehExploSound> () != null) {
+
+								other.GetComponent<VehExploSound> ().explode ();
 
 
 		
-		}
+						}
 
 
-		//other.rigidbody.AddExplosionForce (500000, other.transform.up*50000, 300000);
+						//other.rigidbody.AddExplosionForce (500000, other.transform.up*50000, 300000);
 
-		if (other.transform.rigidbody.mass == 2) {
-						other.rigidbody.AddForce (other.transform.up * 1200 * (other.transform.rigidbody.mass * 0.45f));
-				}else
-			other.rigidbody.AddForce (other.transform.up*1200*(other.transform.rigidbody.mass*0.3f));
-
-
-	//	other.rigidbody.AddForce (other.transform.forward*200);
-	//	other.rigidbody.AddForce (other.transform.right*5);
+						if (other.transform.rigidbody.mass == 2) {
+								other.rigidbody.AddForce (other.transform.up * 1200 * (other.transform.rigidbody.mass * 0.45f));
+						} else
+								other.rigidbody.AddForce (other.transform.up * 1200 * (other.transform.rigidbody.mass * 0.3f));
 
 
-	//	other.rigidbody.AddTorque (other.transform.forward*2000);
-	//	other.rigidbody.AddTorque (other.transform.right*2000);
+						//	other.rigidbody.AddForce (other.transform.forward*200);
+						//	other.rigidbody.AddForce (other.transform.right*5);
 
-		other.rigidbody.AddTorque (other.transform.forward*10000);
 
-		other.rigidbody.AddForce (other.transform.forward*-2000);
+						//	other.rigidbody.AddTorque (other.transform.forward*2000);
+						//	other.rigidbody.AddTorque (other.transform.right*2000);
+
+						other.rigidbody.AddTorque (other.transform.forward * 10000);
+
+						other.rigidbody.AddForce (other.transform.forward * -2000);
+
+				}
+
+
 
 
 	}

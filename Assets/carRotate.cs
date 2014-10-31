@@ -807,10 +807,10 @@ public class carRotate : MonoBehaviour {
 		
 		if(left)
 		{
-			rotateDegrees += rotateSpeed*0.045f;
+			rotateDegrees += rotateSpeed*0.045f*Time.timeScale;
 
 
-			rotateDegrees+=Mathf.Abs(xspeep)*6.5f;
+			rotateDegrees+=Mathf.Abs(xspeep)*6.5f*Time.timeScale;
 
 		}
 		else 
@@ -820,10 +820,10 @@ public class carRotate : MonoBehaviour {
 	//		rotateDegrees -= rotateSpeed * Time.deltaTime;
 	
 
-			rotateDegrees -= rotateSpeed*0.045f;
+			rotateDegrees -= rotateSpeed*0.045f*Time.timeScale;
 
 
-			rotateDegrees-=Mathf.Abs(xspeep)*6.5f;
+			rotateDegrees-=Mathf.Abs(xspeep)*6.5f*Time.timeScale;
 
 		}
 		else
@@ -930,13 +930,13 @@ public class carRotate : MonoBehaviour {
 
 
 		}
-		else
+		else if(!gameover)
 		{
 			newAngle = Mathf.Clamp(angleBetween/2 + srotateDegrees/2, -20, 20);
 			srotateDegrees = newAngle/2 - angleBetween;
 		
 
-			this.transform.RotateAround(piv1.transform.position,Vector3.up,srotateDegrees/6);
+			this.transform.RotateAround(piv1.transform.position,Vector3.up,Time.timeScale*srotateDegrees/6);
 
 		//	carbody.transform.RotateAround(this.transform.position,Vector3.forward,srotateDegrees/(6*2));
 
@@ -947,7 +947,7 @@ public class carRotate : MonoBehaviour {
 
 
 
-			carbody.transform.localRotation=Quaternion.Slerp(carbody.transform.localRotation,Quaternion.Euler(new Vector3(0,0,0)),Time.time*speed/15);
+			carbody.transform.localRotation=Quaternion.Slerp(carbody.transform.localRotation,Quaternion.Euler(new Vector3(0,0,0)),Time.time*speed/15*Time.timeScale);
 
 			carbody.transform.localPosition=new Vector3(-3.035522f,carbody.transform.localPosition.y,carbody.transform.localPosition.z);
 

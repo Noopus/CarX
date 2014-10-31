@@ -38,12 +38,23 @@ public class VehExploSound : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
+
 		aSources = this.GetComponents<AudioSource> ();
 
 
 		audio1 = aSources [0];
 
+//		if(aSources.Length>1)
+
+		/*
 		audio2 = aSources [1];
+
+		audio2.clip = explodesound;
+		
+		audio2.loop = false;
+*/
+
 
 	
 	}

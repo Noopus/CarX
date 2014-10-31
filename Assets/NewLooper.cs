@@ -531,7 +531,7 @@ public class NewLooper : MonoBehaviour {
 			
 			
 			if(delay==0)
-			gobs[i].transform.Translate (Vector3.forward*-speed*1.2f);
+			gobs[i].transform.Translate (Vector3.forward*-speed*1.2f*Time.timeScale);
 
 
 			

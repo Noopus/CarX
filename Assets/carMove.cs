@@ -271,7 +271,7 @@ public class carMove : MonoBehaviour {
 		
 		xspeep *= friction;
 
-		transform.Translate(Vector3.right * -xspeep);
+		transform.Translate(Vector3.right * -xspeep*Time.timeScale);
 
 
 
